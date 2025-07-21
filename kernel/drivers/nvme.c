@@ -146,50 +146,50 @@ static int nvme_write_sectors(uint32_t nsid, uint64_t lba, uint32_t count, const
 static void nvme_irq_handler(struct interrupt_frame* frame);
 
 // Initialize NVMe subsystem
-int nvme_init() {
+error_t nvme_init(void) {
     printf("NVMe: Initializing NVMe subsystem...\n");
     
     // Find NVMe controller
     if (!nvme_find_controller()) {
         printf("NVMe: No NVMe controller found\n");
-        return -1;
+        return E_NOT_FOUND;
     }
     
     // Initialize controller
     if (nvme_init_controller() != 0) {
         printf("NVMe: Failed to initialize controller\n");
-        return -1;
+        return E_IO;
     }
     
     // Create admin queues
     if (nvme_create_admin_queues() != 0) {
         printf("NVMe: Failed to create admin queues\n");
-        return -1;
+        return E_IO;
     }
     
     // Identify controller
     if (nvme_identify_controller() != 0) {
         printf("NVMe: Failed to identify controller\n");
-        return -1;
+        return E_IO;
     }
     
     // Create I/O queues
     if (nvme_create_io_queues() != 0) {
         printf("NVMe: Failed to create I/O queues\n");
-        return -1;
+        return E_IO;
     }
     
     // Identify namespaces
     if (nvme_identify_namespaces() != 0) {
         printf("NVMe: Failed to identify namespaces\n");
-        return -1;
+        return E_IO;
     }
     
     // Register IRQ handler
     register_irq_handler(11, nvme_irq_handler); // MSI or legacy IRQ
     
     printf("NVMe: Initialization complete, %d namespaces found\n", nvme_controller.num_namespaces);
-    return 0;
+    return SUCCESS;
 }
 
 // Find NVMe controller via PCI
@@ -532,4 +532,4 @@ nvme_namespace_t* nvme_get_namespace(uint32_t nsid) {
 // Get number of NVMe namespaces
 int nvme_get_namespace_count() {
     return nvme_controller.num_namespaces;
-} 
+}

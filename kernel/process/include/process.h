@@ -1,11 +1,20 @@
 #ifndef PROCESS_H
 #define PROCESS_H
 
-#include "types.h"
-#include "memory/include/memory.h"
-#include "security/security.h"
+#include "../../core/include/types.h"
+#include "../../core/include/error.h"
+#include "../../memory/include/vmm.h"
+#include "../../security/include/security.h"
 #include <stddef.h>
 #include <stdbool.h>
+
+// Forward declarations
+struct process;
+struct thread;
+struct wait_queue;
+struct interrupt_frame;
+struct file_descriptor;
+struct file;
 
 // Process states
 typedef enum {
@@ -81,7 +90,9 @@ typedef struct thread {
     struct thread* next_in_queue;
     struct thread* prev_in_queue;
     void* wait_object;
+    struct wait_queue* wait_queue;
     u64 wake_time;
+    u64 sleep_until;
     
     // Links
     struct thread* next_thread;
@@ -220,6 +231,8 @@ error_t scheduler_remove_thread(thread_t* thread);
 
 // Context switching
 void context_switch(thread_t* old_thread, thread_t* new_thread);
+void context_save(cpu_context_t* context);
+void context_restore(cpu_context_t* context);
 void save_cpu_context(cpu_context_t* context);
 void restore_cpu_context(cpu_context_t* context);
 

@@ -192,13 +192,13 @@ static int usb_mass_storage_write_sectors(int device_index, uint32_t lba, uint32
 static void usb_irq_handler(struct interrupt_frame* frame);
 
 // Initialize USB subsystem
-int usb_init() {
+error_t usb_init(void) {
     printf("USB: Initializing USB subsystem...\n");
     
     // Find USB controllers
     if (!usb_find_controllers()) {
         printf("USB: No USB controllers found\n");
-        return -1;
+        return E_NOT_FOUND;
     }
     
     // Initialize controllers
@@ -221,7 +221,7 @@ int usb_init() {
     printf("USB: Initialization complete, %d controllers, %d total devices\n", 
            usb_controller_count, usb_controllers[0].num_devices + usb_controllers[1].num_devices);
     
-    return 0;
+    return SUCCESS;
 }
 
 // Find USB controllers via PCI
@@ -589,4 +589,4 @@ int usb_get_device_count(int controller) {
         return usb_controllers[controller].num_devices;
     }
     return 0;
-} 
+}

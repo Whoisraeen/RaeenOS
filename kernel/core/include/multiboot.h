@@ -28,137 +28,79 @@
 #define MULTIBOOT_INFO_VBE_INFO   0x00000800
 #define MULTIBOOT_INFO_FRAMEBUFFER_INFO 0x00001000
 
+// Multiboot header flags (for bootloader_handoff compatibility)
+#define MULTIBOOT_HEADER_FLAG_MMAP        MULTIBOOT_INFO_MEM_MAP
+#define MULTIBOOT_HEADER_FLAG_MODS        MULTIBOOT_INFO_MODS
+#define MULTIBOOT_HEADER_FLAG_CMDLINE     MULTIBOOT_INFO_CMDLINE
+#define MULTIBOOT_HEADER_FLAG_FRAMEBUFFER MULTIBOOT_INFO_FRAMEBUFFER_INFO
+
+// Multiboot structures
+typedef struct multiboot_info {
+    uint32_t flags;
+    uint32_t mem_lower;
+    uint32_t mem_upper;
+    uint32_t boot_device;
+    uint32_t cmdline;
+    uint32_t mods_count;
+    uint32_t mods_addr;
+    uint32_t syms[4];
+    uint32_t mmap_length;
+    uint32_t mmap_addr;
+    uint32_t drives_length;
+    uint32_t drives_addr;
+    uint32_t config_table;
+    uint32_t boot_loader_name;
+    uint32_t apm_table;
+    uint32_t vbe_control_info;
+    uint32_t vbe_mode_info;
+    uint16_t vbe_mode;
+    uint16_t vbe_interface_seg;
+    uint16_t vbe_interface_off;
+    uint16_t vbe_interface_len;
+    uint64_t framebuffer_addr;
+    uint32_t framebuffer_pitch;
+    uint32_t framebuffer_width;
+    uint32_t framebuffer_height;
+    uint8_t framebuffer_bpp;
+    uint8_t framebuffer_type;
+    uint8_t color_info[6];
+} __attribute__((packed)) multiboot_info_t;
+
+typedef struct multiboot_mmap_entry {
+    uint32_t size;
+    uint64_t addr;
+    uint64_t len;
+    uint32_t type;
+} __attribute__((packed)) multiboot_mmap_entry_t;
+
+typedef struct multiboot_module {
+    uint32_t mod_start;
+    uint32_t mod_end;
+    uint32_t string;
+    uint32_t reserved;
+} __attribute__((packed)) multiboot_module_t;
+
 // Multiboot header structure
-struct multiboot_header {
-    u32 magic;
-    u32 flags;
-    u32 checksum;
-    u32 header_addr;
-    u32 load_addr;
-    u32 load_end_addr;
-    u32 bss_end_addr;
-    u32 entry_addr;
-    u32 mode_type;
-    u32 width;
-    u32 height;
-    u32 depth;
-} __attribute__((packed));
-
-// Multiboot information structure
-struct multiboot_info {
-    u32 flags;
-    u32 mem_lower;
-    u32 mem_upper;
-    u32 boot_device;
-    u32 cmdline;
-    u32 mods_count;
-    u32 mods_addr;
-    
-    union {
-        struct {
-            u32 tabsize;
-            u32 strsize;
-            u32 addr;
-            u32 reserved;
-        } aout_sym;
-        
-        struct {
-            u32 num;
-            u32 size;
-            u32 addr;
-            u32 shndx;
-        } elf_sec;
-    } u;
-    
-    u32 mmap_length;
-    u32 mmap_addr;
-    u32 drives_length;
-    u32 drives_addr;
-    u32 config_table;
-    u32 boot_loader_name;
-    u32 apm_table;
-    u32 vbe_control_info;
-    u32 vbe_mode_info;
-    u16 vbe_mode;
-    u16 vbe_interface_seg;
-    u16 vbe_interface_off;
-    u16 vbe_interface_len;
-    
-    u64 framebuffer_addr;
-    u32 framebuffer_pitch;
-    u32 framebuffer_width;
-    u32 framebuffer_height;
-    u8  framebuffer_bpp;
-    u8  framebuffer_type;
-    
-    union {
-        struct {
-            u32 framebuffer_palette_addr;
-            u16 framebuffer_palette_num_colors;
-        };
-        struct {
-            u8 framebuffer_red_field_position;
-            u8 framebuffer_red_mask_size;
-            u8 framebuffer_green_field_position;
-            u8 framebuffer_green_mask_size;
-            u8 framebuffer_blue_field_position;
-            u8 framebuffer_blue_mask_size;
-        };
-    };
-} __attribute__((packed));
-
-// Memory map entry structure
-struct multiboot_mmap_entry {
-    u32 size;
-    u64 addr;
-    u64 len;
-    u32 type;
-} __attribute__((packed));
+typedef struct multiboot_header {
+    uint32_t magic;
+    uint32_t flags;
+    uint32_t checksum;
+    uint32_t header_addr;
+    uint32_t load_addr;
+    uint32_t load_end_addr;
+    uint32_t bss_end_addr;
+    uint32_t entry_addr;
+    uint32_t mode_type;
+    uint32_t width;
+    uint32_t height;
+    uint32_t depth;
+} __attribute__((packed)) multiboot_header_t;
 
 // Memory map types
-#define MULTIBOOT_MEMORY_AVAILABLE   1
-#define MULTIBOOT_MEMORY_RESERVED    2
+#define MULTIBOOT_MEMORY_AVAILABLE        1
+#define MULTIBOOT_MEMORY_RESERVED         2
 #define MULTIBOOT_MEMORY_ACPI_RECLAIMABLE 3
-#define MULTIBOOT_MEMORY_NVS         4
-#define MULTIBOOT_MEMORY_BADRAM      5
-
-// Module structure
-struct multiboot_mod_list {
-    u32 mod_start;
-    u32 mod_end;
-    u32 cmdline;
-    u32 pad;
-} __attribute__((packed));
-
-// Drive info structure
-struct multiboot_drive_info {
-    u32 size;
-    u8  drive_number;
-    u8  drive_mode;
-    u16 drive_cylinders;
-    u8  drive_heads;
-    u8  drive_sectors;
-    u16 drive_ports[0];
-} __attribute__((packed));
-
-// APM table structure
-struct multiboot_apm_info {
-    u16 version;
-    u16 cseg;
-    u32 offset;
-    u16 cseg_16;
-    u16 dseg;
-    u16 flags;
-    u16 cseg_len;
-    u16 cseg_16_len;
-    u16 dseg_len;
-} __attribute__((packed));
-
-// Utility functions for multiboot
-bool multiboot_is_valid(u32 magic, struct multiboot_info* mbi);
-void multiboot_parse_memory_map(struct multiboot_info* mbi);
-void multiboot_parse_modules(struct multiboot_info* mbi);
-const char* multiboot_get_cmdline(struct multiboot_info* mbi);
-const char* multiboot_get_bootloader_name(struct multiboot_info* mbi);
+#define MULTIBOOT_MEMORY_NVS              4
+#define MULTIBOOT_MEMORY_BADRAM           5
 
 #endif // MULTIBOOT_H

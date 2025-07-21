@@ -5,7 +5,14 @@
       "Bash(mkdir:*)",
       "Bash(touch:*)",
       "Bash(find:*)",
-      "Bash(grep:*)"
+      "Bash(grep:*)",
+      "Bash(make:*)",
+      "Bash(nasm:*)",
+      "Bash(gcc:*)",
+      "Bash(./build.bat kernel)",
+      "Bash(chmod:*)",
+      "Bash(./build_test.sh:*)",
+      "Bash(bash:*)"
     ],
     "deny": []
   }

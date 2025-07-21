@@ -1,8 +1,10 @@
-#include "process/include/process.h"
-#include "kernel.h"
-#include "memory/include/memory.h"
-#include "security/security.h"
-#include "interrupts.h"
+#include "include/process.h"
+#include "../core/include/kernel.h"
+#include "../memory/include/memory.h"
+#include "../security/include/security.h"
+#include "../core/include/interrupts.h"
+#include "../hal/include/hal.h"
+#include "../memory/memory_integration.h"
 
 // Global process management state
 static bool process_initialized = false;
@@ -180,7 +182,7 @@ process_t* process_create(const char* name, process_priority_t priority, uid_t u
     }
     
     // Create address space
-    process->address_space = address_space_create();
+    process->address_space = vmm_create_address_space();
     if (!process->address_space) {
         memory_free(process);
         return NULL;
@@ -253,7 +255,7 @@ error_t process_destroy(process_t* process) {
     
     // Destroy address space
     if (process->address_space) {
-        address_space_destroy(process->address_space);
+        vmm_destroy_address_space(process->address_space);
     }
     
     // Destroy security token
@@ -609,17 +611,17 @@ void process_dump_info(process_t* process) {
         return;
     }
     
-    hal_console_print("Process Information:\n");
-    hal_console_print("  PID: %u\n", process->pid);
-    hal_console_print("  Name: %s\n", process->name);
-    hal_console_print("  State: %d\n", process->state);
-    hal_console_print("  Priority: %d\n", process->base_priority);
-    hal_console_print("  UID/GID: %u/%u\n", process->uid, process->gid);
-    hal_console_print("  Thread count: %u\n", process->thread_count);
-    hal_console_print("  Memory usage: %llu KB\n", process->memory_usage / 1024);
-    hal_console_print("  Game Mode: %s\n", process->game_mode_enabled ? "Enabled" : "Disabled");
-    hal_console_print("  Creation time: %llu\n", process->creation_time);
-    hal_console_print("  Total CPU time: %llu ms\n", process->total_cpu_time);
+    hal_debug_print("Process Information:\n");
+    hal_debug_print("  PID: %u\n", process->pid);
+    hal_debug_print("  Name: %s\n", process->name);
+    hal_debug_print("  State: %d\n", process->state);
+    hal_debug_print("  Priority: %d\n", process->base_priority);
+    hal_debug_print("  UID/GID: %u/%u\n", process->uid, process->gid);
+    hal_debug_print("  Thread count: %u\n", process->thread_count);
+    hal_debug_print("  Memory usage: %llu KB\n", process->memory_usage / 1024);
+    hal_debug_print("  Game Mode: %s\n", process->game_mode_enabled ? "Enabled" : "Disabled");
+    hal_debug_print("  Creation time: %llu\n", process->creation_time);
+    hal_debug_print("  Total CPU time: %llu ms\n", process->total_cpu_time);
 }
 
 void thread_dump_info(thread_t* thread) {
@@ -627,14 +629,14 @@ void thread_dump_info(thread_t* thread) {
         return;
     }
     
-    hal_console_print("Thread Information:\n");
-    hal_console_print("  TID: %u\n", thread->tid);
-    hal_console_print("  PID: %u\n", thread->pid);
-    hal_console_print("  State: %d\n", thread->state);
-    hal_console_print("  Priority: %d\n", thread->priority);
-    hal_console_print("  Time slice: %llu ms\n", thread->time_slice);
-    hal_console_print("  Total runtime: %llu ms\n", thread->total_runtime);
-    hal_console_print("  Context switches: %llu\n", thread->context_switches);
-    hal_console_print("  Page faults: %llu\n", thread->page_faults);
-    hal_console_print("  System calls: %llu\n", thread->system_calls);
+    hal_debug_print("Thread Information:\n");
+    hal_debug_print("  TID: %u\n", thread->tid);
+    hal_debug_print("  PID: %u\n", thread->pid);
+    hal_debug_print("  State: %d\n", thread->state);
+    hal_debug_print("  Priority: %d\n", thread->priority);
+    hal_debug_print("  Time slice: %llu ms\n", thread->time_slice);
+    hal_debug_print("  Total runtime: %llu ms\n", thread->total_runtime);
+    hal_debug_print("  Context switches: %llu\n", thread->context_switches);
+    hal_debug_print("  Page faults: %llu\n", thread->page_faults);
+    hal_debug_print("  System calls: %llu\n", thread->system_calls);
 }

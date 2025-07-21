@@ -1,7 +1,9 @@
-#include "process/include/process.h"
-#include "kernel.h"
-#include "interrupts.h"
-#include "hal/hal.h"
+#include "include/process.h"
+#include "../core/include/kernel.h"
+#include "../core/include/interrupts.h"
+#include "../hal/include/hal.h"
+#include "../memory/include/memory.h"
+#include <string.h>
 
 // Scheduler state
 static bool scheduler_initialized = false;
@@ -10,7 +12,7 @@ static u64 scheduler_tick_count = 0;
 static u64 last_schedule_time = 0;
 
 // Ready queues (one per priority level)
-static wait_queue_t* ready_queues[MAX_PRIORITY_LEVELS] = {NULL};
+static wait_queue_t* ready_queues[5] = {NULL}; // 5 priority levels: CRITICAL, HIGH, NORMAL, LOW, IDLE
 
 // Current scheduling information
 static thread_t* current_thread = NULL;
@@ -46,7 +48,7 @@ error_t scheduler_init(void) {
     KINFO("Initializing advanced scheduler");
     
     // Create ready queues for each priority level
-    for (int i = 0; i < MAX_PRIORITY_LEVELS; i++) {
+    for (int i = 0; i < 5; i++) {
         ready_queues[i] = wait_queue_create("ready_queue");
         if (!ready_queues[i]) {
             KERROR("Failed to create ready queue for priority %d", i);
@@ -60,7 +62,7 @@ error_t scheduler_init(void) {
     
     scheduler_initialized = true;
     
-    KINFO("Advanced scheduler initialized with %d priority levels", MAX_PRIORITY_LEVELS);
+    KINFO("Advanced scheduler initialized with 5 priority levels");
     return SUCCESS;
 }
 
@@ -142,7 +144,7 @@ thread_t* scheduler_next_thread(void) {
 
 static thread_t* scheduler_select_next_thread(void) {
     // Try each priority level in order (higher priority first)
-    for (int priority = PRIORITY_REALTIME; priority <= PRIORITY_IDLE; priority++) {
+    for (int priority = PRIORITY_CRITICAL; priority <= PRIORITY_IDLE; priority++) {
         thread_t* thread = scheduler_remove_from_ready_queue((process_priority_t)priority);
         if (thread) {
             thread->state = THREAD_STATE_RUNNING;
@@ -150,7 +152,7 @@ static thread_t* scheduler_select_next_thread(void) {
             
             // Set time slice based on priority
             switch (priority) {
-                case PRIORITY_REALTIME:
+                case PRIORITY_CRITICAL:
                     thread->time_slice = rt_quantum;
                     break;
                 case PRIORITY_HIGH:
@@ -224,7 +226,7 @@ static void scheduler_preempt_if_needed(void) {
     }
     
     // Check if a higher priority thread has become ready
-    for (int priority = PRIORITY_REALTIME; priority < current_thread->priority; priority++) {
+    for (int priority = PRIORITY_CRITICAL; priority < current_thread->priority; priority++) {
         if (ready_queues[priority] && ready_queues[priority]->head) {
             KDEBUG("Preempting thread TID=%u for higher priority thread", current_thread->tid);
             scheduler_preempt();
@@ -306,7 +308,7 @@ static void scheduler_handle_time_slice_expiry(void) {
 
 static void scheduler_aging(void) {
     // Implement priority aging to prevent starvation
-    for (int priority = PRIORITY_IDLE; priority < PRIORITY_REALTIME; priority++) {
+    for (int priority = PRIORITY_IDLE; priority > PRIORITY_CRITICAL; priority--) {
         wait_queue_t* queue = ready_queues[priority];
         if (!queue || !queue->head) {
             continue;
@@ -315,9 +317,11 @@ static void scheduler_aging(void) {
         thread_t* thread = queue->head;
         while (thread) {
             // Increase priority of threads that have been waiting too long
-            if (thread->wait_time > 1000) { // 1 second
+            u64 current_time = hal_get_timestamp();
+            u64 wait_time = current_time - thread->last_scheduled;
+            if (wait_time > 1000000) { // 1 second in microseconds
                 thread->priority = (thread->priority > 0) ? thread->priority - 1 : 0;
-                thread->wait_time = 0;
+                thread->last_scheduled = current_time;
                 KDEBUG("Aged thread TID=%u to priority %d", thread->tid, thread->priority);
             }
             thread = thread->next;
@@ -328,7 +332,7 @@ static void scheduler_aging(void) {
 static void scheduler_update_load_average(void) {
     // Calculate load average based on number of runnable threads
     u32 runnable_threads = 0;
-    for (int i = 0; i < MAX_PRIORITY_LEVELS; i++) {
+    for (int i = 0; i < 5; i++) {
         if (ready_queues[i]) {
             runnable_threads += ready_queues[i]->count;
         }
@@ -346,7 +350,7 @@ static void scheduler_update_load_average(void) {
 }
 
 static void scheduler_add_to_ready_queue(thread_t* thread) {
-    if (!thread || thread->priority >= MAX_PRIORITY_LEVELS) {
+    if (!thread || thread->priority > PRIORITY_IDLE) {
         return;
     }
     
@@ -370,7 +374,7 @@ static void scheduler_add_to_ready_queue(thread_t* thread) {
 }
 
 static thread_t* scheduler_remove_from_ready_queue(process_priority_t priority) {
-    if (priority >= MAX_PRIORITY_LEVELS) {
+    if (priority > PRIORITY_IDLE) {
         return NULL;
     }
     
@@ -404,13 +408,13 @@ void context_switch(thread_t* old_thread, thread_t* new_thread) {
     KDEBUG("Context switch: TID=%u -> TID=%u", old_thread->tid, new_thread->tid);
     
     // Save old thread context
-    if (old_thread->cpu_context) {
-        context_save(old_thread->cpu_context);
+    if (old_thread) {
+        context_save(&old_thread->context);
     }
     
     // Restore new thread context
-    if (new_thread->cpu_context) {
-        context_restore(new_thread->cpu_context);
+    if (new_thread) {
+        context_restore(&new_thread->context);
     }
     
     // Update current thread pointer
@@ -440,16 +444,15 @@ void scheduler_dump_stats(void) {
 
 void scheduler_dump_queues(void) {
     KINFO("=== Ready Queues ===");
-    for (int i = 0; i < MAX_PRIORITY_LEVELS; i++) {
+    for (int i = 0; i < 5; i++) {
         wait_queue_t* queue = ready_queues[i];
         if (queue && queue->count > 0) {
             KINFO("Priority %d: %u threads", i, queue->count);
             thread_t* thread = queue->head;
             while (thread) {
-                KINFO("  TID=%u, PID=%u, Name='%s'", 
+                KINFO("  TID=%u, PID=%u", 
                       thread->tid, 
-                      thread->parent_process ? thread->parent_process->pid : 0,
-                      thread->name);
+                      thread->parent_process ? thread->parent_process->pid : 0);
                 thread = thread->next;
             }
         }

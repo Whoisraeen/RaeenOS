@@ -1,7 +1,8 @@
 #ifndef HAL_H
 #define HAL_H
 
-#include "types.h"
+#include "../../core/include/types.h"
+#include "../../core/include/error.h"
 #include <stdarg.h>
 
 // HAL initialization and management
@@ -20,6 +21,7 @@ error_t hal_early_console_init(void);
 bool hal_is_console_ready(void);
 void hal_console_print(const char* format, ...);
 void hal_console_vprint(const char* format, va_list args);
+void hal_debug_print(const char* format, ...);
 void hal_console_write(const char* data, size_t length);
 void hal_console_set_color(u32 color);
 void hal_console_clear(void);

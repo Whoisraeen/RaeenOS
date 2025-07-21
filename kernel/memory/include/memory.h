@@ -3,6 +3,7 @@
 
 #include "types.h"
 #include "hal/hal.h"
+#include "core/bootloader_handoff.h"
 #include <stddef.h>
 #include <stdbool.h>
 
@@ -140,6 +141,8 @@ memory_stats_t* memory_get_stats(void);
 
 // Physical memory management
 error_t physical_memory_init(memory_region_t* regions);
+error_t pmm_init_from_handoff(bootloader_handoff_t* handoff);
+void pmm_mark_page_used(uint32_t physical_addr);
 phys_addr_t physical_alloc_page(void);
 phys_addr_t physical_alloc_pages(u32 count);
 void physical_free_page(phys_addr_t addr);
@@ -148,6 +151,8 @@ bool physical_is_available(phys_addr_t addr);
 
 // Virtual memory management
 error_t virtual_memory_init(void);
+error_t virtual_memory_init_from_handoff(bootloader_handoff_t* handoff);
+error_t vmm_init_from_handoff(bootloader_handoff_t* handoff);  // Wrapper for compatibility
 address_space_t* address_space_create(void);
 void address_space_destroy(address_space_t* as);
 error_t address_space_switch(address_space_t* as);

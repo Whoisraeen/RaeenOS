@@ -4,6 +4,8 @@
 #include <stdint.h>
 #include <stddef.h>
 #include <stdbool.h>
+#include "types.h"
+#include "error.h"
 
 // Kernel version information
 #define KERNEL_VERSION_MAJOR 0
@@ -48,10 +50,28 @@ void kernel_main_loop(void);
 int memory_init(void);
 int process_init(void);
 int filesystem_init(void);
-int network_init(void);
+error_t network_init(void);
 int graphics_init(void);
-int security_init(void);
-int hal_init(void);
+error_t security_init(void);
+error_t hal_init(void);
+int ramdisk_init(void);
+int vfs_init(void);
+int ramfs_init(void);
+int vm_advanced_init(void);
+error_t device_manager_init(void);
+int gui_init(void);
+error_t usb_init(void);
+error_t audio_init(void);
+error_t wifi_init(void);
+error_t bluetooth_init(void);
+error_t sata_init(void);
+error_t nvme_init(void);
+error_t timer_init(void);
+error_t interrupts_init(void);
+error_t syscall_init(void);
+error_t scheduler_init(void);
+int keyboard_init(void);
+error_t vga_init(void);
 
 // Utility functions
 const char* kernel_get_version_string(void);

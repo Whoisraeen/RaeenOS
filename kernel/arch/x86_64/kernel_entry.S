@@ -29,12 +29,20 @@ _start:
     rep stosb
     
     ; Set up registers for kernel_main
-    mov rdi, rbx                     ; Multiboot info structure
-    mov rsi, rax                     ; Multiboot magic number
+    ; EAX contains multiboot magic, EBX contains multiboot info pointer
+    mov rdi, rbx                     ; First argument: multiboot info structure
+    mov rsi, rax                     ; Second argument: multiboot magic number
+    
+    ; Ensure we're in 64-bit mode and registers are properly set
+    mov rax, 0x2BADB002             ; Expected multiboot magic
+    cmp rsi, rax
+    jne halt_system                 ; Halt if wrong magic number
     
     ; Call kernel main
     call kernel_main
     
     ; Should never return, but just in case
+halt_system:
     cli
-    hlt 
+    hlt
+    jmp halt_system

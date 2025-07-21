@@ -260,9 +260,24 @@ long_mode_start:
     jmp rax
 
 load_kernel:
-    ; TODO: Implement kernel loading from disk/filesystem
-    ; For now, just return
-    ret
+    ; Load kernel from disk (assuming GRUB will load it for us)
+    ; In real implementation, this would read kernel from filesystem
+    ; For now, we assume kernel is loaded by GRUB at 0x100000
+    
+    ; Set up multiboot information for kernel
+    mov eax, 0x2BADB002      ; Multiboot magic for bootloader
+    mov ebx, multiboot_info_addr ; Multiboot info structure address
+    
+    ; Create minimal multiboot info structure
+    mov dword [multiboot_info_addr], 0x00000003      ; flags (memory info)
+    mov dword [multiboot_info_addr + 4], 640        ; mem_lower (640K)
+    mov dword [multiboot_info_addr + 8], 65536      ; mem_upper (64MB)
+    
+    ; Jump to kernel entry point
+    mov edx, KERNEL_LOAD_ADDR
+    jmp edx
+
+multiboot_info_addr: dd 0x10000  ; Location for multiboot info structure
 
 print_string_64:
     mov rdi, 0xB8000

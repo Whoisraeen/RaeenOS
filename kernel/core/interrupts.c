@@ -1,7 +1,7 @@
-#include "interrupts.h"
-#include "kernel.h"
-#include "memory/include/memory.h"
-#include "hal/hal.h"
+#include "include/interrupts.h"
+#include "include/kernel.h"
+#include "../memory/include/memory.h"
+#include "../hal/include/hal.h"
 
 // Global interrupt state
 static idt_entry_t idt[IDT_ENTRIES];
@@ -60,11 +60,11 @@ error_t idt_init(void) {
     idt_set_entry(EXCEPTION_SIMD_FPU_ERROR, interrupt_stub_19, IDT_TYPE_INTERRUPT_GATE, 0, 0);
     
     // Set up IRQ handlers
-    idt_set_entry(IRQ_TIMER, interrupt_stub_32, IDT_TYPE_INTERRUPT_GATE, 0, 0);
-    idt_set_entry(IRQ_KEYBOARD, interrupt_stub_33, IDT_TYPE_INTERRUPT_GATE, 0, 0);
-    idt_set_entry(IRQ_CASCADE, interrupt_stub_34, IDT_TYPE_INTERRUPT_GATE, 0, 0);
-    idt_set_entry(IRQ_SERIAL_PORT2, interrupt_stub_35, IDT_TYPE_INTERRUPT_GATE, 0, 0);
-    idt_set_entry(IRQ_SERIAL_PORT1, interrupt_stub_36, IDT_TYPE_INTERRUPT_GATE, 0, 0);
+    idt_set_entry(IRQ_BASE + IRQ_TIMER, interrupt_stub_32, IDT_TYPE_INTERRUPT_GATE, 0, 0);
+    idt_set_entry(IRQ_BASE + IRQ_KEYBOARD, interrupt_stub_33, IDT_TYPE_INTERRUPT_GATE, 0, 0);
+    idt_set_entry(IRQ_BASE + IRQ_CASCADE, interrupt_stub_34, IDT_TYPE_INTERRUPT_GATE, 0, 0);
+    idt_set_entry(IRQ_BASE + IRQ_SERIAL_PORT2, interrupt_stub_35, IDT_TYPE_INTERRUPT_GATE, 0, 0);
+    idt_set_entry(IRQ_BASE + IRQ_SERIAL_PORT1, interrupt_stub_36, IDT_TYPE_INTERRUPT_GATE, 0, 0);
     idt_set_entry(IRQ_PARALLEL_PORT2, interrupt_stub_37, IDT_TYPE_INTERRUPT_GATE, 0, 0);
     idt_set_entry(IRQ_FLOPPY, interrupt_stub_38, IDT_TYPE_INTERRUPT_GATE, 0, 0);
     idt_set_entry(IRQ_PARALLEL_PORT1, interrupt_stub_39, IDT_TYPE_INTERRUPT_GATE, 0, 0);
@@ -104,10 +104,10 @@ error_t idt_init(void) {
     register_interrupt_handler(EXCEPTION_SIMD_FPU_ERROR, exception_simd_fpu_error);
     
     // Register default IRQ handlers
-    register_interrupt_handler(IRQ_TIMER, irq_timer);
-    register_interrupt_handler(IRQ_KEYBOARD, irq_keyboard);
-    register_interrupt_handler(IRQ_RTC, irq_rtc);
-    register_interrupt_handler(IRQ_MOUSE, irq_mouse);
+    register_interrupt_handler(IRQ_BASE + IRQ_TIMER, irq_timer);
+    register_interrupt_handler(IRQ_BASE + IRQ_KEYBOARD, irq_keyboard);
+    register_interrupt_handler(IRQ_BASE + IRQ_RTC, irq_rtc);
+    register_interrupt_handler(IRQ_BASE + IRQ_MOUSE, irq_mouse);
     register_interrupt_handler(SPURIOUS_INTERRUPT, irq_spurious);
     
     // Register system call handler
@@ -377,7 +377,7 @@ void dump_interrupt_context(interrupt_context_t* context) {
 void exception_divide_by_zero(interrupt_context_t* context) {
     KERROR("#DE: Divide by Zero Exception");
     dump_interrupt_context(context);
-    panic("Divide by zero");
+    KERNEL_PANIC("Divide by zero");
 }
 void exception_debug(interrupt_context_t* context) {
     KWARN("#DB: Debug Exception");
@@ -386,7 +386,7 @@ void exception_debug(interrupt_context_t* context) {
 void exception_nmi(interrupt_context_t* context) {
     KERROR("#NMI: Non-Maskable Interrupt");
     dump_interrupt_context(context);
-    panic("Non-maskable interrupt");
+    KERNEL_PANIC("Non-maskable interrupt");
 }
 void exception_breakpoint(interrupt_context_t* context) {
     KWARN("#BP: Breakpoint Exception");
@@ -399,65 +399,65 @@ void exception_overflow(interrupt_context_t* context) {
 void exception_bound_range_exceeded(interrupt_context_t* context) {
     KERROR("#BR: Bound Range Exceeded");
     dump_interrupt_context(context);
-    panic("Bound range exceeded");
+    KERNEL_PANIC("Bound range exceeded");
 }
 void exception_invalid_opcode(interrupt_context_t* context) {
     KERROR("#UD: Invalid Opcode");
     dump_interrupt_context(context);
-    panic("Invalid opcode");
+    KERNEL_PANIC("Invalid opcode");
 }
 void exception_device_not_available(interrupt_context_t* context) {
     KERROR("#NM: Device Not Available");
     dump_interrupt_context(context);
-    panic("Device not available");
+    KERNEL_PANIC("Device not available");
 }
 void exception_double_fault(interrupt_context_t* context) {
     KERROR("#DF: Double Fault");
     dump_interrupt_context(context);
-    panic("Double fault");
+    KERNEL_PANIC("Double fault");
 }
 void exception_invalid_tss(interrupt_context_t* context) {
     KERROR("#TS: Invalid TSS");
     dump_interrupt_context(context);
-    panic("Invalid TSS");
+    KERNEL_PANIC("Invalid TSS");
 }
 void exception_segment_not_present(interrupt_context_t* context) {
     KERROR("#NP: Segment Not Present");
     dump_interrupt_context(context);
-    panic("Segment not present");
+    KERNEL_PANIC("Segment not present");
 }
 void exception_stack_segment_fault(interrupt_context_t* context) {
     KERROR("#SS: Stack Segment Fault");
     dump_interrupt_context(context);
-    panic("Stack segment fault");
+    KERNEL_PANIC("Stack segment fault");
 }
 void exception_general_protection(interrupt_context_t* context) {
     KERROR("#GP: General Protection Fault");
     dump_interrupt_context(context);
-    panic("General protection fault");
+    KERNEL_PANIC("General protection fault");
 }
 void exception_page_fault(interrupt_context_t* context) {
     KERROR("#PF: Page Fault");
     dump_interrupt_context(context);
-    panic("Page fault");
+    KERNEL_PANIC("Page fault");
 }
 void exception_x87_fpu_error(interrupt_context_t* context) {
     KERROR("#MF: x87 FPU Floating-Point Error");
     dump_interrupt_context(context);
-    panic("x87 FPU error");
+    KERNEL_PANIC("x87 FPU error");
 }
 void exception_alignment_check(interrupt_context_t* context) {
     KERROR("#AC: Alignment Check");
     dump_interrupt_context(context);
-    panic("Alignment check");
+    KERNEL_PANIC("Alignment check");
 }
 void exception_machine_check(interrupt_context_t* context) {
     KERROR("#MC: Machine Check");
     dump_interrupt_context(context);
-    panic("Machine check");
+    KERNEL_PANIC("Machine check");
 }
 void exception_simd_fpu_error(interrupt_context_t* context) {
     KERROR("#XM: SIMD Floating-Point Exception");
     dump_interrupt_context(context);
-    panic("SIMD FPU error");
+    KERNEL_PANIC("SIMD FPU error");
 }

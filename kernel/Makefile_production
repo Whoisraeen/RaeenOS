@@ -1,0 +1,212 @@
+# RaeenOS Production Kernel Build System
+# Modern, efficient build system for the production-grade RaeenOS kernel
+
+# Build Configuration
+BUILD_TYPE ?= debug
+TARGET_ARCH ?= x86_64
+VERBOSE ?= 0
+
+# Toolchain Configuration
+CC := gcc
+AS := nasm
+LD := ld
+AR := ar
+OBJCOPY := objcopy
+
+# Build Directories
+BUILD_DIR := ../build/kernel
+OBJ_DIR := $(BUILD_DIR)/obj
+BIN_DIR := $(BUILD_DIR)/bin
+
+# Compiler Flags for Kernel
+CFLAGS := -std=c11 -Wall -Wextra -nostdlib -ffreestanding -fno-builtin \
+          -fno-stack-protector -fno-pie -fno-pic -mno-red-zone \
+          -mcmodel=kernel -m64 -mno-sse -mno-sse2 -mno-mmx \
+          -DTARGET_X64 -DKERNEL_BUILD
+
+# Assembly Flags
+ASFLAGS := -f elf64
+
+# Linker Flags
+LDFLAGS := -nostdlib -nostartfiles -nodefaultlibs -m elf_x86_64
+
+# Include Directories
+INCLUDES := -I. -Icore/include -Imemory/include -Iprocess/include \
+           -Isyscall/include -Ihal/include -Isecurity/include
+
+# Build type flags
+ifeq ($(BUILD_TYPE),debug)
+    CFLAGS += -g -O0 -DDEBUG
+else
+    CFLAGS += -O2 -DNDEBUG
+endif
+
+# Verbose output
+ifeq ($(VERBOSE),1)
+    Q :=
+else
+    Q := @
+endif
+
+# Only compile what we have implemented and working
+IMPLEMENTED_SOURCES := \
+    core/kernel_main.c \
+    core/interrupts.c \
+    core/exceptions.c \
+    core/irq_handlers.c \
+    core/string.c \
+    core/bootloader_handoff.c \
+    memory/pmm.c \
+    memory/vmm.c \
+    memory/page_fault.c \
+    memory/memory_core.c \
+    memory/physical_memory.c \
+    memory/virtual_memory.c \
+    memory/heap.c \
+    process/process_core.c \
+    process/scheduler.c \
+    process/process_integration.c \
+    syscall/syscall_core.c \
+    syscall/syscall_impl.c \
+    hal/common/hal_common.c \
+    hal/x64/hal_x64.c \
+    security/security_core.c
+
+# Assembly sources that are implemented
+ASM_SOURCES := \
+    core/context_switch.S \
+    arch/x86_64/kernel_entry.S
+
+# Generate object file lists
+C_OBJECTS := $(IMPLEMENTED_SOURCES:%.c=$(OBJ_DIR)/%.o)
+ASM_OBJECTS := $(ASM_SOURCES:%.S=$(OBJ_DIR)/%.o)
+
+ALL_OBJECTS := $(C_OBJECTS) $(ASM_OBJECTS)
+
+# Main targets
+.PHONY: all clean setup kernel help test validate
+
+# Default target
+all: setup validate kernel
+
+# Setup build directories
+setup:
+	@echo "Setting up RaeenOS kernel build environment..."
+	$(Q)mkdir -p $(OBJ_DIR)/core $(OBJ_DIR)/memory $(OBJ_DIR)/process
+	$(Q)mkdir -p $(OBJ_DIR)/syscall $(OBJ_DIR)/hal/common $(OBJ_DIR)/hal/x64
+	$(Q)mkdir -p $(OBJ_DIR)/security $(OBJ_DIR)/arch/x86_64
+	$(Q)mkdir -p $(BIN_DIR)
+	@echo "Build directories created successfully."
+
+# Validate build environment
+validate:
+	@echo "Validating build environment..."
+	@which gcc > /dev/null || (echo "ERROR: GCC not found!" && exit 1)
+	@which nasm > /dev/null || (echo "ERROR: NASM not found!" && exit 1)
+	@which ld > /dev/null || (echo "ERROR: Linker not found!" && exit 1)
+	@echo "Build tools validation passed."
+	@echo "Checking source files..."
+	@for src in $(IMPLEMENTED_SOURCES); do \
+		if [ ! -f "$$src" ]; then \
+			echo "ERROR: Source file $$src not found!"; \
+			exit 1; \
+		fi; \
+	done
+	@echo "Source file validation passed."
+
+# Kernel compilation
+kernel: $(BIN_DIR)/raeenos_kernel.elf
+
+$(BIN_DIR)/raeenos_kernel.elf: $(ALL_OBJECTS)
+	@echo "Linking production RaeenOS kernel..."
+	@echo "  Objects: $(words $(ALL_OBJECTS)) files"
+	@echo "  Target: $@"
+	$(Q)$(LD) $(LDFLAGS) -T kernel.ld -o $@ $^
+	@echo "Creating kernel binary..."
+	$(Q)$(OBJCOPY) -O binary $@ $(BIN_DIR)/raeenos_kernel.bin
+	@echo ""
+	@echo "🎉 RaeenOS Production Kernel Built Successfully!"
+	@echo "=================================================="
+	@echo "  ELF:  $(BIN_DIR)/raeenos_kernel.elf"
+	@echo "  BIN:  $(BIN_DIR)/raeenos_kernel.bin"
+	@echo ""
+	@ls -la $(BIN_DIR)/raeenos_kernel.*
+	@echo ""
+	@echo "Kernel size: $$(du -h $(BIN_DIR)/raeenos_kernel.bin | cut -f1)"
+	@echo "Build type: $(BUILD_TYPE)"
+	@echo "Target arch: $(TARGET_ARCH)"
+
+# Compilation rules for C files
+$(OBJ_DIR)/%.o: %.c
+	@echo "Compiling $<..."
+	$(Q)mkdir -p $(dir $@)
+	$(Q)$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
+
+# Compilation rules for assembly files
+$(OBJ_DIR)/%.o: %.S
+	@echo "Assembling $<..."
+	$(Q)mkdir -p $(dir $@)
+	$(Q)$(AS) $(ASFLAGS) $< -o $@
+
+# Test compilation only (no linking)
+test:
+	@echo "Testing compilation of all source files..."
+	$(Q)$(MAKE) -j4 $(C_OBJECTS) $(ASM_OBJECTS)
+	@echo "Compilation test passed - all source files compile successfully!"
+
+# Cleaning
+clean:
+	@echo "Cleaning RaeenOS kernel build artifacts..."
+	$(Q)rm -rf $(BUILD_DIR)
+	@echo "Clean completed."
+
+# Quick build (parallel)
+quick: MAKEFLAGS += -j$(shell nproc)
+quick: all
+
+# Release build
+release: BUILD_TYPE=release
+release: all
+
+# Help
+help:
+	@echo "RaeenOS Production Kernel Build System"
+	@echo "======================================"
+	@echo ""
+	@echo "Targets:"
+	@echo "  all      - Build complete kernel (default)"
+	@echo "  setup    - Create build directories"
+	@echo "  validate - Validate build environment"
+	@echo "  kernel   - Build kernel only"
+	@echo "  test     - Test compilation only"
+	@echo "  quick    - Fast parallel build"
+	@echo "  release  - Build release version"
+	@echo "  clean    - Clean build artifacts"
+	@echo "  help     - Show this help"
+	@echo ""
+	@echo "Options:"
+	@echo "  BUILD_TYPE=debug|release (default: debug)"
+	@echo "  VERBOSE=1 (show all commands)"
+	@echo ""
+	@echo "Examples:"
+	@echo "  make                  # Build debug kernel"
+	@echo "  make release          # Build release kernel"
+	@echo "  make VERBOSE=1        # Verbose build"
+	@echo "  make quick            # Fast parallel build"
+	@echo "  make test             # Test compilation"
+	@echo "  make clean && make    # Clean rebuild"
+
+# Show build statistics
+stats:
+	@echo "RaeenOS Kernel Build Statistics"
+	@echo "==============================="
+	@echo "C source files: $(words $(IMPLEMENTED_SOURCES))"
+	@echo "Assembly files: $(words $(ASM_SOURCES))"
+	@echo "Total files: $(words $(ALL_OBJECTS))"
+	@echo "Lines of code:"
+	@wc -l $(IMPLEMENTED_SOURCES) 2>/dev/null | tail -1 || echo "  (count not available)"
+	@echo ""
+	@echo "Build configuration:"
+	@echo "  BUILD_TYPE: $(BUILD_TYPE)"
+	@echo "  TARGET_ARCH: $(TARGET_ARCH)"
+	@echo "  CFLAGS: $(CFLAGS)"

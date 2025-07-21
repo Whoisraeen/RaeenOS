@@ -1,269 +1,293 @@
-# RaeenOS Build System
-# Copyright (c) 2025 RaeenOS Project
+# RaeenOS Build System - Modern, Portable Makefile
+# Supports cross-compilation, multiple targets, and automated dependency management
 
-.PHONY: all clean bootloader kernel ui tools install test debug run iso qemu-test validate
+# Build Configuration
+OS := $(shell uname -s)
+ARCH := $(shell uname -m)
+BUILD_TYPE ?= release
+TARGET_ARCH ?= x86_64
+CROSS_COMPILE ?= 
+VERBOSE ?= 0
 
-# Build configuration
-TARGET_ARCH ?= x64
-BUILD_TYPE ?= debug
-CC = gcc
-CXX = g++
-AS = nasm
-LD = ld
-OBJCOPY = objcopy
-GRUB_MKRESCUE = grub-mkrescue
+# Toolchain Configuration
+CC := $(CROSS_COMPILE)gcc
+CXX := $(CROSS_COMPILE)g++
+AS := $(CROSS_COMPILE)nasm
+LD := $(CROSS_COMPILE)ld
+AR := $(CROSS_COMPILE)ar
+OBJCOPY := $(CROSS_COMPILE)objcopy
+STRIP := $(CROSS_COMPILE)strip
 
-# Directories
-BUILD_DIR = build
-BOOTLOADER_DIR = bootloader
-KERNEL_DIR = kernel
-UI_DIR = ui
-TOOLS_DIR = tools
-ISO_DIR = $(BUILD_DIR)/iso
-INITRD_DIR = $(BUILD_DIR)/initrd
+# Build Directories
+BUILD_DIR := build
+OBJ_DIR := $(BUILD_DIR)/obj
+BIN_DIR := $(BUILD_DIR)/bin
+ISO_DIR := $(BUILD_DIR)/iso
+DOC_DIR := $(BUILD_DIR)/docs
+TEST_DIR := $(BUILD_DIR)/tests
 
-# Version information
-VERSION_MAJOR = 1
-VERSION_MINOR = 0
-VERSION_PATCH = 0
-VERSION_STRING = "$(VERSION_MAJOR).$(VERSION_MINOR).$(VERSION_PATCH)"
+# Source Directories
+KERNEL_DIR := kernel
+BOOTLOADER_DIR := bootloader
+DRIVERS_DIR := $(KERNEL_DIR)/drivers
+GUI_DIR := $(KERNEL_DIR)/gui
+APPS_DIR := $(KERNEL_DIR)/apps
+TOOLS_DIR := tools
+DOCS_DIR := docs
 
-# Build flags with AI optimization and security hardening
-CFLAGS = -std=c11 -Wall -Wextra -Werror -nostdlib -fno-builtin -fno-stack-protector
-CFLAGS += -ffreestanding -fno-pie -fno-pic -mno-red-zone -mcmodel=kernel
-CFLAGS += -DVERSION_STRING=$(VERSION_STRING) -DTARGET_$(TARGET_ARCH)
-CFLAGS += -fstack-clash-protection -fcf-protection=full -fno-omit-frame-pointer
+# Compiler Flags
+CFLAGS := -std=c11 -Wall -Wextra -Werror -pedantic
+CXXFLAGS := -std=c++17 -Wall -Wextra -Werror -pedantic
+ASFLAGS := -f elf64
+LDFLAGS := -nostdlib -nostartfiles -nodefaultlibs
 
-CXXFLAGS = -std=c++17 -Wall -Wextra -Werror -nostdlib -fno-builtin -fno-stack-protector
-CXXFLAGS += -fno-exceptions -fno-rtti -ffreestanding -fno-pie -fno-pic -mno-red-zone
-CXXFLAGS += -DVERSION_STRING=$(VERSION_STRING) -DTARGET_$(TARGET_ARCH)
-
-ASFLAGS = -f elf64
-LDFLAGS = -nostdlib -z noexecstack -z relro -z now
-
-# AI acceleration flags
-CFLAGS += -mavx2 -mfma -msse4.2 -DAI_ACCELERATION_ENABLED
-CXXFLAGS += -mavx2 -mfma -msse4.2 -DAI_ACCELERATION_ENABLED
-
-ifeq ($(BUILD_TYPE),debug)
-    CFLAGS += -g -O0 -DDEBUG -DKERNEL_DEBUG
-    CXXFLAGS += -g -O0 -DDEBUG -DKERNEL_DEBUG
-else
-    CFLAGS += -O2 -DNDEBUG -DKERNEL_RELEASE
-    CXXFLAGS += -O2 -DNDEBUG -DKERNEL_RELEASE
-endif
-
-ifeq ($(TARGET_ARCH),x86)
-    CFLAGS += -m32
-    CXXFLAGS += -m32
-    ASFLAGS = -f elf32
-    LDFLAGS += -m elf_i386
-else
-    CFLAGS += -m64
-    CXXFLAGS += -m64
+# Architecture-specific flags
+ifeq ($(TARGET_ARCH),x86_64)
+    CFLAGS += -m64 -march=x86-64 -mtune=generic
+    CXXFLAGS += -m64 -march=x86-64 -mtune=generic
+    ASFLAGS += -f elf64
     LDFLAGS += -m elf_x86_64
+else ifeq ($(TARGET_ARCH),i386)
+    CFLAGS += -m32 -march=i386 -mtune=generic
+    CXXFLAGS += -m32 -march=i386 -mtune=generic
+    ASFLAGS += -f elf32
+    LDFLAGS += -m elf_i386
+else ifeq ($(TARGET_ARCH),aarch64)
+    CFLAGS += -march=armv8-a -mtune=generic
+    CXXFLAGS += -march=armv8-a -mtune=generic
+    ASFLAGS += -f elf64
+    LDFLAGS += -m aarch64linux
 endif
 
-# Default target - Build complete OS
-all: validate-deps $(BUILD_DIR) bootloader kernel initrd iso
-	@echo "=== RaeenOS Build Complete ==="
-	@echo "Version: $(VERSION_STRING)"
-	@echo "Architecture: $(TARGET_ARCH)"
-	@echo "Build Type: $(BUILD_TYPE)"
-	@echo "ISO: $(BUILD_DIR)/raeenos.iso"
-	@echo "Ready for testing with 'make run' or 'make qemu-test'"
+# Build type flags
+ifeq ($(BUILD_TYPE),debug)
+    CFLAGS += -g -O0 -DDEBUG
+    CXXFLAGS += -g -O0 -DDEBUG
+    ASFLAGS += -g
+else ifeq ($(BUILD_TYPE),release)
+    CFLAGS += -O2 -DNDEBUG
+    CXXFLAGS += -O2 -DNDEBUG
+    LDFLAGS += -s
+else ifeq ($(BUILD_TYPE),profile)
+    CFLAGS += -O2 -g -pg -DNDEBUG
+    CXXFLAGS += -O2 -g -pg -DNDEBUG
+    LDFLAGS += -pg
+endif
 
-# Validate build dependencies
-validate-deps:
-	@echo "Validating build dependencies..."
-	@command -v $(CC) >/dev/null 2>&1 || (echo "Error: $(CC) not found" && exit 1)
-	@command -v $(AS) >/dev/null 2>&1 || (echo "Error: $(AS) not found" && exit 1)
-	@command -v $(LD) >/dev/null 2>&1 || (echo "Error: $(LD) not found" && exit 1)
-	@command -v $(GRUB_MKRESCUE) >/dev/null 2>&1 || (echo "Error: $(GRUB_MKRESCUE) not found" && exit 1)
-	@echo "✓ All dependencies validated"
+# Verbose output
+ifeq ($(VERBOSE),1)
+    Q :=
+    VECHO = @echo
+else
+    Q := @
+    VECHO = @echo
+endif
 
-# Create build directory structure
-$(BUILD_DIR):
-	@echo "Creating build directory structure..."
-	@mkdir -p $(BUILD_DIR)
-	@mkdir -p $(ISO_DIR)/boot/grub
-	@mkdir -p $(INITRD_DIR)
-	@mkdir -p $(BUILD_DIR)/apps
-	@mkdir -p $(BUILD_DIR)/lib
-	@mkdir -p $(BUILD_DIR)/bin
-	@mkdir -p $(BUILD_DIR)/sbin
-	@mkdir -p $(BUILD_DIR)/etc
-	@mkdir -p $(BUILD_DIR)/usr/{bin,sbin,lib,share}
-	@mkdir -p $(BUILD_DIR)/var
-	@mkdir -p $(BUILD_DIR)/tmp
-	@mkdir -p $(BUILD_DIR)/{proc,sys,dev,home}
+# Include directories
+INCLUDES := -I$(KERNEL_DIR)/include -I$(KERNEL_DIR)/core/include -I$(KERNEL_DIR)/drivers/include
 
-# Build bootloader with multiboot support
-bootloader: $(BUILD_DIR)
-	@echo "Building RaeenOS bootloader..."
-	$(MAKE) -C $(BOOTLOADER_DIR) BUILD_DIR=../$(BUILD_DIR) TARGET_ARCH=$(TARGET_ARCH)
-	@echo "✓ Bootloader built successfully"
+# Library directories
+LIBDIRS := -L$(BIN_DIR)
 
-# Build kernel with all subsystems
-kernel: $(BUILD_DIR)
-	@echo "Building RaeenOS kernel..."
-	$(MAKE) -C $(KERNEL_DIR) BUILD_DIR=../$(BUILD_DIR) TARGET_ARCH=$(TARGET_ARCH) BUILD_TYPE=$(BUILD_TYPE) \
-		CFLAGS="$(CFLAGS)" CXXFLAGS="$(CXXFLAGS)" ASFLAGS="$(ASFLAGS)" LDFLAGS="$(LDFLAGS)"
-	@echo "✓ Kernel built successfully"
+# Libraries
+LIBS := -lkernel -ldrivers -lgui -lapps
 
-# Build UI framework
-ui: $(BUILD_DIR)
-	@echo "Building RaeenOS UI framework..."
-	$(MAKE) -C $(UI_DIR) BUILD_DIR=../$(BUILD_DIR) TARGET_ARCH=$(TARGET_ARCH) BUILD_TYPE=$(BUILD_TYPE)
-	@echo "✓ UI framework built successfully"
+# Find all source files
+KERNEL_SOURCES := $(shell find $(KERNEL_DIR) -name "*.c" -o -name "*.cpp")
+BOOTLOADER_SOURCES := $(shell find $(BOOTLOADER_DIR) -name "*.asm" -o -name "*.c")
+DRIVER_SOURCES := $(shell find $(DRIVERS_DIR) -name "*.c" -o -name "*.cpp")
+GUI_SOURCES := $(shell find $(GUI_DIR) -name "*.c" -o -name "*.cpp")
+APP_SOURCES := $(shell find $(APPS_DIR) -name "*.c" -o -name "*.cpp")
 
-# Build development tools
-tools: $(BUILD_DIR)
-	@echo "Building development tools..."
-	$(MAKE) -C $(TOOLS_DIR) BUILD_DIR=../$(BUILD_DIR)
-	@echo "✓ Development tools built successfully"
+# Generate object file lists
+KERNEL_OBJECTS := $(KERNEL_SOURCES:%.c=$(OBJ_DIR)/%.o)
+KERNEL_OBJECTS := $(KERNEL_OBJECTS:%.cpp=$(OBJ_DIR)/%.o)
+BOOTLOADER_OBJECTS := $(BOOTLOADER_SOURCES:%.asm=$(OBJ_DIR)/%.o)
+BOOTLOADER_OBJECTS := $(BOOTLOADER_OBJECTS:%.c=$(OBJ_DIR)/%.o)
+DRIVER_OBJECTS := $(DRIVER_SOURCES:%.c=$(OBJ_DIR)/%.o)
+DRIVER_OBJECTS := $(DRIVER_OBJECTS:%.cpp=$(OBJ_DIR)/%.o)
+GUI_OBJECTS := $(GUI_SOURCES:%.c=$(OBJ_DIR)/%.o)
+GUI_OBJECTS := $(GUI_OBJECTS:%.cpp=$(OBJ_DIR)/%.o)
+APP_OBJECTS := $(APP_SOURCES:%.c=$(OBJ_DIR)/%.o)
+APP_OBJECTS := $(APP_OBJECTS:%.cpp=$(OBJ_DIR)/%.o)
 
-# Create initial RAM disk
-initrd: $(BUILD_DIR)
-	@echo "Creating initial RAM disk..."
-	@cp -r apps/* $(INITRD_DIR)/ 2>/dev/null || true
-	@echo "#!/bin/sh" > $(INITRD_DIR)/init
-	@echo "echo 'RaeenOS Initial RAM Disk loaded successfully'" >> $(INITRD_DIR)/init
-	@echo "exec /bin/sh" >> $(INITRD_DIR)/init
-	@chmod +x $(INITRD_DIR)/init
-	@cd $(INITRD_DIR) && find . | cpio -o -H newc | gzip > ../initrd.img
-	@echo "✓ Initial RAM disk created"
+# Main targets
+.PHONY: all clean distclean setup test install uninstall help
 
-# Create bootable ISO image
-iso: bootloader kernel initrd
-	@echo "Creating bootable ISO image..."
-	@cp $(BUILD_DIR)/kernel.bin $(ISO_DIR)/boot/
-	@cp $(BUILD_DIR)/initrd.img $(ISO_DIR)/boot/
-	@echo 'set timeout=3' > $(ISO_DIR)/boot/grub/grub.cfg
-	@echo 'set default=0' >> $(ISO_DIR)/boot/grub/grub.cfg
-	@echo '' >> $(ISO_DIR)/boot/grub/grub.cfg
-	@echo 'menuentry "RaeenOS $(VERSION_STRING) - $(TARGET_ARCH)" {' >> $(ISO_DIR)/boot/grub/grub.cfg
-	@echo '    multiboot2 /boot/kernel.bin' >> $(ISO_DIR)/boot/grub/grub.cfg
-	@echo '    module2 /boot/initrd.img' >> $(ISO_DIR)/boot/grub/grub.cfg
-	@echo '}' >> $(ISO_DIR)/boot/grub/grub.cfg
-	@echo '' >> $(ISO_DIR)/boot/grub/grub.cfg
-	@echo 'menuentry "RaeenOS $(VERSION_STRING) - Safe Mode" {' >> $(ISO_DIR)/boot/grub/grub.cfg
-	@echo '    multiboot2 /boot/kernel.bin safe_mode=1' >> $(ISO_DIR)/boot/grub/grub.cfg
-	@echo '    module2 /boot/initrd.img' >> $(ISO_DIR)/boot/grub/grub.cfg
-	@echo '}' >> $(ISO_DIR)/boot/grub/grub.cfg
-	$(GRUB_MKRESCUE) -o $(BUILD_DIR)/raeenos.iso $(ISO_DIR)
-	@echo "✓ Bootable ISO created: $(BUILD_DIR)/raeenos.iso"
+# Default target
+all: setup kernel drivers gui apps iso
 
-# Comprehensive testing suite
-test: iso
-	@echo "Running RaeenOS test suite..."
-	@powershell -ExecutionPolicy Bypass -File test_raeenos.ps1
-	@echo "✓ Test suite completed"
+# Setup build directories
+setup:
+	$(VECHO) "Setting up build directories..."
+	$(Q)mkdir -p $(OBJ_DIR) $(BIN_DIR) $(ISO_DIR) $(DOC_DIR) $(TEST_DIR)
+	$(Q)mkdir -p $(OBJ_DIR)/$(KERNEL_DIR) $(OBJ_DIR)/$(BOOTLOADER_DIR)
+	$(Q)mkdir -p $(OBJ_DIR)/$(DRIVERS_DIR) $(OBJ_DIR)/$(GUI_DIR) $(OBJ_DIR)/$(APPS_DIR)
 
-# Validate codebase
-validate: 
-	@echo "Validating RaeenOS codebase..."
-	@powershell -ExecutionPolicy Bypass -File test_raeenos.ps1
-	@echo "✓ Codebase validation completed"
+# Kernel compilation
+kernel: $(BIN_DIR)/raeenos_kernel.bin
 
-# QEMU testing with comprehensive options
-qemu-test: iso
-	@echo "Starting RaeenOS in QEMU test environment..."
-	@echo "QEMU Options: 4GB RAM, KVM acceleration, VGA graphics, network"
-	qemu-system-x86_64 \
-		-cdrom $(BUILD_DIR)/raeenos.iso \
-		-m 4G \
-		-cpu qemu64,+avx,+avx2,+sse4.2 \
-		-smp 4 \
-		-device VGA \
-		-netdev user,id=net0 \
-		-device e1000,netdev=net0 \
-		-serial stdio \
-		-monitor telnet:127.0.0.1:1234,server,nowait \
-		-enable-kvm 2>/dev/null || \
-	qemu-system-x86_64 \
-		-cdrom $(BUILD_DIR)/raeenos.iso \
-		-m 4G \
-		-cpu qemu64,+avx,+avx2,+sse4.2 \
-		-smp 4 \
-		-device VGA \
-		-netdev user,id=net0 \
-		-device e1000,netdev=net0 \
-		-serial stdio \
-		-monitor telnet:127.0.0.1:1234,server,nowait
+$(BIN_DIR)/raeenos_kernel.bin: $(KERNEL_OBJECTS) $(BOOTLOADER_OBJECTS)
+	$(VECHO) "Linking kernel..."
+	$(Q)$(LD) $(LDFLAGS) -T $(KERNEL_DIR)/kernel.ld -o $@ $^ $(LIBS)
+	$(Q)$(OBJCOPY) -O binary $@ $(BIN_DIR)/raeenos_kernel.raw
 
-# Quick QEMU run
-run: iso
-	@echo "Running RaeenOS in QEMU..."
-	qemu-system-x86_64 -cdrom $(BUILD_DIR)/raeenos.iso -m 2G -enable-kvm 2>/dev/null || \
-	qemu-system-x86_64 -cdrom $(BUILD_DIR)/raeenos.iso -m 2G
+# Drivers compilation
+drivers: $(BIN_DIR)/libdrivers.a
 
-# Debug with QEMU and GDB
-debug: iso
-	@echo "Starting RaeenOS debug session..."
-	@echo "Connect GDB to localhost:1234"
-	qemu-system-x86_64 \
-		-cdrom $(BUILD_DIR)/raeenos.iso \
-		-m 2G \
-		-s -S \
-		-monitor stdio
+$(BIN_DIR)/libdrivers.a: $(DRIVER_OBJECTS)
+	$(VECHO) "Building drivers library..."
+	$(Q)$(AR) rcs $@ $^
 
-# Performance testing
-perf-test: iso
-	@echo "Running performance tests..."
-	qemu-system-x86_64 \
-		-cdrom $(BUILD_DIR)/raeenos.iso \
-		-m 8G \
-		-cpu host \
-		-smp 8 \
-		-enable-kvm \
-		-device VGA \
-		-serial file:$(BUILD_DIR)/perf-test.log \
-		-monitor telnet:127.0.0.1:1234,server,nowait
+# GUI compilation
+gui: $(BIN_DIR)/libgui.a
 
-# Clean all build artifacts
-clean:
-	@echo "Cleaning build artifacts..."
-	@rm -rf $(BUILD_DIR)
-	@$(MAKE) -C $(BOOTLOADER_DIR) clean 2>/dev/null || true
-	@$(MAKE) -C $(KERNEL_DIR) clean 2>/dev/null || true
-	@$(MAKE) -C $(UI_DIR) clean 2>/dev/null || true
-	@$(MAKE) -C $(TOOLS_DIR) clean 2>/dev/null || true
-	@echo "✓ Clean completed"
+$(BIN_DIR)/libgui.a: $(GUI_OBJECTS)
+	$(VECHO) "Building GUI library..."
+	$(Q)$(AR) rcs $@ $^
 
-# Install to system (development)
+# Applications compilation
+apps: $(BIN_DIR)/libapps.a
+
+$(BIN_DIR)/libapps.a: $(APP_OBJECTS)
+	$(VECHO) "Building applications library..."
+	$(Q)$(AR) rcs $@ $^
+
+# ISO creation
+iso: kernel drivers gui apps
+	$(VECHO) "Creating bootable ISO..."
+	$(Q)mkdir -p $(ISO_DIR)/boot/grub
+	$(Q)cp $(BIN_DIR)/raeenos_kernel.raw $(ISO_DIR)/boot/
+	$(Q)cp $(BOOTLOADER_DIR)/grub.cfg $(ISO_DIR)/boot/grub/
+	$(Q)grub-mkrescue -o $(BIN_DIR)/raeenos.iso $(ISO_DIR)
+
+# Compilation rules
+$(OBJ_DIR)/%.o: %.c
+	$(VECHO) "Compiling $<..."
+	$(Q)mkdir -p $(dir $@)
+	$(Q)$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
+
+$(OBJ_DIR)/%.o: %.cpp
+	$(VECHO) "Compiling $<..."
+	$(Q)mkdir -p $(dir $@)
+	$(Q)$(CXX) $(CXXFLAGS) $(INCLUDES) -c $< -o $@
+
+$(OBJ_DIR)/%.o: %.asm
+	$(VECHO) "Assembling $<..."
+	$(Q)mkdir -p $(dir $@)
+	$(Q)$(AS) $(ASFLAGS) $< -o $@
+
+# Testing
+test: setup
+	$(VECHO) "Running tests..."
+	$(Q)$(MAKE) -C $(TEST_DIR) test
+
+# Documentation
+docs: setup
+	$(VECHO) "Generating documentation..."
+	$(Q)doxygen Doxyfile
+	$(Q)cp -r $(DOCS_DIR)/* $(DOC_DIR)/
+
+# Installation
 install: all
-	@echo "Installing RaeenOS for development..."
-	@echo "This would install RaeenOS components to the system"
-	@echo "Not implemented for safety - use 'make run' for testing"
+	$(VECHO) "Installing RaeenOS..."
+	$(Q)sudo cp $(BIN_DIR)/raeenos.iso /boot/raeenos.iso
+	$(Q)sudo update-grub
 
-# Show build information
-info:
-	@echo "=== RaeenOS Build Information ==="
-	@echo "Version: $(VERSION_STRING)"
-	@echo "Target Architecture: $(TARGET_ARCH)"
-	@echo "Build Type: $(BUILD_TYPE)"
-	@echo "Compiler: $(CC)"
-	@echo "Assembler: $(AS)"
-	@echo "Linker: $(LD)"
-	@echo "CFLAGS: $(CFLAGS)"
-	@echo "Build Directory: $(BUILD_DIR)"
+# Uninstallation
+uninstall:
+	$(VECHO) "Uninstalling RaeenOS..."
+	$(Q)sudo rm -f /boot/raeenos.iso
+	$(Q)sudo update-grub
+
+# Cleaning
+clean:
+	$(VECHO) "Cleaning build artifacts..."
+	$(Q)rm -rf $(BUILD_DIR)
+
+distclean: clean
+	$(VECHO) "Deep cleaning..."
+	$(Q)find . -name "*.o" -delete
+	$(Q)find . -name "*.a" -delete
+	$(Q)find . -name "*.so" -delete
+	$(Q)find . -name "*.d" -delete
+
+# Development targets
+debug: BUILD_TYPE=debug
+debug: all
+
+release: BUILD_TYPE=release
+release: all
+
+profile: BUILD_TYPE=profile
+profile: all
+
+# Cross-compilation targets
+x86_64: TARGET_ARCH=x86_64
+x86_64: all
+
+i386: TARGET_ARCH=i386
+i386: all
+
+aarch64: TARGET_ARCH=aarch64
+aarch64: all
+
+# Verbose builds
+verbose: VERBOSE=1
+verbose: all
+
+# Help
+help:
+	@echo "RaeenOS Build System"
+	@echo "===================="
 	@echo ""
-	@echo "Available targets:"
-	@echo "  all        - Build complete OS with ISO"
-	@echo "  bootloader - Build bootloader only"
-	@echo "  kernel     - Build kernel only"
-	@echo "  ui         - Build UI framework only"
-	@echo "  tools      - Build development tools"
-	@echo "  iso        - Create bootable ISO image"
-	@echo "  test       - Run comprehensive test suite"
-	@echo "  validate   - Validate codebase"
-	@echo "  run        - Run RaeenOS in QEMU"
-	@echo "  qemu-test  - Run with full QEMU testing options"
-	@echo "  debug      - Start debug session with GDB"
-	@echo "  perf-test  - Run performance tests"
-	@echo "  clean      - Clean all build artifacts"
-	@echo "  info       - Show this information"
+	@echo "Targets:"
+	@echo "  all          - Build complete system (default)"
+	@echo "  setup        - Create build directories"
+	@echo "  kernel       - Build kernel only"
+	@echo "  drivers      - Build drivers only"
+	@echo "  gui          - Build GUI only"
+	@echo "  apps         - Build applications only"
+	@echo "  iso          - Create bootable ISO"
+	@echo "  test         - Run tests"
+	@echo "  docs         - Generate documentation"
+	@echo "  install      - Install to system"
+	@echo "  uninstall    - Remove from system"
+	@echo "  clean        - Clean build artifacts"
+	@echo "  distclean    - Deep clean"
+	@echo ""
+	@echo "Build Types:"
+	@echo "  debug        - Debug build"
+	@echo "  release      - Release build (default)"
+	@echo "  profile      - Profiling build"
+	@echo ""
+	@echo "Architectures:"
+	@echo "  x86_64       - 64-bit x86 (default)"
+	@echo "  i386         - 32-bit x86"
+	@echo "  aarch64      - 64-bit ARM"
+	@echo ""
+	@echo "Options:"
+	@echo "  verbose      - Verbose output"
+	@echo "  CROSS_COMPILE=prefix - Cross-compilation"
+	@echo ""
+	@echo "Examples:"
+	@echo "  make debug verbose"
+	@echo "  make CROSS_COMPILE=aarch64-linux-gnu- aarch64"
+	@echo "  make clean && make release"
 
-# Help target
-help: info
+# Dependency generation
+%.d: %.c
+	$(Q)$(CC) $(CFLAGS) $(INCLUDES) -MM -MT $(@:.d=.o) $< > $@
+
+%.d: %.cpp
+	$(Q)$(CXX) $(CXXFLAGS) $(INCLUDES) -MM -MT $(@:.d=.o) $< > $@
+
+# Include dependency files
+-include $(KERNEL_SOURCES:.c=.d)
+-include $(KERNEL_SOURCES:.cpp=.d)
+-include $(DRIVER_SOURCES:.c=.d)
+-include $(DRIVER_SOURCES:.cpp=.d)
+-include $(GUI_SOURCES:.c=.d)
+-include $(GUI_SOURCES:.cpp=.d)
+-include $(APP_SOURCES:.c=.d)
+-include $(APP_SOURCES:.cpp=.d)

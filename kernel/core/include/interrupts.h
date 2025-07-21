@@ -115,10 +115,17 @@ typedef struct {
     u64 syscall_count;
     u64 spurious_count;
     u64 total_interrupts;
+    u64 hardware_interrupts;
+    u64 software_interrupts;
+    u64 exceptions;
+    u64 spurious_interrupts;
+    u64 interrupt_count[IDT_ENTRIES];
 } interrupt_stats_t;
 
 // Critical section type
-typedef u64 critical_section_t;
+typedef struct {
+    bool interrupts_were_enabled;
+} critical_section_t;
 
 // Function declarations
 error_t interrupts_init(void);

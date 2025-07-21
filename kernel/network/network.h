@@ -155,7 +155,7 @@ typedef struct network_stats {
 // Function prototypes
 
 // Network initialization
-int network_init(void);
+error_t network_init(void);
 void network_shutdown(void);
 
 // Interface management
@@ -295,4 +295,4 @@ int udp_handle_packet(const void* data, size_t size, ip_addr_t src_addr, ip_addr
 #define NETWORK_TIMEOUT_DEFAULT 5000  // 5 seconds
 #define NETWORK_RETRY_MAX    3
 
-#endif // RAEENOS_NETWORK_H 
+#endif // RAEENOS_NETWORK_H

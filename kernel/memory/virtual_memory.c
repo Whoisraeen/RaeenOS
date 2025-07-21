@@ -105,6 +105,89 @@ error_t virtual_memory_init(void) {
     return SUCCESS;
 }
 
+/*
+ * Initialize VMM from bootloader handoff
+ */
+// Wrapper function for bootloader handoff compatibility
+error_t vmm_init_from_handoff(bootloader_handoff_t* handoff) {
+    return virtual_memory_init_from_handoff(handoff);
+}
+
+error_t virtual_memory_init_from_handoff(bootloader_handoff_t* handoff) {
+    if (!handoff) {
+        return E_INVAL;
+    }
+    
+    if (virtual_memory_initialized) {
+        return E_ALREADY;
+    }
+    
+    KINFO("VMM: Initializing from bootloader handoff");
+    
+    // Create kernel address space
+    kernel_address_space = address_space_create();
+    if (!kernel_address_space) {
+        KERROR("VMM: Failed to create kernel address space");
+        return E_NOMEM;
+    }
+    
+    // Identity map all available memory regions for kernel access
+    for (uint32_t i = 0; i < handoff->memory_map_count; i++) {
+        memory_region_t* region = &handoff->memory_regions[i];
+        
+        // Map all regions (available and reserved) for kernel access
+        uint64_t start = PAGE_ALIGN_DOWN(region->base_addr);
+        uint64_t end = PAGE_ALIGN_UP(region->base_addr + region->length);
+        
+        for (uint64_t addr = start; addr < end; addr += PAGE_SIZE) {
+            uint32_t flags = PAGE_FLAG_PRESENT | PAGE_FLAG_WRITABLE;
+            
+            error_t result = page_table_map(kernel_address_space, addr, addr, flags);
+            if (result != SUCCESS && result != E_MEMORY_ALREADY_MAPPED) {
+                KWARN("VMM: Failed to map kernel page 0x%llx", addr);
+            }
+        }
+    }
+    
+    // Map kernel code and data sections
+    if (handoff->kernel_start && handoff->kernel_end) {
+        uint64_t kernel_start = PAGE_ALIGN_DOWN(handoff->kernel_start);
+        uint64_t kernel_end = PAGE_ALIGN_UP(handoff->kernel_end);
+        
+        for (uint64_t addr = kernel_start; addr < kernel_end; addr += PAGE_SIZE) {
+            uint32_t flags = PAGE_FLAG_PRESENT | PAGE_FLAG_WRITABLE;
+            
+            error_t result = page_table_map(kernel_address_space, addr, addr, flags);
+            if (result != SUCCESS && result != E_MEMORY_ALREADY_MAPPED) {
+                KWARN("VMM: Failed to map kernel section 0x%llx", addr);
+            }
+        }
+    }
+    
+    // Map loaded modules
+    for (uint32_t i = 0; i < handoff->module_count; i++) {
+        module_info_t* module = &handoff->modules[i];
+        
+        uint64_t mod_start = PAGE_ALIGN_DOWN(module->start_addr);
+        uint64_t mod_end = PAGE_ALIGN_UP(module->end_addr);
+        
+        for (uint64_t addr = mod_start; addr < mod_end; addr += PAGE_SIZE) {
+            uint32_t flags = PAGE_FLAG_PRESENT | PAGE_FLAG_WRITABLE;
+            
+            error_t result = page_table_map(kernel_address_space, addr, addr, flags);
+            if (result != SUCCESS && result != E_MEMORY_ALREADY_MAPPED) {
+                KWARN("VMM: Failed to map module page 0x%llx", addr);
+            }
+        }
+    }
+    
+    current_address_space = kernel_address_space;
+    virtual_memory_initialized = true;
+    
+    KINFO("VMM: Initialized with identity mapping for kernel space");
+    return SUCCESS;
+}
+
 address_space_t* address_space_create(void) {
     address_space_t* as = (address_space_t*)kernel_heap_alloc(sizeof(address_space_t), ALLOC_FLAG_ZERO);
     if (!as) {

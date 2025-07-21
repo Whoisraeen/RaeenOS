@@ -61,9 +61,85 @@ void pmm_init(uint32_t mem_size) {
 }
 
 /*
- * Mark page as used in bitmap
+ * Initialize PMM from bootloader handoff
  */
-static void pmm_mark_page_used(uint32_t physical_addr) {
+error_t pmm_init_from_handoff(bootloader_handoff_t* handoff) {
+    if (!handoff) {
+        return E_INVAL;
+    }
+    
+    KINFO("PMM: Initializing from bootloader handoff");
+    KINFO("PMM: Total memory: %llu MB, Available: %llu MB",
+          handoff->total_memory / (1024 * 1024),
+          handoff->available_memory / (1024 * 1024));
+    
+    // Calculate total pages from largest available region
+    uint64_t max_addr = 0;
+    for (uint32_t i = 0; i < handoff->memory_map_count; i++) {
+        memory_region_t* region = &handoff->memory_regions[i];
+        uint64_t end_addr = region->base_addr + region->length;
+        if (end_addr > max_addr) {
+            max_addr = end_addr;
+        }
+    }
+    
+    total_pages = (uint32_t)(max_addr / PAGE_SIZE);
+    bitmap_size = (total_pages + BITMAP_ENTRIES_PER_BYTE - 1) / BITMAP_ENTRIES_PER_BYTE;
+    
+    // Find a suitable location for the bitmap in available memory
+    memory_bitmap = NULL;
+    for (uint32_t i = 0; i < handoff->memory_map_count; i++) {
+        memory_region_t* region = &handoff->memory_regions[i];
+        if (region->available && region->length >= bitmap_size) {
+            memory_bitmap = (uint8_t*)(uintptr_t)region->base_addr;
+            break;
+        }
+    }
+    
+    if (!memory_bitmap) {
+        KERROR("PMM: Could not find space for memory bitmap");
+        return E_NOMEM;
+    }
+    
+    // Initialize bitmap - mark all pages as used initially
+    for (uint32_t i = 0; i < bitmap_size; i++) {
+        memory_bitmap[i] = 0xFF;
+    }
+    
+    free_pages = 0;
+    
+    // Mark available regions as free
+    for (uint32_t i = 0; i < handoff->memory_map_count; i++) {
+        memory_region_t* region = &handoff->memory_regions[i];
+        if (region->available) {
+            uint64_t start_page = region->base_addr / PAGE_SIZE;
+            uint64_t end_page = (region->base_addr + region->length) / PAGE_SIZE;
+            
+            for (uint64_t page = start_page; page < end_page; page++) {
+                if (page < total_pages) {
+                    pmm_mark_page_free(page * PAGE_SIZE);
+                }
+            }
+        }
+    }
+    
+    // Mark bitmap area as used
+    uint32_t bitmap_pages = (bitmap_size + PAGE_SIZE - 1) / PAGE_SIZE;
+    uintptr_t bitmap_addr = (uintptr_t)memory_bitmap;
+    for (uint32_t i = 0; i < bitmap_pages; i++) {
+        pmm_mark_page_used(bitmap_addr + i * PAGE_SIZE);
+    }
+    
+    KINFO("PMM: Initialized. Total pages: %u, Free pages: %u, Bitmap size: %u bytes",
+          total_pages, free_pages, bitmap_size);
+    
+    return SUCCESS;
+}
+
+/*
+ * Mark page as used (public interface for handoff)
+ */
+void pmm_mark_page_used(uint32_t physical_addr) {
     uint32_t page = physical_addr / PAGE_SIZE;
     if (page >= total_pages) return;
     
