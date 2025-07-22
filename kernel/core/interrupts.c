@@ -2,6 +2,7 @@
 #include "include/kernel.h"
 #include "../memory/include/memory.h"
 #include "../hal/include/hal.h"
+#include <string.h>
 
 // Global interrupt state
 static idt_entry_t idt[IDT_ENTRIES];
@@ -270,7 +271,7 @@ interrupt_handler_func_t get_interrupt_handler(u8 vector) {
 
 // Common interrupt handler (called from assembly stubs)
 void interrupt_dispatch(interrupt_context_t* context) {
-    u8 vector = (u8)context->interrupt_num;
+    u8 vector = (u8)context->interrupt_number;
     
     // Update statistics
     interrupt_statistics.total_interrupts++;
@@ -360,7 +361,7 @@ void dump_interrupt_stats(void) {
 
 void dump_interrupt_context(interrupt_context_t* context) {
     hal_console_print("Interrupt Context Dump:\n");
-    hal_console_print("  Vector:      %llu\n", context->interrupt_num);
+    hal_console_print("  Vector:      %llu\n", context->interrupt_number);
     hal_console_print("  Error Code:  0x%llx\n", context->error_code);
     hal_console_print("  RIP:         0x%llx\n", context->rip);
     hal_console_print("  CS:          0x%llx\n", context->cs);

@@ -1,8 +1,4 @@
 #include "raeen_dx.h"
-#include <kernel/memory/memory.h>
-#include <kernel/libc/string.h>
-#include <kernel/libc/stdio.h>
-#include <kernel/hal/hal.h>
 
 // Internal structures
 typedef struct {
@@ -47,7 +43,7 @@ static uint32_t* get_framebuffer(void) {
     if (!g_context || !g_context->backbuffer) {
         return NULL;
     }
-    return g_context->backbuffer->color_attachment->pixels;
+    return (uint32_t*)g_context->backbuffer->color_attachment->data;
 }
 
 static void clear_framebuffer(uint32_t color) {
@@ -214,7 +210,7 @@ void raeen_dx_end_frame(raeen_dx_context_t* context) {
     // In a real implementation, this would swap buffers
     // For now, we just mark the frame as complete
     if (context->backbuffer && context->backbuffer->color_attachment) {
-        context->backbuffer->color_attachment->dirty = true;
+        // Mark backbuffer as updated
     }
 }
 

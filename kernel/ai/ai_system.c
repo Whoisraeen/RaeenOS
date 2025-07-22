@@ -1,9 +1,4 @@
 #include "ai_system.h"
-#include "kernel.h"
-#include "memory.h"
-#include "filesystem.h"
-#include <string.h>
-#include <stdio.h>
 
 // Global AI system
 static ai_system_t ai_system;

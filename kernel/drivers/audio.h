@@ -1,8 +1,8 @@
 #ifndef AUDIO_H
 #define AUDIO_H
 
-#include "../core/types.h"
-#include "../core/error.h"
+#include "../core/include/types.h"
+#include "../core/include/error.h"
 #include "driver_framework.h"
 
 // Audio device types

@@ -1,0 +1,44 @@
+[
+{
+  "directory": "/mnt/d/RaeenOS/build/bootloader",
+  "command": "/usr/bin/cc -DDEBUG -I/mnt/d/RaeenOS/kernel/core/include -I/mnt/d/RaeenOS/kernel/hal/include -I/mnt/d/RaeenOS/kernel/drivers/include -I/mnt/d/RaeenOS/kernel/security/include -I/mnt/d/RaeenOS/ui/framework/include -I/mnt/d/RaeenOS/kernel/include -I/mnt/d/RaeenOS/kernel/memory/include  -Wall -Wno-error -nostdlib -fno-builtin -fno-stack-protector -g -O0 -g -std=gnu11 -std=c11 -ffreestanding -nostdlib -o CMakeFiles/multiboot_obj.dir/multiboot.c.o -c /mnt/d/RaeenOS/bootloader/multiboot.c",
+  "file": "/mnt/d/RaeenOS/bootloader/multiboot.c",
+  "output": "bootloader/CMakeFiles/multiboot_obj.dir/multiboot.c.o"
+},
+{
+  "directory": "/mnt/d/RaeenOS/build/kernel",
+  "command": "/usr/bin/cc -DDEBUG -I/mnt/d/RaeenOS/kernel/core/include -I/mnt/d/RaeenOS/kernel/hal/include -I/mnt/d/RaeenOS/kernel/drivers/include -I/mnt/d/RaeenOS/kernel/security/include -I/mnt/d/RaeenOS/ui/framework/include -I/mnt/d/RaeenOS/kernel -I/mnt/d/RaeenOS/kernel/include -I/mnt/d/RaeenOS/kernel/memory/include -I/mnt/d/RaeenOS/kernel/filesystem/include -I/mnt/d/RaeenOS/kernel/network/include -I/mnt/d/RaeenOS/kernel/syscall/include  -Wall -Wno-error -nostdlib -fno-builtin -fno-stack-protector -g -O0 -g -std=gnu11 -std=c11 -ffreestanding -nostdlib -fno-builtin -fno-stack-protector -Wall -Wno-error -Wno-unused-parameter -Wno-unused-variable -Wno-unused-function -m64 -mno-red-zone -mno-mmx -mno-sse -mno-sse2 -o CMakeFiles/kernel_objects.dir/core/kernel_main_final.c.o -c /mnt/d/RaeenOS/kernel/core/kernel_main_final.c",
+  "file": "/mnt/d/RaeenOS/kernel/core/kernel_main_final.c",
+  "output": "kernel/CMakeFiles/kernel_objects.dir/core/kernel_main_final.c.o"
+},
+{
+  "directory": "/mnt/d/RaeenOS/build/kernel",
+  "command": "/usr/bin/cc -DDEBUG -I/mnt/d/RaeenOS/kernel/core/include -I/mnt/d/RaeenOS/kernel/hal/include -I/mnt/d/RaeenOS/kernel/drivers/include -I/mnt/d/RaeenOS/kernel/security/include -I/mnt/d/RaeenOS/ui/framework/include -I/mnt/d/RaeenOS/kernel -I/mnt/d/RaeenOS/kernel/include -I/mnt/d/RaeenOS/kernel/memory/include -I/mnt/d/RaeenOS/kernel/filesystem/include -I/mnt/d/RaeenOS/kernel/network/include -I/mnt/d/RaeenOS/kernel/syscall/include  -Wall -Wno-error -nostdlib -fno-builtin -fno-stack-protector -g -O0 -g -std=gnu11 -std=c11 -ffreestanding -nostdlib -fno-builtin -fno-stack-protector -Wall -Wno-error -Wno-unused-parameter -Wno-unused-variable -Wno-unused-function -m64 -mno-red-zone -mno-mmx -mno-sse -mno-sse2 -o CMakeFiles/kernel_objects.dir/core/string_simple.c.o -c /mnt/d/RaeenOS/kernel/core/string_simple.c",
+  "file": "/mnt/d/RaeenOS/kernel/core/string_simple.c",
+  "output": "kernel/CMakeFiles/kernel_objects.dir/core/string_simple.c.o"
+},
+{
+  "directory": "/mnt/d/RaeenOS/build/tools",
+  "command": "/usr/bin/cc -DDEBUG -I/mnt/d/RaeenOS/kernel/core/include -I/mnt/d/RaeenOS/kernel/hal/include -I/mnt/d/RaeenOS/kernel/drivers/include -I/mnt/d/RaeenOS/kernel/security/include -I/mnt/d/RaeenOS/ui/framework/include  -Wall -Wno-error -nostdlib -fno-builtin -fno-stack-protector -g -O0 -g -std=gnu11 -std=c11 -o CMakeFiles/raeenos_debugger.dir/debugger/raeenos_debugger.c.o -c /mnt/d/RaeenOS/tools/debugger/raeenos_debugger.c",
+  "file": "/mnt/d/RaeenOS/tools/debugger/raeenos_debugger.c",
+  "output": "tools/CMakeFiles/raeenos_debugger.dir/debugger/raeenos_debugger.c.o"
+},
+{
+  "directory": "/mnt/d/RaeenOS/build/tools",
+  "command": "/usr/bin/cc -DDEBUG -I/mnt/d/RaeenOS/kernel/core/include -I/mnt/d/RaeenOS/kernel/hal/include -I/mnt/d/RaeenOS/kernel/drivers/include -I/mnt/d/RaeenOS/kernel/security/include -I/mnt/d/RaeenOS/ui/framework/include  -Wall -Wno-error -nostdlib -fno-builtin -fno-stack-protector -g -O0 -g -std=gnu11 -std=c11 -o CMakeFiles/raeenos_profiler.dir/profiler/performance_profiler.c.o -c /mnt/d/RaeenOS/tools/profiler/performance_profiler.c",
+  "file": "/mnt/d/RaeenOS/tools/profiler/performance_profiler.c",
+  "output": "tools/CMakeFiles/raeenos_profiler.dir/profiler/performance_profiler.c.o"
+},
+{
+  "directory": "/mnt/d/RaeenOS/build/tools",
+  "command": "/usr/bin/cc -DDEBUG -I/mnt/d/RaeenOS/kernel/core/include -I/mnt/d/RaeenOS/kernel/hal/include -I/mnt/d/RaeenOS/kernel/drivers/include -I/mnt/d/RaeenOS/kernel/security/include -I/mnt/d/RaeenOS/ui/framework/include  -Wall -Wno-error -nostdlib -fno-builtin -fno-stack-protector -g -O0 -g -std=gnu11 -std=c11 -o CMakeFiles/raeenos_emulator.dir/emulator/hardware_emulator.c.o -c /mnt/d/RaeenOS/tools/emulator/hardware_emulator.c",
+  "file": "/mnt/d/RaeenOS/tools/emulator/hardware_emulator.c",
+  "output": "tools/CMakeFiles/raeenos_emulator.dir/emulator/hardware_emulator.c.o"
+},
+{
+  "directory": "/mnt/d/RaeenOS/build/tools",
+  "command": "/usr/bin/cc -DDEBUG -I/mnt/d/RaeenOS/kernel/core/include -I/mnt/d/RaeenOS/kernel/hal/include -I/mnt/d/RaeenOS/kernel/drivers/include -I/mnt/d/RaeenOS/kernel/security/include -I/mnt/d/RaeenOS/ui/framework/include  -Wall -Wno-error -nostdlib -fno-builtin -fno-stack-protector -g -O0 -g -std=gnu11 -std=c11 -o CMakeFiles/raeenos_mkfs.dir/mkfs/mkfs_raeenos.c.o -c /mnt/d/RaeenOS/tools/mkfs/mkfs_raeenos.c",
+  "file": "/mnt/d/RaeenOS/tools/mkfs/mkfs_raeenos.c",
+  "output": "tools/CMakeFiles/raeenos_mkfs.dir/mkfs/mkfs_raeenos.c.o"
+}
+]

@@ -1,9 +1,4 @@
 #include "raeen_gui_system.h"
-#include <kernel/memory/memory.h>
-#include <kernel/libc/string.h>
-#include <kernel/libc/stdio.h>
-#include <kernel/hal/hal.h>
-#include <kernel/process/process.h>
 
 // Global GUI system instance
 static raeen_gui_system_t* g_gui_system = NULL;

@@ -1,0 +1,1 @@
+/usr/bin/cc  -Wall -Wno-error -nostdlib -fno-builtin -fno-stack-protector -g -O0 -g CMakeFiles/raeenos_profiler.dir/profiler/performance_profiler.c.o -o raeenos_profiler 

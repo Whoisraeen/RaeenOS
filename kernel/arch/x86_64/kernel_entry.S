@@ -6,13 +6,6 @@ extern kernel_main
 extern _bss_start
 extern _bss_end
 
-section .multiboot
-align 4
-multiboot_header:
-    dd 0x1BADB002                    ; Multiboot magic number
-    dd 0x00000003                    ; Flags (memory info + boot device)
-    dd -(0x1BADB002 + 0x00000003)    ; Checksum
-
 section .text
 _start:
     ; Disable interrupts
@@ -33,8 +26,8 @@ _start:
     mov rdi, rbx                     ; First argument: multiboot info structure
     mov rsi, rax                     ; Second argument: multiboot magic number
     
-    ; Ensure we're in 64-bit mode and registers are properly set
-    mov rax, 0x2BADB002             ; Expected multiboot magic
+    ; Ensure we're in 64-bit mode and registers are properly set  
+    mov rax, 0x1BADB002             ; Expected multiboot magic
     cmp rsi, rax
     jne halt_system                 ; Halt if wrong magic number
     

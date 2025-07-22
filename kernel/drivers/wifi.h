@@ -1,7 +1,7 @@
 #ifndef WIFI_H
 #define WIFI_H
 
-#include "../core/types.h"
+#include "../core/include/types.h"
 #include "../core/error.h"
 #include "driver_framework.h"
 #include "network.h"

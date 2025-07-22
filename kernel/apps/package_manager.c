@@ -1,9 +1,23 @@
-#include "package_manager.h"
-#include "filesystem/vfs.h"
-#include "security/security.h"
-#include "memory/memory.h"
-#include <string.h>
-#include <stdio.h>
+#include <stdint.h>
+#include <stdbool.h>
+#include <stddef.h>
+
+// Basic type definitions
+typedef int error_t;
+
+// Missing constants
+#define SUCCESS 0
+#define E_ALREADY -1
+
+// Forward declarations
+typedef struct package package_t;
+typedef struct repository repository_t;
+
+// Stub function declarations
+static inline void KINFO(const char* s, ...) { }
+static inline void KWARN(const char* s, ...) { }
+static inline void KERROR(const char* s, ...) { }
+static inline int vfs_mkdir(const char* path, int mode) { return 0; }
 
 // Package manager state
 static bool package_manager_initialized = false;

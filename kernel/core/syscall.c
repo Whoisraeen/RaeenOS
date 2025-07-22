@@ -7,6 +7,7 @@
 #include "hal.h"
 #include <string.h>
 #include <stdio.h>
+#include "../include/raeenos_stubs.h"
 
 // System call table
 static syscall_entry_t syscall_table[MAX_SYSCALL + 1];

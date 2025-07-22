@@ -1,10 +1,4 @@
 #include "gaming_system.h"
-#include "../core/kernel.h"
-#include "../memory/memory.h"
-#include "../process/process.h"
-#include "../performance/performance.h"
-#include <string.h>
-#include <stdio.h>
 
 // Global gaming system instance
 static gaming_system_t gaming_system;

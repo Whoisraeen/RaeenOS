@@ -1,9 +1,10 @@
 #ifndef AI_SYSTEM_H
 #define AI_SYSTEM_H
 
-#include "kernel.h"
-#include <stdint.h>
-#include <stdbool.h>
+#include "../core/include/types.h"
+
+// Forward declarations for kernel types
+typedef uint32_t spinlock_t;
 
 // AI system constants
 #define MAX_AI_MODELS 50

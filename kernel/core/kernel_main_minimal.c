@@ -1,5 +1,5 @@
 /* Minimal Bootable Kernel Main for RaeenOS */ 
-#include <stdint.h> 
+#include "stdint.h" 
  
 /* VGA text mode buffer */ 
 static uint16_t* vga_buffer = (uint16_t*)0xB8000; 

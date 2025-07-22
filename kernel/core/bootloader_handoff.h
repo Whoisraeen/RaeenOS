@@ -14,20 +14,20 @@
 
 // Memory region types
 typedef enum {
-    MEMORY_TYPE_AVAILABLE       = 1,
-    MEMORY_TYPE_RESERVED        = 2,
-    MEMORY_TYPE_ACPI_RECLAIMABLE = 3,
-    MEMORY_TYPE_ACPI_NVS        = 4,
-    MEMORY_TYPE_BAD             = 5
-} memory_region_type_t;
+    BOOTLOADER_MEMORY_TYPE_AVAILABLE       = 1,
+    BOOTLOADER_MEMORY_TYPE_RESERVED        = 2,
+    BOOTLOADER_MEMORY_TYPE_ACPI_RECLAIMABLE = 3,
+    BOOTLOADER_MEMORY_TYPE_ACPI_NVS        = 4,
+    BOOTLOADER_MEMORY_TYPE_BAD             = 5
+} bootloader_memory_region_type_t;
 
 // Memory region structure
 typedef struct {
     uint64_t base_addr;
     uint64_t length;
-    memory_region_type_t type;
+    bootloader_memory_region_type_t type;
     bool available;
-} memory_region_t;
+} bootloader_memory_region_t;
 
 // Module information structure
 typedef struct {
@@ -57,7 +57,7 @@ typedef struct {
     multiboot_info_t* multiboot_info;
     
     // Memory information
-    memory_region_t memory_regions[MAX_MEMORY_REGIONS];
+    bootloader_memory_region_t memory_regions[MAX_MEMORY_REGIONS];
     uint32_t memory_map_count;
     uint64_t total_memory;
     uint64_t available_memory;
@@ -94,7 +94,7 @@ error_t bootloader_mark_module_regions(void);
 
 // Information retrieval
 error_t bootloader_get_handoff_info(bootloader_handoff_t** info);
-error_t bootloader_get_memory_regions(memory_region_t** regions, uint32_t* count);
+error_t bootloader_get_memory_regions(bootloader_memory_region_t** regions, uint32_t* count);
 error_t bootloader_get_modules(module_info_t** modules, uint32_t* count);
 error_t bootloader_get_framebuffer(framebuffer_info_t** fb);
 error_t bootloader_get_cmdline(char** cmdline);

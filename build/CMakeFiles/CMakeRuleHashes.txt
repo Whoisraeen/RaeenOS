@@ -1,0 +1,12 @@
+# Hashes of file build rules.
+20ea43cd79727d8371517fca5a3896d6 CMakeFiles/debug
+8aca950d2715789c874055adc936bce7 CMakeFiles/iso
+358033c193fb21c8788daeb25325da87 CMakeFiles/run
+122e87e4cdae469693c82959a537f25d bootloader/CMakeFiles/bootloader
+106ceecf08f3b82a53e522c5b3633ef9 bootloader/boot.o
+c878e169ec914217d645017b940cec85 bootloader/stage1.bin
+b70b89ecfee70a09f89842a240b7a73e bootloader/stage2.bin
+77c3d0ea97429b13541ccf5e7f722985 kernel/CMakeFiles/kernel
+98b4abdaaa27ef5613c0e68a481b554f kernel/kernel.bin
+22647c13ea02ac0aeeb96d1978a6b57c kernel/kernel_entry.o
+e8fd2529ac0537a8acfb7c7dc785a413 kernel/multiboot_header.o

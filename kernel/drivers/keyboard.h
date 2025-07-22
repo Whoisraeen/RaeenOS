@@ -5,6 +5,9 @@
 #include <stdbool.h>
 #include "types.h"
 
+// Add missing type
+typedef uint32_t spinlock_t;
+
 // Keyboard controller ports
 #define KEYBOARD_DATA_PORT    0x60
 #define KEYBOARD_STATUS_PORT  0x64

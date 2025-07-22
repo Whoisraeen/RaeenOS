@@ -12,7 +12,23 @@
       "Bash(./build.bat kernel)",
       "Bash(chmod:*)",
       "Bash(./build_test.sh:*)",
-      "Bash(bash:*)"
+      "Bash(bash:*)",
+      "Bash(cmake:*)",
+      "Bash(qemu-system-x86_64:*)",
+      "Bash(sudo apt:*)",
+      "Bash(sudo apt install:*)",
+      "Bash(apt install:*)",
+      "Bash(snap install:*)",
+      "Bash(rm:*)",
+      "Bash(cp:*)",
+      "Bash(timeout 30 make kernel)",
+      "Bash(grub-mkrescue:*)",
+      "Bash(timeout:*)",
+      "Bash(pkill:*)",
+      "Bash(true)",
+      "Bash(objdump:*)",
+      "Bash(readelf:*)",
+      "Bash(echo)"
     ],
     "deny": []
   }

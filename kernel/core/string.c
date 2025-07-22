@@ -149,7 +149,7 @@ static void print_number(long long num, int base, bool uppercase, int width, cha
     if (num == 0) {
         buffer[pos++] = '0';
     } else {
-        char digits[] = uppercase ? "0123456789ABCDEF" : "0123456789abcdef";
+        const char* digits = uppercase ? "0123456789ABCDEF" : "0123456789abcdef";
         while (num > 0) {
             buffer[pos++] = digits[num % base];
             num /= base;
@@ -280,7 +280,7 @@ int vsnprintf(char* buffer, size_t size, const char* format, va_list args) {
                 if (num == 0) {
                     temp[temp_pos++] = '0';
                 } else {
-                    char digits[] = uppercase ? "0123456789ABCDEF" : "0123456789abcdef";
+                    const char* digits = uppercase ? "0123456789ABCDEF" : "0123456789abcdef";
                     while (num > 0) {
                         temp[temp_pos++] = digits[num % 16];
                         num /= 16;

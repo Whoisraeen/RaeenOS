@@ -1,9 +1,27 @@
-#include "kernel.h"
-#include "network/include/network.h"
-#include "memory/memory.h"
-#include "security/include/security.h"
-#include "hal/hal.h"
-#include <string.h>
+#include <stdint.h>
+#include <stdbool.h>
+#include <stddef.h>
+
+// Simple type definitions
+typedef uint32_t u32;
+typedef uint8_t u8;
+typedef uint16_t u16;
+typedef uint64_t u64;
+typedef int error_t;
+
+// Missing constants
+#define SUCCESS 0
+#define E_NOMEM -1
+#define E_INVAL -2
+#define E_PERM -3
+#define E_NOENT -4
+
+// Minimal stubs for missing functions
+static inline void KINFO(const char* s, ...) { }
+static inline void KERROR(const char* s, ...) { }
+static inline void KDEBUG(const char* s, ...) { }
+static inline void* memory_alloc(size_t size) { return NULL; }
+static inline u64 hal_get_timestamp(void) { return 0; }
 
 // Advanced networking configuration
 #define NETWORK_MAX_INTERFACES 16

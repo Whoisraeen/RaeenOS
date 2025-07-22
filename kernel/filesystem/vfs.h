@@ -6,6 +6,12 @@
 #include <stdbool.h>
 #include "types.h"
 
+// Forward declarations for kernel types
+typedef uint32_t spinlock_t;
+typedef int64_t ssize_t;
+typedef int64_t off_t;
+typedef uint32_t mode_t;
+
 // File system types
 typedef enum {
     FS_TYPE_RAMFS,

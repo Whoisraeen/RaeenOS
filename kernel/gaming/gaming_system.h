@@ -3,7 +3,9 @@
 
 #include <stdint.h>
 #include <stdbool.h>
-#include "types.h"
+
+// Forward declarations for kernel types
+typedef uint32_t spinlock_t;
 
 // Gaming system constants
 #define MAX_GAMES 100

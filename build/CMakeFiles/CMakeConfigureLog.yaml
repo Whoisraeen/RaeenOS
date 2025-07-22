@@ -4,6 +4,562 @@ events:
   -
     kind: "message-v1"
     backtrace:
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineSystem.cmake:233 (message)"
+      - "CMakeLists.txt:2 (project)"
+    message: |
+      The system is: Linux - 6.6.87.2-microsoft-standard-WSL2 - x86_64
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCCompiler.cmake:123 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:2 (project)"
+    message: |
+      Compiling the C compiler identification source file "CMakeCCompilerId.c" succeeded.
+      Compiler: /usr/bin/cc 
+      Build flags: 
+      Id flags:  
+      
+      The output was:
+      0
+      
+      
+      Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "a.out"
+      
+      The C compiler identification is GNU, found in:
+        /mnt/d/RaeenOS/build/CMakeFiles/3.28.3/CompilerIdC/a.out
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCXXCompiler.cmake:126 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:2 (project)"
+    message: |
+      Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" succeeded.
+      Compiler: /usr/bin/c++ 
+      Build flags: 
+      Id flags:  
+      
+      The output was:
+      0
+      
+      
+      Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "a.out"
+      
+      The CXX compiler identification is GNU, found in:
+        /mnt/d/RaeenOS/build/CMakeFiles/3.28.3/CompilerIdCXX/a.out
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:1131 (message)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineASMCompiler.cmake:131 (CMAKE_DETERMINE_COMPILER_ID_VENDOR)"
+      - "CMakeLists.txt:2 (project)"
+    message: |
+      Checking whether the ASM compiler is GNU using "--version" matched "(GNU assembler)|(GCC)|(Free Software Foundation)":
+      cc (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0
+      Copyright (C) 2023 Free Software Foundation, Inc.
+      This is free software; see the source for copying conditions.  There is NO
+      warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+      
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerABI.cmake:57 (try_compile)"
+      - "/usr/share/cmake-3.28/Modules/CMakeTestCCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:2 (project)"
+    checks:
+      - "Detecting C compiler ABI info"
+    directories:
+      source: "/mnt/d/RaeenOS/build/CMakeFiles/CMakeScratch/TryCompile-0c1ubm"
+      binary: "/mnt/d/RaeenOS/build/CMakeFiles/CMakeScratch/TryCompile-0c1ubm"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+    buildResult:
+      variable: "CMAKE_C_ABI_COMPILED"
+      cached: true
+      stdout: |
+        Change Dir: '/mnt/d/RaeenOS/build/CMakeFiles/CMakeScratch/TryCompile-0c1ubm'
+        
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_578c1/fast
+        gmake: Warning: File 'Makefile' has modification time 2.3 s in the future
+        /usr/bin/gmake  -f CMakeFiles/cmTC_578c1.dir/build.make CMakeFiles/cmTC_578c1.dir/build
+        gmake[1]: Entering directory '/mnt/d/RaeenOS/build/CMakeFiles/CMakeScratch/TryCompile-0c1ubm'
+        gmake[1]: Warning: File 'CMakeFiles/cmTC_578c1.dir/flags.make' has modification time 2.2 s in the future
+        Building C object CMakeFiles/cmTC_578c1.dir/CMakeCCompilerABI.c.o
+        /usr/bin/cc   -v -o CMakeFiles/cmTC_578c1.dir/CMakeCCompilerABI.c.o -c /usr/share/cmake-3.28/Modules/CMakeCCompilerABI.c
+        Using built-in specs.
+        COLLECT_GCC=/usr/bin/cc
+        OFFLOAD_TARGET_NAMES=nvptx-none:amdgcn-amdhsa
+        OFFLOAD_TARGET_DEFAULT=1
+        Target: x86_64-linux-gnu
+        Configured with: ../src/configure -v --with-pkgversion='Ubuntu 13.3.0-6ubuntu2~24.04' --with-bugurl=file:///usr/share/doc/gcc-13/README.Bugs --enable-languages=c,ada,c++,go,d,fortran,objc,obj-c++,m2 --prefix=/usr --with-gcc-major-version-only --program-suffix=-13 --program-prefix=x86_64-linux-gnu- --enable-shared --enable-linker-build-id --libexecdir=/usr/libexec --without-included-gettext --enable-threads=posix --libdir=/usr/lib --enable-nls --enable-bootstrap --enable-clocale=gnu --enable-libstdcxx-debug --enable-libstdcxx-time=yes --with-default-libstdcxx-abi=new --enable-libstdcxx-backtrace --enable-gnu-unique-object --disable-vtable-verify --enable-plugin --enable-default-pie --with-system-zlib --enable-libphobos-checking=release --with-target-system-zlib=auto --enable-objc-gc=auto --enable-multiarch --disable-werror --enable-cet --with-arch-32=i686 --with-abi=m64 --with-multilib-list=m32,m64,mx32 --enable-multilib --with-tune=generic --enable-offload-targets=nvptx-none=/build/gcc-13-fG75Ri/gcc-13-13.3.0/debian/tmp-nvptx/usr,amdgcn-amdhsa=/build/gcc-13-fG75Ri/gcc-13-13.3.0/debian/tmp-gcn/usr --enable-offload-defaulted --without-cuda-driver --enable-checking=release --build=x86_64-linux-gnu --host=x86_64-linux-gnu --target=x86_64-linux-gnu --with-build-config=bootstrap-lto-lean --enable-link-serialization=2
+        Thread model: posix
+        Supported LTO compression algorithms: zlib zstd
+        gcc version 13.3.0 (Ubuntu 13.3.0-6ubuntu2~24.04) 
+        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_578c1.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_578c1.dir/'
+         /usr/libexec/gcc/x86_64-linux-gnu/13/cc1 -quiet -v -imultiarch x86_64-linux-gnu /usr/share/cmake-3.28/Modules/CMakeCCompilerABI.c -quiet -dumpdir CMakeFiles/cmTC_578c1.dir/ -dumpbase CMakeCCompilerABI.c.c -dumpbase-ext .c -mtune=generic -march=x86-64 -version -fasynchronous-unwind-tables -fstack-protector-strong -Wformat -Wformat-security -fstack-clash-protection -fcf-protection -o /tmp/ccd0ShQ8.s
+        GNU C17 (Ubuntu 13.3.0-6ubuntu2~24.04) version 13.3.0 (x86_64-linux-gnu)
+        	compiled by GNU C version 13.3.0, GMP version 6.3.0, MPFR version 4.2.1, MPC version 1.3.1, isl version isl-0.26-GMP
+        
+        GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
+        ignoring nonexistent directory "/usr/local/include/x86_64-linux-gnu"
+        ignoring nonexistent directory "/usr/lib/gcc/x86_64-linux-gnu/13/include-fixed/x86_64-linux-gnu"
+        ignoring nonexistent directory "/usr/lib/gcc/x86_64-linux-gnu/13/include-fixed"
+        ignoring nonexistent directory "/usr/lib/gcc/x86_64-linux-gnu/13/../../../../x86_64-linux-gnu/include"
+        #include "..." search starts here:
+        #include <...> search starts here:
+         /usr/lib/gcc/x86_64-linux-gnu/13/include
+         /usr/local/include
+         /usr/include/x86_64-linux-gnu
+         /usr/include
+        End of search list.
+        Compiler executable checksum: 38987c28e967c64056a6454abdef726e
+        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_578c1.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_578c1.dir/'
+         as -v --64 -o CMakeFiles/cmTC_578c1.dir/CMakeCCompilerABI.c.o /tmp/ccd0ShQ8.s
+        GNU assembler version 2.42 (x86_64-linux-gnu) using BFD version (GNU Binutils for Ubuntu) 2.42
+        COMPILER_PATH=/usr/libexec/gcc/x86_64-linux-gnu/13/:/usr/libexec/gcc/x86_64-linux-gnu/13/:/usr/libexec/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/13/:/usr/lib/gcc/x86_64-linux-gnu/
+        LIBRARY_PATH=/usr/lib/gcc/x86_64-linux-gnu/13/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../../lib/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../:/lib/:/usr/lib/
+        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_578c1.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_578c1.dir/CMakeCCompilerABI.c.'
+        Linking C executable cmTC_578c1
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_578c1.dir/link.txt --verbose=1
+        /usr/bin/cc  -v CMakeFiles/cmTC_578c1.dir/CMakeCCompilerABI.c.o -o cmTC_578c1 
+        Using built-in specs.
+        COLLECT_GCC=/usr/bin/cc
+        COLLECT_LTO_WRAPPER=/usr/libexec/gcc/x86_64-linux-gnu/13/lto-wrapper
+        OFFLOAD_TARGET_NAMES=nvptx-none:amdgcn-amdhsa
+        OFFLOAD_TARGET_DEFAULT=1
+        Target: x86_64-linux-gnu
+        Configured with: ../src/configure -v --with-pkgversion='Ubuntu 13.3.0-6ubuntu2~24.04' --with-bugurl=file:///usr/share/doc/gcc-13/README.Bugs --enable-languages=c,ada,c++,go,d,fortran,objc,obj-c++,m2 --prefix=/usr --with-gcc-major-version-only --program-suffix=-13 --program-prefix=x86_64-linux-gnu- --enable-shared --enable-linker-build-id --libexecdir=/usr/libexec --without-included-gettext --enable-threads=posix --libdir=/usr/lib --enable-nls --enable-bootstrap --enable-clocale=gnu --enable-libstdcxx-debug --enable-libstdcxx-time=yes --with-default-libstdcxx-abi=new --enable-libstdcxx-backtrace --enable-gnu-unique-object --disable-vtable-verify --enable-plugin --enable-default-pie --with-system-zlib --enable-libphobos-checking=release --with-target-system-zlib=auto --enable-objc-gc=auto --enable-multiarch --disable-werror --enable-cet --with-arch-32=i686 --with-abi=m64 --with-multilib-list=m32,m64,mx32 --enable-multilib --with-tune=generic --enable-offload-targets=nvptx-none=/build/gcc-13-fG75Ri/gcc-13-13.3.0/debian/tmp-nvptx/usr,amdgcn-amdhsa=/build/gcc-13-fG75Ri/gcc-13-13.3.0/debian/tmp-gcn/usr --enable-offload-defaulted --without-cuda-driver --enable-checking=release --build=x86_64-linux-gnu --host=x86_64-linux-gnu --target=x86_64-linux-gnu --with-build-config=bootstrap-lto-lean --enable-link-serialization=2
+        Thread model: posix
+        Supported LTO compression algorithms: zlib zstd
+        gcc version 13.3.0 (Ubuntu 13.3.0-6ubuntu2~24.04) 
+        COMPILER_PATH=/usr/libexec/gcc/x86_64-linux-gnu/13/:/usr/libexec/gcc/x86_64-linux-gnu/13/:/usr/libexec/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/13/:/usr/lib/gcc/x86_64-linux-gnu/
+        LIBRARY_PATH=/usr/lib/gcc/x86_64-linux-gnu/13/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../../lib/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../:/lib/:/usr/lib/
+        COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_578c1' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_578c1.'
+         /usr/libexec/gcc/x86_64-linux-gnu/13/collect2 -plugin /usr/libexec/gcc/x86_64-linux-gnu/13/liblto_plugin.so -plugin-opt=/usr/libexec/gcc/x86_64-linux-gnu/13/lto-wrapper -plugin-opt=-fresolution=/tmp/ccgz6vA4.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -z now -z relro -o cmTC_578c1 /usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/13/crtbeginS.o -L/usr/lib/gcc/x86_64-linux-gnu/13 -L/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/13/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/13/../../.. CMakeFiles/cmTC_578c1.dir/CMakeCCompilerABI.c.o -lgcc --push-state --as-needed -lgcc_s --pop-state -lc -lgcc --push-state --as-needed -lgcc_s --pop-state /usr/lib/gcc/x86_64-linux-gnu/13/crtendS.o /usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/crtn.o
+        COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_578c1' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_578c1.'
+        gmake[1]: warning:  Clock skew detected.  Your build may be incomplete.
+        gmake[1]: Leaving directory '/mnt/d/RaeenOS/build/CMakeFiles/CMakeScratch/TryCompile-0c1ubm'
+        gmake: warning:  Clock skew detected.  Your build may be incomplete.
+        
+      exitCode: 0
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerABI.cmake:127 (message)"
+      - "/usr/share/cmake-3.28/Modules/CMakeTestCCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:2 (project)"
+    message: |
+      Parsed C implicit include dir info: rv=done
+        found start of include info
+        found start of implicit include info
+          add: [/usr/lib/gcc/x86_64-linux-gnu/13/include]
+          add: [/usr/local/include]
+          add: [/usr/include/x86_64-linux-gnu]
+          add: [/usr/include]
+        end of search list found
+        collapse include dir [/usr/lib/gcc/x86_64-linux-gnu/13/include] ==> [/usr/lib/gcc/x86_64-linux-gnu/13/include]
+        collapse include dir [/usr/local/include] ==> [/usr/local/include]
+        collapse include dir [/usr/include/x86_64-linux-gnu] ==> [/usr/include/x86_64-linux-gnu]
+        collapse include dir [/usr/include] ==> [/usr/include]
+        implicit include dirs: [/usr/lib/gcc/x86_64-linux-gnu/13/include;/usr/local/include;/usr/include/x86_64-linux-gnu;/usr/include]
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerABI.cmake:159 (message)"
+      - "/usr/share/cmake-3.28/Modules/CMakeTestCCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:2 (project)"
+    message: |
+      Parsed C implicit link information:
+        link line regex: [^( *|.*[/\\])(ld|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\\]+-)?ld|collect2)[^/\\]*( |$)]
+        ignore line: [Change Dir: '/mnt/d/RaeenOS/build/CMakeFiles/CMakeScratch/TryCompile-0c1ubm']
+        ignore line: []
+        ignore line: [Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_578c1/fast]
+        ignore line: [gmake: Warning: File 'Makefile' has modification time 2.3 s in the future]
+        ignore line: [/usr/bin/gmake  -f CMakeFiles/cmTC_578c1.dir/build.make CMakeFiles/cmTC_578c1.dir/build]
+        ignore line: [gmake[1]: Entering directory '/mnt/d/RaeenOS/build/CMakeFiles/CMakeScratch/TryCompile-0c1ubm']
+        ignore line: [gmake[1]: Warning: File 'CMakeFiles/cmTC_578c1.dir/flags.make' has modification time 2.2 s in the future]
+        ignore line: [Building C object CMakeFiles/cmTC_578c1.dir/CMakeCCompilerABI.c.o]
+        ignore line: [/usr/bin/cc   -v -o CMakeFiles/cmTC_578c1.dir/CMakeCCompilerABI.c.o -c /usr/share/cmake-3.28/Modules/CMakeCCompilerABI.c]
+        ignore line: [Using built-in specs.]
+        ignore line: [COLLECT_GCC=/usr/bin/cc]
+        ignore line: [OFFLOAD_TARGET_NAMES=nvptx-none:amdgcn-amdhsa]
+        ignore line: [OFFLOAD_TARGET_DEFAULT=1]
+        ignore line: [Target: x86_64-linux-gnu]
+        ignore line: [Configured with: ../src/configure -v --with-pkgversion='Ubuntu 13.3.0-6ubuntu2~24.04' --with-bugurl=file:///usr/share/doc/gcc-13/README.Bugs --enable-languages=c ada c++ go d fortran objc obj-c++ m2 --prefix=/usr --with-gcc-major-version-only --program-suffix=-13 --program-prefix=x86_64-linux-gnu- --enable-shared --enable-linker-build-id --libexecdir=/usr/libexec --without-included-gettext --enable-threads=posix --libdir=/usr/lib --enable-nls --enable-bootstrap --enable-clocale=gnu --enable-libstdcxx-debug --enable-libstdcxx-time=yes --with-default-libstdcxx-abi=new --enable-libstdcxx-backtrace --enable-gnu-unique-object --disable-vtable-verify --enable-plugin --enable-default-pie --with-system-zlib --enable-libphobos-checking=release --with-target-system-zlib=auto --enable-objc-gc=auto --enable-multiarch --disable-werror --enable-cet --with-arch-32=i686 --with-abi=m64 --with-multilib-list=m32 m64 mx32 --enable-multilib --with-tune=generic --enable-offload-targets=nvptx-none=/build/gcc-13-fG75Ri/gcc-13-13.3.0/debian/tmp-nvptx/usr amdgcn-amdhsa=/build/gcc-13-fG75Ri/gcc-13-13.3.0/debian/tmp-gcn/usr --enable-offload-defaulted --without-cuda-driver --enable-checking=release --build=x86_64-linux-gnu --host=x86_64-linux-gnu --target=x86_64-linux-gnu --with-build-config=bootstrap-lto-lean --enable-link-serialization=2]
+        ignore line: [Thread model: posix]
+        ignore line: [Supported LTO compression algorithms: zlib zstd]
+        ignore line: [gcc version 13.3.0 (Ubuntu 13.3.0-6ubuntu2~24.04) ]
+        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_578c1.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_578c1.dir/']
+        ignore line: [ /usr/libexec/gcc/x86_64-linux-gnu/13/cc1 -quiet -v -imultiarch x86_64-linux-gnu /usr/share/cmake-3.28/Modules/CMakeCCompilerABI.c -quiet -dumpdir CMakeFiles/cmTC_578c1.dir/ -dumpbase CMakeCCompilerABI.c.c -dumpbase-ext .c -mtune=generic -march=x86-64 -version -fasynchronous-unwind-tables -fstack-protector-strong -Wformat -Wformat-security -fstack-clash-protection -fcf-protection -o /tmp/ccd0ShQ8.s]
+        ignore line: [GNU C17 (Ubuntu 13.3.0-6ubuntu2~24.04) version 13.3.0 (x86_64-linux-gnu)]
+        ignore line: [	compiled by GNU C version 13.3.0  GMP version 6.3.0  MPFR version 4.2.1  MPC version 1.3.1  isl version isl-0.26-GMP]
+        ignore line: []
+        ignore line: [GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072]
+        ignore line: [ignoring nonexistent directory "/usr/local/include/x86_64-linux-gnu"]
+        ignore line: [ignoring nonexistent directory "/usr/lib/gcc/x86_64-linux-gnu/13/include-fixed/x86_64-linux-gnu"]
+        ignore line: [ignoring nonexistent directory "/usr/lib/gcc/x86_64-linux-gnu/13/include-fixed"]
+        ignore line: [ignoring nonexistent directory "/usr/lib/gcc/x86_64-linux-gnu/13/../../../../x86_64-linux-gnu/include"]
+        ignore line: [#include "..." search starts here:]
+        ignore line: [#include <...> search starts here:]
+        ignore line: [ /usr/lib/gcc/x86_64-linux-gnu/13/include]
+        ignore line: [ /usr/local/include]
+        ignore line: [ /usr/include/x86_64-linux-gnu]
+        ignore line: [ /usr/include]
+        ignore line: [End of search list.]
+        ignore line: [Compiler executable checksum: 38987c28e967c64056a6454abdef726e]
+        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_578c1.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_578c1.dir/']
+        ignore line: [ as -v --64 -o CMakeFiles/cmTC_578c1.dir/CMakeCCompilerABI.c.o /tmp/ccd0ShQ8.s]
+        ignore line: [GNU assembler version 2.42 (x86_64-linux-gnu) using BFD version (GNU Binutils for Ubuntu) 2.42]
+        ignore line: [COMPILER_PATH=/usr/libexec/gcc/x86_64-linux-gnu/13/:/usr/libexec/gcc/x86_64-linux-gnu/13/:/usr/libexec/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/13/:/usr/lib/gcc/x86_64-linux-gnu/]
+        ignore line: [LIBRARY_PATH=/usr/lib/gcc/x86_64-linux-gnu/13/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../../lib/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../:/lib/:/usr/lib/]
+        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_578c1.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_578c1.dir/CMakeCCompilerABI.c.']
+        ignore line: [Linking C executable cmTC_578c1]
+        ignore line: [/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_578c1.dir/link.txt --verbose=1]
+        ignore line: [/usr/bin/cc  -v CMakeFiles/cmTC_578c1.dir/CMakeCCompilerABI.c.o -o cmTC_578c1 ]
+        ignore line: [Using built-in specs.]
+        ignore line: [COLLECT_GCC=/usr/bin/cc]
+        ignore line: [COLLECT_LTO_WRAPPER=/usr/libexec/gcc/x86_64-linux-gnu/13/lto-wrapper]
+        ignore line: [OFFLOAD_TARGET_NAMES=nvptx-none:amdgcn-amdhsa]
+        ignore line: [OFFLOAD_TARGET_DEFAULT=1]
+        ignore line: [Target: x86_64-linux-gnu]
+        ignore line: [Configured with: ../src/configure -v --with-pkgversion='Ubuntu 13.3.0-6ubuntu2~24.04' --with-bugurl=file:///usr/share/doc/gcc-13/README.Bugs --enable-languages=c ada c++ go d fortran objc obj-c++ m2 --prefix=/usr --with-gcc-major-version-only --program-suffix=-13 --program-prefix=x86_64-linux-gnu- --enable-shared --enable-linker-build-id --libexecdir=/usr/libexec --without-included-gettext --enable-threads=posix --libdir=/usr/lib --enable-nls --enable-bootstrap --enable-clocale=gnu --enable-libstdcxx-debug --enable-libstdcxx-time=yes --with-default-libstdcxx-abi=new --enable-libstdcxx-backtrace --enable-gnu-unique-object --disable-vtable-verify --enable-plugin --enable-default-pie --with-system-zlib --enable-libphobos-checking=release --with-target-system-zlib=auto --enable-objc-gc=auto --enable-multiarch --disable-werror --enable-cet --with-arch-32=i686 --with-abi=m64 --with-multilib-list=m32 m64 mx32 --enable-multilib --with-tune=generic --enable-offload-targets=nvptx-none=/build/gcc-13-fG75Ri/gcc-13-13.3.0/debian/tmp-nvptx/usr amdgcn-amdhsa=/build/gcc-13-fG75Ri/gcc-13-13.3.0/debian/tmp-gcn/usr --enable-offload-defaulted --without-cuda-driver --enable-checking=release --build=x86_64-linux-gnu --host=x86_64-linux-gnu --target=x86_64-linux-gnu --with-build-config=bootstrap-lto-lean --enable-link-serialization=2]
+        ignore line: [Thread model: posix]
+        ignore line: [Supported LTO compression algorithms: zlib zstd]
+        ignore line: [gcc version 13.3.0 (Ubuntu 13.3.0-6ubuntu2~24.04) ]
+        ignore line: [COMPILER_PATH=/usr/libexec/gcc/x86_64-linux-gnu/13/:/usr/libexec/gcc/x86_64-linux-gnu/13/:/usr/libexec/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/13/:/usr/lib/gcc/x86_64-linux-gnu/]
+        ignore line: [LIBRARY_PATH=/usr/lib/gcc/x86_64-linux-gnu/13/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../../lib/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../:/lib/:/usr/lib/]
+        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_578c1' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_578c1.']
+        link line: [ /usr/libexec/gcc/x86_64-linux-gnu/13/collect2 -plugin /usr/libexec/gcc/x86_64-linux-gnu/13/liblto_plugin.so -plugin-opt=/usr/libexec/gcc/x86_64-linux-gnu/13/lto-wrapper -plugin-opt=-fresolution=/tmp/ccgz6vA4.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -z now -z relro -o cmTC_578c1 /usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/13/crtbeginS.o -L/usr/lib/gcc/x86_64-linux-gnu/13 -L/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/13/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/13/../../.. CMakeFiles/cmTC_578c1.dir/CMakeCCompilerABI.c.o -lgcc --push-state --as-needed -lgcc_s --pop-state -lc -lgcc --push-state --as-needed -lgcc_s --pop-state /usr/lib/gcc/x86_64-linux-gnu/13/crtendS.o /usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/crtn.o]
+          arg [/usr/libexec/gcc/x86_64-linux-gnu/13/collect2] ==> ignore
+          arg [-plugin] ==> ignore
+          arg [/usr/libexec/gcc/x86_64-linux-gnu/13/liblto_plugin.so] ==> ignore
+          arg [-plugin-opt=/usr/libexec/gcc/x86_64-linux-gnu/13/lto-wrapper] ==> ignore
+          arg [-plugin-opt=-fresolution=/tmp/ccgz6vA4.res] ==> ignore
+          arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
+          arg [-plugin-opt=-pass-through=-lgcc_s] ==> ignore
+          arg [-plugin-opt=-pass-through=-lc] ==> ignore
+          arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
+          arg [-plugin-opt=-pass-through=-lgcc_s] ==> ignore
+          arg [--build-id] ==> ignore
+          arg [--eh-frame-hdr] ==> ignore
+          arg [-m] ==> ignore
+          arg [elf_x86_64] ==> ignore
+          arg [--hash-style=gnu] ==> ignore
+          arg [--as-needed] ==> ignore
+          arg [-dynamic-linker] ==> ignore
+          arg [/lib64/ld-linux-x86-64.so.2] ==> ignore
+          arg [-pie] ==> ignore
+          arg [-znow] ==> ignore
+          arg [-zrelro] ==> ignore
+          arg [-o] ==> ignore
+          arg [cmTC_578c1] ==> ignore
+          arg [/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/Scrt1.o] ==> obj [/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/Scrt1.o]
+          arg [/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/crti.o] ==> obj [/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/crti.o]
+          arg [/usr/lib/gcc/x86_64-linux-gnu/13/crtbeginS.o] ==> obj [/usr/lib/gcc/x86_64-linux-gnu/13/crtbeginS.o]
+          arg [-L/usr/lib/gcc/x86_64-linux-gnu/13] ==> dir [/usr/lib/gcc/x86_64-linux-gnu/13]
+          arg [-L/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu] ==> dir [/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu]
+          arg [-L/usr/lib/gcc/x86_64-linux-gnu/13/../../../../lib] ==> dir [/usr/lib/gcc/x86_64-linux-gnu/13/../../../../lib]
+          arg [-L/lib/x86_64-linux-gnu] ==> dir [/lib/x86_64-linux-gnu]
+          arg [-L/lib/../lib] ==> dir [/lib/../lib]
+          arg [-L/usr/lib/x86_64-linux-gnu] ==> dir [/usr/lib/x86_64-linux-gnu]
+          arg [-L/usr/lib/../lib] ==> dir [/usr/lib/../lib]
+          arg [-L/usr/lib/gcc/x86_64-linux-gnu/13/../../..] ==> dir [/usr/lib/gcc/x86_64-linux-gnu/13/../../..]
+          arg [CMakeFiles/cmTC_578c1.dir/CMakeCCompilerABI.c.o] ==> ignore
+          arg [-lgcc] ==> lib [gcc]
+          arg [--push-state] ==> ignore
+          arg [--as-needed] ==> ignore
+          arg [-lgcc_s] ==> lib [gcc_s]
+          arg [--pop-state] ==> ignore
+          arg [-lc] ==> lib [c]
+          arg [-lgcc] ==> lib [gcc]
+          arg [--push-state] ==> ignore
+          arg [--as-needed] ==> ignore
+          arg [-lgcc_s] ==> lib [gcc_s]
+          arg [--pop-state] ==> ignore
+          arg [/usr/lib/gcc/x86_64-linux-gnu/13/crtendS.o] ==> obj [/usr/lib/gcc/x86_64-linux-gnu/13/crtendS.o]
+          arg [/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/crtn.o] ==> obj [/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/crtn.o]
+        collapse obj [/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/Scrt1.o] ==> [/usr/lib/x86_64-linux-gnu/Scrt1.o]
+        collapse obj [/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/crti.o] ==> [/usr/lib/x86_64-linux-gnu/crti.o]
+        collapse obj [/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/crtn.o] ==> [/usr/lib/x86_64-linux-gnu/crtn.o]
+        collapse library dir [/usr/lib/gcc/x86_64-linux-gnu/13] ==> [/usr/lib/gcc/x86_64-linux-gnu/13]
+        collapse library dir [/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu] ==> [/usr/lib/x86_64-linux-gnu]
+        collapse library dir [/usr/lib/gcc/x86_64-linux-gnu/13/../../../../lib] ==> [/usr/lib]
+        collapse library dir [/lib/x86_64-linux-gnu] ==> [/lib/x86_64-linux-gnu]
+        collapse library dir [/lib/../lib] ==> [/lib]
+        collapse library dir [/usr/lib/x86_64-linux-gnu] ==> [/usr/lib/x86_64-linux-gnu]
+        collapse library dir [/usr/lib/../lib] ==> [/usr/lib]
+        collapse library dir [/usr/lib/gcc/x86_64-linux-gnu/13/../../..] ==> [/usr/lib]
+        implicit libs: [gcc;gcc_s;c;gcc;gcc_s]
+        implicit objs: [/usr/lib/x86_64-linux-gnu/Scrt1.o;/usr/lib/x86_64-linux-gnu/crti.o;/usr/lib/gcc/x86_64-linux-gnu/13/crtbeginS.o;/usr/lib/gcc/x86_64-linux-gnu/13/crtendS.o;/usr/lib/x86_64-linux-gnu/crtn.o]
+        implicit dirs: [/usr/lib/gcc/x86_64-linux-gnu/13;/usr/lib/x86_64-linux-gnu;/usr/lib;/lib/x86_64-linux-gnu;/lib]
+        implicit fwks: []
+      
+      
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerABI.cmake:57 (try_compile)"
+      - "/usr/share/cmake-3.28/Modules/CMakeTestCXXCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:2 (project)"
+    checks:
+      - "Detecting CXX compiler ABI info"
+    directories:
+      source: "/mnt/d/RaeenOS/build/CMakeFiles/CMakeScratch/TryCompile-ArvE8D"
+      binary: "/mnt/d/RaeenOS/build/CMakeFiles/CMakeScratch/TryCompile-ArvE8D"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: ""
+      CMAKE_CXX_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+    buildResult:
+      variable: "CMAKE_CXX_ABI_COMPILED"
+      cached: true
+      stdout: |
+        Change Dir: '/mnt/d/RaeenOS/build/CMakeFiles/CMakeScratch/TryCompile-ArvE8D'
+        
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_ed300/fast
+        gmake: Warning: File 'Makefile' has modification time 0.74 s in the future
+        /usr/bin/gmake  -f CMakeFiles/cmTC_ed300.dir/build.make CMakeFiles/cmTC_ed300.dir/build
+        gmake[1]: Entering directory '/mnt/d/RaeenOS/build/CMakeFiles/CMakeScratch/TryCompile-ArvE8D'
+        gmake[1]: Warning: File 'CMakeFiles/cmTC_ed300.dir/flags.make' has modification time 0.73 s in the future
+        Building CXX object CMakeFiles/cmTC_ed300.dir/CMakeCXXCompilerABI.cpp.o
+        /usr/bin/c++   -v -o CMakeFiles/cmTC_ed300.dir/CMakeCXXCompilerABI.cpp.o -c /usr/share/cmake-3.28/Modules/CMakeCXXCompilerABI.cpp
+        Using built-in specs.
+        COLLECT_GCC=/usr/bin/c++
+        OFFLOAD_TARGET_NAMES=nvptx-none:amdgcn-amdhsa
+        OFFLOAD_TARGET_DEFAULT=1
+        Target: x86_64-linux-gnu
+        Configured with: ../src/configure -v --with-pkgversion='Ubuntu 13.3.0-6ubuntu2~24.04' --with-bugurl=file:///usr/share/doc/gcc-13/README.Bugs --enable-languages=c,ada,c++,go,d,fortran,objc,obj-c++,m2 --prefix=/usr --with-gcc-major-version-only --program-suffix=-13 --program-prefix=x86_64-linux-gnu- --enable-shared --enable-linker-build-id --libexecdir=/usr/libexec --without-included-gettext --enable-threads=posix --libdir=/usr/lib --enable-nls --enable-bootstrap --enable-clocale=gnu --enable-libstdcxx-debug --enable-libstdcxx-time=yes --with-default-libstdcxx-abi=new --enable-libstdcxx-backtrace --enable-gnu-unique-object --disable-vtable-verify --enable-plugin --enable-default-pie --with-system-zlib --enable-libphobos-checking=release --with-target-system-zlib=auto --enable-objc-gc=auto --enable-multiarch --disable-werror --enable-cet --with-arch-32=i686 --with-abi=m64 --with-multilib-list=m32,m64,mx32 --enable-multilib --with-tune=generic --enable-offload-targets=nvptx-none=/build/gcc-13-fG75Ri/gcc-13-13.3.0/debian/tmp-nvptx/usr,amdgcn-amdhsa=/build/gcc-13-fG75Ri/gcc-13-13.3.0/debian/tmp-gcn/usr --enable-offload-defaulted --without-cuda-driver --enable-checking=release --build=x86_64-linux-gnu --host=x86_64-linux-gnu --target=x86_64-linux-gnu --with-build-config=bootstrap-lto-lean --enable-link-serialization=2
+        Thread model: posix
+        Supported LTO compression algorithms: zlib zstd
+        gcc version 13.3.0 (Ubuntu 13.3.0-6ubuntu2~24.04) 
+        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_ed300.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_ed300.dir/'
+         /usr/libexec/gcc/x86_64-linux-gnu/13/cc1plus -quiet -v -imultiarch x86_64-linux-gnu -D_GNU_SOURCE /usr/share/cmake-3.28/Modules/CMakeCXXCompilerABI.cpp -quiet -dumpdir CMakeFiles/cmTC_ed300.dir/ -dumpbase CMakeCXXCompilerABI.cpp.cpp -dumpbase-ext .cpp -mtune=generic -march=x86-64 -version -fasynchronous-unwind-tables -fstack-protector-strong -Wformat -Wformat-security -fstack-clash-protection -fcf-protection -o /tmp/ccVrdkdm.s
+        GNU C++17 (Ubuntu 13.3.0-6ubuntu2~24.04) version 13.3.0 (x86_64-linux-gnu)
+        	compiled by GNU C version 13.3.0, GMP version 6.3.0, MPFR version 4.2.1, MPC version 1.3.1, isl version isl-0.26-GMP
+        
+        GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
+        ignoring duplicate directory "/usr/include/x86_64-linux-gnu/c++/13"
+        ignoring nonexistent directory "/usr/local/include/x86_64-linux-gnu"
+        ignoring nonexistent directory "/usr/lib/gcc/x86_64-linux-gnu/13/include-fixed/x86_64-linux-gnu"
+        ignoring nonexistent directory "/usr/lib/gcc/x86_64-linux-gnu/13/include-fixed"
+        ignoring nonexistent directory "/usr/lib/gcc/x86_64-linux-gnu/13/../../../../x86_64-linux-gnu/include"
+        #include "..." search starts here:
+        #include <...> search starts here:
+         /usr/include/c++/13
+         /usr/include/x86_64-linux-gnu/c++/13
+         /usr/include/c++/13/backward
+         /usr/lib/gcc/x86_64-linux-gnu/13/include
+         /usr/local/include
+         /usr/include/x86_64-linux-gnu
+         /usr/include
+        End of search list.
+        Compiler executable checksum: c81c05345ce537099dafd5580045814a
+        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_ed300.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_ed300.dir/'
+         as -v --64 -o CMakeFiles/cmTC_ed300.dir/CMakeCXXCompilerABI.cpp.o /tmp/ccVrdkdm.s
+        GNU assembler version 2.42 (x86_64-linux-gnu) using BFD version (GNU Binutils for Ubuntu) 2.42
+        COMPILER_PATH=/usr/libexec/gcc/x86_64-linux-gnu/13/:/usr/libexec/gcc/x86_64-linux-gnu/13/:/usr/libexec/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/13/:/usr/lib/gcc/x86_64-linux-gnu/
+        LIBRARY_PATH=/usr/lib/gcc/x86_64-linux-gnu/13/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../../lib/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../:/lib/:/usr/lib/
+        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_ed300.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_ed300.dir/CMakeCXXCompilerABI.cpp.'
+        Linking CXX executable cmTC_ed300
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_ed300.dir/link.txt --verbose=1
+        /usr/bin/c++  -v CMakeFiles/cmTC_ed300.dir/CMakeCXXCompilerABI.cpp.o -o cmTC_ed300 
+        Using built-in specs.
+        COLLECT_GCC=/usr/bin/c++
+        COLLECT_LTO_WRAPPER=/usr/libexec/gcc/x86_64-linux-gnu/13/lto-wrapper
+        OFFLOAD_TARGET_NAMES=nvptx-none:amdgcn-amdhsa
+        OFFLOAD_TARGET_DEFAULT=1
+        Target: x86_64-linux-gnu
+        Configured with: ../src/configure -v --with-pkgversion='Ubuntu 13.3.0-6ubuntu2~24.04' --with-bugurl=file:///usr/share/doc/gcc-13/README.Bugs --enable-languages=c,ada,c++,go,d,fortran,objc,obj-c++,m2 --prefix=/usr --with-gcc-major-version-only --program-suffix=-13 --program-prefix=x86_64-linux-gnu- --enable-shared --enable-linker-build-id --libexecdir=/usr/libexec --without-included-gettext --enable-threads=posix --libdir=/usr/lib --enable-nls --enable-bootstrap --enable-clocale=gnu --enable-libstdcxx-debug --enable-libstdcxx-time=yes --with-default-libstdcxx-abi=new --enable-libstdcxx-backtrace --enable-gnu-unique-object --disable-vtable-verify --enable-plugin --enable-default-pie --with-system-zlib --enable-libphobos-checking=release --with-target-system-zlib=auto --enable-objc-gc=auto --enable-multiarch --disable-werror --enable-cet --with-arch-32=i686 --with-abi=m64 --with-multilib-list=m32,m64,mx32 --enable-multilib --with-tune=generic --enable-offload-targets=nvptx-none=/build/gcc-13-fG75Ri/gcc-13-13.3.0/debian/tmp-nvptx/usr,amdgcn-amdhsa=/build/gcc-13-fG75Ri/gcc-13-13.3.0/debian/tmp-gcn/usr --enable-offload-defaulted --without-cuda-driver --enable-checking=release --build=x86_64-linux-gnu --host=x86_64-linux-gnu --target=x86_64-linux-gnu --with-build-config=bootstrap-lto-lean --enable-link-serialization=2
+        Thread model: posix
+        Supported LTO compression algorithms: zlib zstd
+        gcc version 13.3.0 (Ubuntu 13.3.0-6ubuntu2~24.04) 
+        COMPILER_PATH=/usr/libexec/gcc/x86_64-linux-gnu/13/:/usr/libexec/gcc/x86_64-linux-gnu/13/:/usr/libexec/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/13/:/usr/lib/gcc/x86_64-linux-gnu/
+        LIBRARY_PATH=/usr/lib/gcc/x86_64-linux-gnu/13/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../../lib/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../:/lib/:/usr/lib/
+        COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_ed300' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_ed300.'
+         /usr/libexec/gcc/x86_64-linux-gnu/13/collect2 -plugin /usr/libexec/gcc/x86_64-linux-gnu/13/liblto_plugin.so -plugin-opt=/usr/libexec/gcc/x86_64-linux-gnu/13/lto-wrapper -plugin-opt=-fresolution=/tmp/ccKCzKpe.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -z now -z relro -o cmTC_ed300 /usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/13/crtbeginS.o -L/usr/lib/gcc/x86_64-linux-gnu/13 -L/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/13/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/13/../../.. CMakeFiles/cmTC_ed300.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/lib/gcc/x86_64-linux-gnu/13/crtendS.o /usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/crtn.o
+        COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_ed300' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_ed300.'
+        gmake[1]: warning:  Clock skew detected.  Your build may be incomplete.
+        gmake[1]: Leaving directory '/mnt/d/RaeenOS/build/CMakeFiles/CMakeScratch/TryCompile-ArvE8D'
+        gmake: warning:  Clock skew detected.  Your build may be incomplete.
+        
+      exitCode: 0
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerABI.cmake:127 (message)"
+      - "/usr/share/cmake-3.28/Modules/CMakeTestCXXCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:2 (project)"
+    message: |
+      Parsed CXX implicit include dir info: rv=done
+        found start of include info
+        found start of implicit include info
+          add: [/usr/include/c++/13]
+          add: [/usr/include/x86_64-linux-gnu/c++/13]
+          add: [/usr/include/c++/13/backward]
+          add: [/usr/lib/gcc/x86_64-linux-gnu/13/include]
+          add: [/usr/local/include]
+          add: [/usr/include/x86_64-linux-gnu]
+          add: [/usr/include]
+        end of search list found
+        collapse include dir [/usr/include/c++/13] ==> [/usr/include/c++/13]
+        collapse include dir [/usr/include/x86_64-linux-gnu/c++/13] ==> [/usr/include/x86_64-linux-gnu/c++/13]
+        collapse include dir [/usr/include/c++/13/backward] ==> [/usr/include/c++/13/backward]
+        collapse include dir [/usr/lib/gcc/x86_64-linux-gnu/13/include] ==> [/usr/lib/gcc/x86_64-linux-gnu/13/include]
+        collapse include dir [/usr/local/include] ==> [/usr/local/include]
+        collapse include dir [/usr/include/x86_64-linux-gnu] ==> [/usr/include/x86_64-linux-gnu]
+        collapse include dir [/usr/include] ==> [/usr/include]
+        implicit include dirs: [/usr/include/c++/13;/usr/include/x86_64-linux-gnu/c++/13;/usr/include/c++/13/backward;/usr/lib/gcc/x86_64-linux-gnu/13/include;/usr/local/include;/usr/include/x86_64-linux-gnu;/usr/include]
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerABI.cmake:159 (message)"
+      - "/usr/share/cmake-3.28/Modules/CMakeTestCXXCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:2 (project)"
+    message: |
+      Parsed CXX implicit link information:
+        link line regex: [^( *|.*[/\\])(ld|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\\]+-)?ld|collect2)[^/\\]*( |$)]
+        ignore line: [Change Dir: '/mnt/d/RaeenOS/build/CMakeFiles/CMakeScratch/TryCompile-ArvE8D']
+        ignore line: []
+        ignore line: [Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_ed300/fast]
+        ignore line: [gmake: Warning: File 'Makefile' has modification time 0.74 s in the future]
+        ignore line: [/usr/bin/gmake  -f CMakeFiles/cmTC_ed300.dir/build.make CMakeFiles/cmTC_ed300.dir/build]
+        ignore line: [gmake[1]: Entering directory '/mnt/d/RaeenOS/build/CMakeFiles/CMakeScratch/TryCompile-ArvE8D']
+        ignore line: [gmake[1]: Warning: File 'CMakeFiles/cmTC_ed300.dir/flags.make' has modification time 0.73 s in the future]
+        ignore line: [Building CXX object CMakeFiles/cmTC_ed300.dir/CMakeCXXCompilerABI.cpp.o]
+        ignore line: [/usr/bin/c++   -v -o CMakeFiles/cmTC_ed300.dir/CMakeCXXCompilerABI.cpp.o -c /usr/share/cmake-3.28/Modules/CMakeCXXCompilerABI.cpp]
+        ignore line: [Using built-in specs.]
+        ignore line: [COLLECT_GCC=/usr/bin/c++]
+        ignore line: [OFFLOAD_TARGET_NAMES=nvptx-none:amdgcn-amdhsa]
+        ignore line: [OFFLOAD_TARGET_DEFAULT=1]
+        ignore line: [Target: x86_64-linux-gnu]
+        ignore line: [Configured with: ../src/configure -v --with-pkgversion='Ubuntu 13.3.0-6ubuntu2~24.04' --with-bugurl=file:///usr/share/doc/gcc-13/README.Bugs --enable-languages=c ada c++ go d fortran objc obj-c++ m2 --prefix=/usr --with-gcc-major-version-only --program-suffix=-13 --program-prefix=x86_64-linux-gnu- --enable-shared --enable-linker-build-id --libexecdir=/usr/libexec --without-included-gettext --enable-threads=posix --libdir=/usr/lib --enable-nls --enable-bootstrap --enable-clocale=gnu --enable-libstdcxx-debug --enable-libstdcxx-time=yes --with-default-libstdcxx-abi=new --enable-libstdcxx-backtrace --enable-gnu-unique-object --disable-vtable-verify --enable-plugin --enable-default-pie --with-system-zlib --enable-libphobos-checking=release --with-target-system-zlib=auto --enable-objc-gc=auto --enable-multiarch --disable-werror --enable-cet --with-arch-32=i686 --with-abi=m64 --with-multilib-list=m32 m64 mx32 --enable-multilib --with-tune=generic --enable-offload-targets=nvptx-none=/build/gcc-13-fG75Ri/gcc-13-13.3.0/debian/tmp-nvptx/usr amdgcn-amdhsa=/build/gcc-13-fG75Ri/gcc-13-13.3.0/debian/tmp-gcn/usr --enable-offload-defaulted --without-cuda-driver --enable-checking=release --build=x86_64-linux-gnu --host=x86_64-linux-gnu --target=x86_64-linux-gnu --with-build-config=bootstrap-lto-lean --enable-link-serialization=2]
+        ignore line: [Thread model: posix]
+        ignore line: [Supported LTO compression algorithms: zlib zstd]
+        ignore line: [gcc version 13.3.0 (Ubuntu 13.3.0-6ubuntu2~24.04) ]
+        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_ed300.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_ed300.dir/']
+        ignore line: [ /usr/libexec/gcc/x86_64-linux-gnu/13/cc1plus -quiet -v -imultiarch x86_64-linux-gnu -D_GNU_SOURCE /usr/share/cmake-3.28/Modules/CMakeCXXCompilerABI.cpp -quiet -dumpdir CMakeFiles/cmTC_ed300.dir/ -dumpbase CMakeCXXCompilerABI.cpp.cpp -dumpbase-ext .cpp -mtune=generic -march=x86-64 -version -fasynchronous-unwind-tables -fstack-protector-strong -Wformat -Wformat-security -fstack-clash-protection -fcf-protection -o /tmp/ccVrdkdm.s]
+        ignore line: [GNU C++17 (Ubuntu 13.3.0-6ubuntu2~24.04) version 13.3.0 (x86_64-linux-gnu)]
+        ignore line: [	compiled by GNU C version 13.3.0  GMP version 6.3.0  MPFR version 4.2.1  MPC version 1.3.1  isl version isl-0.26-GMP]
+        ignore line: []
+        ignore line: [GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072]
+        ignore line: [ignoring duplicate directory "/usr/include/x86_64-linux-gnu/c++/13"]
+        ignore line: [ignoring nonexistent directory "/usr/local/include/x86_64-linux-gnu"]
+        ignore line: [ignoring nonexistent directory "/usr/lib/gcc/x86_64-linux-gnu/13/include-fixed/x86_64-linux-gnu"]
+        ignore line: [ignoring nonexistent directory "/usr/lib/gcc/x86_64-linux-gnu/13/include-fixed"]
+        ignore line: [ignoring nonexistent directory "/usr/lib/gcc/x86_64-linux-gnu/13/../../../../x86_64-linux-gnu/include"]
+        ignore line: [#include "..." search starts here:]
+        ignore line: [#include <...> search starts here:]
+        ignore line: [ /usr/include/c++/13]
+        ignore line: [ /usr/include/x86_64-linux-gnu/c++/13]
+        ignore line: [ /usr/include/c++/13/backward]
+        ignore line: [ /usr/lib/gcc/x86_64-linux-gnu/13/include]
+        ignore line: [ /usr/local/include]
+        ignore line: [ /usr/include/x86_64-linux-gnu]
+        ignore line: [ /usr/include]
+        ignore line: [End of search list.]
+        ignore line: [Compiler executable checksum: c81c05345ce537099dafd5580045814a]
+        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_ed300.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_ed300.dir/']
+        ignore line: [ as -v --64 -o CMakeFiles/cmTC_ed300.dir/CMakeCXXCompilerABI.cpp.o /tmp/ccVrdkdm.s]
+        ignore line: [GNU assembler version 2.42 (x86_64-linux-gnu) using BFD version (GNU Binutils for Ubuntu) 2.42]
+        ignore line: [COMPILER_PATH=/usr/libexec/gcc/x86_64-linux-gnu/13/:/usr/libexec/gcc/x86_64-linux-gnu/13/:/usr/libexec/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/13/:/usr/lib/gcc/x86_64-linux-gnu/]
+        ignore line: [LIBRARY_PATH=/usr/lib/gcc/x86_64-linux-gnu/13/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../../lib/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../:/lib/:/usr/lib/]
+        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_ed300.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_ed300.dir/CMakeCXXCompilerABI.cpp.']
+        ignore line: [Linking CXX executable cmTC_ed300]
+        ignore line: [/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_ed300.dir/link.txt --verbose=1]
+        ignore line: [/usr/bin/c++  -v CMakeFiles/cmTC_ed300.dir/CMakeCXXCompilerABI.cpp.o -o cmTC_ed300 ]
+        ignore line: [Using built-in specs.]
+        ignore line: [COLLECT_GCC=/usr/bin/c++]
+        ignore line: [COLLECT_LTO_WRAPPER=/usr/libexec/gcc/x86_64-linux-gnu/13/lto-wrapper]
+        ignore line: [OFFLOAD_TARGET_NAMES=nvptx-none:amdgcn-amdhsa]
+        ignore line: [OFFLOAD_TARGET_DEFAULT=1]
+        ignore line: [Target: x86_64-linux-gnu]
+        ignore line: [Configured with: ../src/configure -v --with-pkgversion='Ubuntu 13.3.0-6ubuntu2~24.04' --with-bugurl=file:///usr/share/doc/gcc-13/README.Bugs --enable-languages=c ada c++ go d fortran objc obj-c++ m2 --prefix=/usr --with-gcc-major-version-only --program-suffix=-13 --program-prefix=x86_64-linux-gnu- --enable-shared --enable-linker-build-id --libexecdir=/usr/libexec --without-included-gettext --enable-threads=posix --libdir=/usr/lib --enable-nls --enable-bootstrap --enable-clocale=gnu --enable-libstdcxx-debug --enable-libstdcxx-time=yes --with-default-libstdcxx-abi=new --enable-libstdcxx-backtrace --enable-gnu-unique-object --disable-vtable-verify --enable-plugin --enable-default-pie --with-system-zlib --enable-libphobos-checking=release --with-target-system-zlib=auto --enable-objc-gc=auto --enable-multiarch --disable-werror --enable-cet --with-arch-32=i686 --with-abi=m64 --with-multilib-list=m32 m64 mx32 --enable-multilib --with-tune=generic --enable-offload-targets=nvptx-none=/build/gcc-13-fG75Ri/gcc-13-13.3.0/debian/tmp-nvptx/usr amdgcn-amdhsa=/build/gcc-13-fG75Ri/gcc-13-13.3.0/debian/tmp-gcn/usr --enable-offload-defaulted --without-cuda-driver --enable-checking=release --build=x86_64-linux-gnu --host=x86_64-linux-gnu --target=x86_64-linux-gnu --with-build-config=bootstrap-lto-lean --enable-link-serialization=2]
+        ignore line: [Thread model: posix]
+        ignore line: [Supported LTO compression algorithms: zlib zstd]
+        ignore line: [gcc version 13.3.0 (Ubuntu 13.3.0-6ubuntu2~24.04) ]
+        ignore line: [COMPILER_PATH=/usr/libexec/gcc/x86_64-linux-gnu/13/:/usr/libexec/gcc/x86_64-linux-gnu/13/:/usr/libexec/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/13/:/usr/lib/gcc/x86_64-linux-gnu/]
+        ignore line: [LIBRARY_PATH=/usr/lib/gcc/x86_64-linux-gnu/13/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../../lib/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../:/lib/:/usr/lib/]
+        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_ed300' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_ed300.']
+        link line: [ /usr/libexec/gcc/x86_64-linux-gnu/13/collect2 -plugin /usr/libexec/gcc/x86_64-linux-gnu/13/liblto_plugin.so -plugin-opt=/usr/libexec/gcc/x86_64-linux-gnu/13/lto-wrapper -plugin-opt=-fresolution=/tmp/ccKCzKpe.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -z now -z relro -o cmTC_ed300 /usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/13/crtbeginS.o -L/usr/lib/gcc/x86_64-linux-gnu/13 -L/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/13/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/13/../../.. CMakeFiles/cmTC_ed300.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/lib/gcc/x86_64-linux-gnu/13/crtendS.o /usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/crtn.o]
+          arg [/usr/libexec/gcc/x86_64-linux-gnu/13/collect2] ==> ignore
+          arg [-plugin] ==> ignore
+          arg [/usr/libexec/gcc/x86_64-linux-gnu/13/liblto_plugin.so] ==> ignore
+          arg [-plugin-opt=/usr/libexec/gcc/x86_64-linux-gnu/13/lto-wrapper] ==> ignore
+          arg [-plugin-opt=-fresolution=/tmp/ccKCzKpe.res] ==> ignore
+          arg [-plugin-opt=-pass-through=-lgcc_s] ==> ignore
+          arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
+          arg [-plugin-opt=-pass-through=-lc] ==> ignore
+          arg [-plugin-opt=-pass-through=-lgcc_s] ==> ignore
+          arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
+          arg [--build-id] ==> ignore
+          arg [--eh-frame-hdr] ==> ignore
+          arg [-m] ==> ignore
+          arg [elf_x86_64] ==> ignore
+          arg [--hash-style=gnu] ==> ignore
+          arg [--as-needed] ==> ignore
+          arg [-dynamic-linker] ==> ignore
+          arg [/lib64/ld-linux-x86-64.so.2] ==> ignore
+          arg [-pie] ==> ignore
+          arg [-znow] ==> ignore
+          arg [-zrelro] ==> ignore
+          arg [-o] ==> ignore
+          arg [cmTC_ed300] ==> ignore
+          arg [/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/Scrt1.o] ==> obj [/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/Scrt1.o]
+          arg [/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/crti.o] ==> obj [/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/crti.o]
+          arg [/usr/lib/gcc/x86_64-linux-gnu/13/crtbeginS.o] ==> obj [/usr/lib/gcc/x86_64-linux-gnu/13/crtbeginS.o]
+          arg [-L/usr/lib/gcc/x86_64-linux-gnu/13] ==> dir [/usr/lib/gcc/x86_64-linux-gnu/13]
+          arg [-L/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu] ==> dir [/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu]
+          arg [-L/usr/lib/gcc/x86_64-linux-gnu/13/../../../../lib] ==> dir [/usr/lib/gcc/x86_64-linux-gnu/13/../../../../lib]
+          arg [-L/lib/x86_64-linux-gnu] ==> dir [/lib/x86_64-linux-gnu]
+          arg [-L/lib/../lib] ==> dir [/lib/../lib]
+          arg [-L/usr/lib/x86_64-linux-gnu] ==> dir [/usr/lib/x86_64-linux-gnu]
+          arg [-L/usr/lib/../lib] ==> dir [/usr/lib/../lib]
+          arg [-L/usr/lib/gcc/x86_64-linux-gnu/13/../../..] ==> dir [/usr/lib/gcc/x86_64-linux-gnu/13/../../..]
+          arg [CMakeFiles/cmTC_ed300.dir/CMakeCXXCompilerABI.cpp.o] ==> ignore
+          arg [-lstdc++] ==> lib [stdc++]
+          arg [-lm] ==> lib [m]
+          arg [-lgcc_s] ==> lib [gcc_s]
+          arg [-lgcc] ==> lib [gcc]
+          arg [-lc] ==> lib [c]
+          arg [-lgcc_s] ==> lib [gcc_s]
+          arg [-lgcc] ==> lib [gcc]
+          arg [/usr/lib/gcc/x86_64-linux-gnu/13/crtendS.o] ==> obj [/usr/lib/gcc/x86_64-linux-gnu/13/crtendS.o]
+          arg [/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/crtn.o] ==> obj [/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/crtn.o]
+        collapse obj [/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/Scrt1.o] ==> [/usr/lib/x86_64-linux-gnu/Scrt1.o]
+        collapse obj [/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/crti.o] ==> [/usr/lib/x86_64-linux-gnu/crti.o]
+        collapse obj [/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/crtn.o] ==> [/usr/lib/x86_64-linux-gnu/crtn.o]
+        collapse library dir [/usr/lib/gcc/x86_64-linux-gnu/13] ==> [/usr/lib/gcc/x86_64-linux-gnu/13]
+        collapse library dir [/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu] ==> [/usr/lib/x86_64-linux-gnu]
+        collapse library dir [/usr/lib/gcc/x86_64-linux-gnu/13/../../../../lib] ==> [/usr/lib]
+        collapse library dir [/lib/x86_64-linux-gnu] ==> [/lib/x86_64-linux-gnu]
+        collapse library dir [/lib/../lib] ==> [/lib]
+        collapse library dir [/usr/lib/x86_64-linux-gnu] ==> [/usr/lib/x86_64-linux-gnu]
+        collapse library dir [/usr/lib/../lib] ==> [/usr/lib]
+        collapse library dir [/usr/lib/gcc/x86_64-linux-gnu/13/../../..] ==> [/usr/lib]
+        implicit libs: [stdc++;m;gcc_s;gcc;c;gcc_s;gcc]
+        implicit objs: [/usr/lib/x86_64-linux-gnu/Scrt1.o;/usr/lib/x86_64-linux-gnu/crti.o;/usr/lib/gcc/x86_64-linux-gnu/13/crtbeginS.o;/usr/lib/gcc/x86_64-linux-gnu/13/crtendS.o;/usr/lib/x86_64-linux-gnu/crtn.o]
+        implicit dirs: [/usr/lib/gcc/x86_64-linux-gnu/13;/usr/lib/x86_64-linux-gnu;/usr/lib;/lib/x86_64-linux-gnu;/lib]
+        implicit fwks: []
+      
+      
+...
+
+---
+events:
+  -
+    kind: "message-v1"
+    backtrace:
       - "C:/Program Files/CMake/share/cmake-4.1/Modules/CMakeDetermineSystem.cmake:212 (message)"
       - "CMakeLists.txt:2 (project)"
     message: |
@@ -46,7 +602,7 @@ events:
         - "C:\\Program Files (x86)\\Windows Kits\\10\\bin\\10.0.26100.0\\\\x64"
         - "C:\\Program Files (x86)\\Windows Kits\\10\\bin\\\\x64"
         - "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\\\MSBuild\\Current\\Bin\\amd64"
-        - "C:\\Windows\\Microsoft.NET\\Framework64\\v4.0.30319"
+        - "C:\\WINDOWS\\Microsoft.NET\\Framework64\\v4.0.30319"
         - "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\Common7\\IDE\\"
         - "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\Common7\\Tools\\"
         - "C:\\Program Files\\Eclipse Adoptium\\jdk-21.0.7.6-hotspot\\bin"
@@ -103,7 +659,7 @@ events:
       The output was:
       0
       MSBuild version 17.14.14+a129329f1 for .NET Framework
-      Build started 7/16/2025 12:13:48 PM.
+      Build started 7/21/2025 6:51:43 PM.
       
       Project "D:\\RaeenOS\\build\\CMakeFiles\\4.1.0-rc1\\CompilerIdC\\CompilerIdC.vcxproj" on node 1 (default targets).
       PrepareForBuild:
@@ -141,7 +697,7 @@ events:
           0 Warning(s)
           0 Error(s)
       
-      Time Elapsed 00:00:02.02
+      Time Elapsed 00:00:01.46
       
       
       Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "CompilerIdC.exe"
@@ -230,7 +786,7 @@ events:
         - "C:\\Program Files (x86)\\Windows Kits\\10\\bin\\10.0.26100.0\\\\x64"
         - "C:\\Program Files (x86)\\Windows Kits\\10\\bin\\\\x64"
         - "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\\\MSBuild\\Current\\Bin\\amd64"
-        - "C:\\Windows\\Microsoft.NET\\Framework64\\v4.0.30319"
+        - "C:\\WINDOWS\\Microsoft.NET\\Framework64\\v4.0.30319"
         - "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\Common7\\IDE\\"
         - "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\Common7\\Tools\\"
         - "C:\\Program Files\\Eclipse Adoptium\\jdk-21.0.7.6-hotspot\\bin"
@@ -462,7 +1018,7 @@ events:
         - "C:\\Program Files (x86)\\Windows Kits\\10\\bin\\10.0.26100.0\\\\x64"
         - "C:\\Program Files (x86)\\Windows Kits\\10\\bin\\\\x64"
         - "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\\\MSBuild\\Current\\Bin\\amd64"
-        - "C:\\Windows\\Microsoft.NET\\Framework64\\v4.0.30319"
+        - "C:\\WINDOWS\\Microsoft.NET\\Framework64\\v4.0.30319"
         - "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\Common7\\IDE\\"
         - "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\Common7\\Tools\\"
         - "C:\\Program Files\\Eclipse Adoptium\\jdk-21.0.7.6-hotspot\\bin"
@@ -570,7 +1126,7 @@ events:
         - "C:\\Program Files (x86)\\Windows Kits\\10\\bin\\10.0.26100.0\\\\x64"
         - "C:\\Program Files (x86)\\Windows Kits\\10\\bin\\\\x64"
         - "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\\\MSBuild\\Current\\Bin\\amd64"
-        - "C:\\Windows\\Microsoft.NET\\Framework64\\v4.0.30319"
+        - "C:\\WINDOWS\\Microsoft.NET\\Framework64\\v4.0.30319"
         - "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\Common7\\IDE\\"
         - "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\Common7\\Tools\\"
         - "C:\\Program Files\\Eclipse Adoptium\\jdk-21.0.7.6-hotspot\\bin"
@@ -702,7 +1258,7 @@ events:
         - "C:\\Program Files (x86)\\Windows Kits\\10\\bin\\10.0.26100.0\\\\x64"
         - "C:\\Program Files (x86)\\Windows Kits\\10\\bin\\\\x64"
         - "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\\\MSBuild\\Current\\Bin\\amd64"
-        - "C:\\Windows\\Microsoft.NET\\Framework64\\v4.0.30319"
+        - "C:\\WINDOWS\\Microsoft.NET\\Framework64\\v4.0.30319"
         - "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\Common7\\IDE\\"
         - "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\Common7\\Tools\\"
         - "C:\\Program Files\\Eclipse Adoptium\\jdk-21.0.7.6-hotspot\\bin"
@@ -810,7 +1366,7 @@ events:
         - "C:\\Program Files (x86)\\Windows Kits\\10\\bin\\10.0.26100.0\\\\x64"
         - "C:\\Program Files (x86)\\Windows Kits\\10\\bin\\\\x64"
         - "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\\\MSBuild\\Current\\Bin\\amd64"
-        - "C:\\Windows\\Microsoft.NET\\Framework64\\v4.0.30319"
+        - "C:\\WINDOWS\\Microsoft.NET\\Framework64\\v4.0.30319"
         - "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\Common7\\IDE\\"
         - "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\Common7\\Tools\\"
         - "C:\\Program Files\\Eclipse Adoptium\\jdk-21.0.7.6-hotspot\\bin"
@@ -879,7 +1435,7 @@ events:
         - "C:\\Program Files (x86)\\Windows Kits\\10\\bin\\10.0.26100.0\\\\x64"
         - "C:\\Program Files (x86)\\Windows Kits\\10\\bin\\\\x64"
         - "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\\\MSBuild\\Current\\Bin\\amd64"
-        - "C:\\Windows\\Microsoft.NET\\Framework64\\v4.0.30319"
+        - "C:\\WINDOWS\\Microsoft.NET\\Framework64\\v4.0.30319"
         - "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\Common7\\IDE\\"
         - "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\Common7\\Tools\\"
         - "C:\\Program Files\\Eclipse Adoptium\\jdk-21.0.7.6-hotspot\\bin"
@@ -936,7 +1492,7 @@ events:
       The output was:
       0
       MSBuild version 17.14.14+a129329f1 for .NET Framework
-      Build started 7/16/2025 12:13:51 PM.
+      Build started 7/21/2025 6:51:45 PM.
       
       Project "D:\\RaeenOS\\build\\CMakeFiles\\4.1.0-rc1\\CompilerIdCXX\\CompilerIdCXX.vcxproj" on node 1 (default targets).
       PrepareForBuild:
@@ -974,7 +1530,7 @@ events:
           0 Warning(s)
           0 Error(s)
       
-      Time Elapsed 00:00:01.32
+      Time Elapsed 00:00:01.40
       
       
       Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "CompilerIdCXX.exe"
@@ -1185,7 +1741,7 @@ events:
         - "C:\\Program Files (x86)\\Windows Kits\\10\\bin\\10.0.26100.0\\\\x64"
         - "C:\\Program Files (x86)\\Windows Kits\\10\\bin\\\\x64"
         - "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\\\MSBuild\\Current\\Bin\\amd64"
-        - "C:\\Windows\\Microsoft.NET\\Framework64\\v4.0.30319"
+        - "C:\\WINDOWS\\Microsoft.NET\\Framework64\\v4.0.30319"
         - "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\Common7\\IDE\\"
         - "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\Common7\\Tools\\"
         - "C:\\Program Files\\Eclipse Adoptium\\jdk-21.0.7.6-hotspot\\bin"
@@ -1253,7 +1809,7 @@ events:
         - "C:\\Program Files (x86)\\Windows Kits\\10\\bin\\10.0.26100.0\\\\x64"
         - "C:\\Program Files (x86)\\Windows Kits\\10\\bin\\\\x64"
         - "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\\\MSBuild\\Current\\Bin\\amd64"
-        - "C:\\Windows\\Microsoft.NET\\Framework64\\v4.0.30319"
+        - "C:\\WINDOWS\\Microsoft.NET\\Framework64\\v4.0.30319"
         - "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\Common7\\IDE\\"
         - "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\Common7\\Tools\\"
         - "C:\\Program Files\\Eclipse Adoptium\\jdk-21.0.7.6-hotspot\\bin"
@@ -1874,7 +2430,7 @@ events:
         - "C:\\Program Files (x86)\\Windows Kits\\10\\bin\\10.0.26100.0\\\\x64"
         - "C:\\Program Files (x86)\\Windows Kits\\10\\bin\\\\x64"
         - "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\\\MSBuild\\Current\\Bin\\amd64"
-        - "C:\\Windows\\Microsoft.NET\\Framework64\\v4.0.30319"
+        - "C:\\WINDOWS\\Microsoft.NET\\Framework64\\v4.0.30319"
         - "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\Common7\\IDE\\"
         - "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\Common7\\Tools\\"
         - "C:\\Program Files\\Eclipse Adoptium\\jdk-21.0.7.6-hotspot\\bin"
@@ -2021,7 +2577,7 @@ events:
         - "C:\\Program Files (x86)\\Windows Kits\\10\\bin\\10.0.26100.0\\\\x64"
         - "C:\\Program Files (x86)\\Windows Kits\\10\\bin\\\\x64"
         - "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\\\MSBuild\\Current\\Bin\\amd64"
-        - "C:\\Windows\\Microsoft.NET\\Framework64\\v4.0.30319"
+        - "C:\\WINDOWS\\Microsoft.NET\\Framework64\\v4.0.30319"
         - "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\Common7\\IDE\\"
         - "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\Common7\\Tools\\"
         - "C:\\Program Files\\Eclipse Adoptium\\jdk-21.0.7.6-hotspot\\bin"
@@ -2067,8 +2623,8 @@ events:
     checks:
       - "Detecting C compiler ABI info"
     directories:
-      source: "D:/RaeenOS/build/CMakeFiles/CMakeScratch/TryCompile-40itpl"
-      binary: "D:/RaeenOS/build/CMakeFiles/CMakeScratch/TryCompile-40itpl"
+      source: "D:/RaeenOS/build/CMakeFiles/CMakeScratch/TryCompile-5k3uue"
+      binary: "D:/RaeenOS/build/CMakeFiles/CMakeScratch/TryCompile-5k3uue"
     cmakeVariables:
       CMAKE_C_FLAGS: "/DWIN32 /D_WINDOWS"
       CMAKE_C_FLAGS_DEBUG: "/Zi /Ob0 /Od /RTC1"
@@ -2077,49 +2633,49 @@ events:
       variable: "CMAKE_C_ABI_COMPILED"
       cached: true
       stdout: |
-        Change Dir: 'D:/RaeenOS/build/CMakeFiles/CMakeScratch/TryCompile-40itpl'
+        Change Dir: 'D:/RaeenOS/build/CMakeFiles/CMakeScratch/TryCompile-5k3uue'
         
-        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/2022/Community/MSBuild/Current/Bin/amd64/MSBuild.exe" cmTC_35c3f.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=17.0 /v:n
+        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/2022/Community/MSBuild/Current/Bin/amd64/MSBuild.exe" cmTC_1081f.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=17.0 /v:n
         MSBuild version 17.14.14+a129329f1 for .NET Framework
-        Build started 7/16/2025 12:13:53 PM.
+        Build started 7/21/2025 6:51:48 PM.
         
-        Project "D:\\RaeenOS\\build\\CMakeFiles\\CMakeScratch\\TryCompile-40itpl\\cmTC_35c3f.vcxproj" on node 1 (default targets).
+        Project "D:\\RaeenOS\\build\\CMakeFiles\\CMakeScratch\\TryCompile-5k3uue\\cmTC_1081f.vcxproj" on node 1 (default targets).
         PrepareForBuild:
-          Creating directory "cmTC_35c3f.dir\\Debug\\".
+          Creating directory "cmTC_1081f.dir\\Debug\\".
           Structured output is enabled. The formatting of compiler diagnostics will reflect the error hierarchy. See https://aka.ms/cpp/structured-output for more details.
-          Creating directory "D:\\RaeenOS\\build\\CMakeFiles\\CMakeScratch\\TryCompile-40itpl\\Debug\\".
-          Creating directory "cmTC_35c3f.dir\\Debug\\cmTC_35c3f.tlog\\".
+          Creating directory "D:\\RaeenOS\\build\\CMakeFiles\\CMakeScratch\\TryCompile-5k3uue\\Debug\\".
+          Creating directory "cmTC_1081f.dir\\Debug\\cmTC_1081f.tlog\\".
         InitializeBuildStatus:
-          Creating "cmTC_35c3f.dir\\Debug\\cmTC_35c3f.tlog\\unsuccessfulbuild" because "AlwaysCreate" was specified.
-          Touching "cmTC_35c3f.dir\\Debug\\cmTC_35c3f.tlog\\unsuccessfulbuild".
+          Creating "cmTC_1081f.dir\\Debug\\cmTC_1081f.tlog\\unsuccessfulbuild" because "AlwaysCreate" was specified.
+          Touching "cmTC_1081f.dir\\Debug\\cmTC_1081f.tlog\\unsuccessfulbuild".
         VcpkgTripletSelection:
           Using triplet "x64-windows" from "C:\\Users\\woisr\\vcpkg\\installed\\x64-windows\\"
           Using normalized configuration "Debug"
         ClCompile:
-          C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.44.35207\\bin\\HostX64\\x64\\CL.exe /c /I"C:\\Users\\woisr\\vcpkg\\installed\\x64-windows\\include" /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\\"Debug\\"" /RTC1 /MDd /GS /fp:precise /Fo"cmTC_35c3f.dir\\Debug\\\\" /Fd"cmTC_35c3f.dir\\Debug\\vc143.pdb" /external:W1 /Gd /TC /errorReport:queue "C:\\Program Files\\CMake\\share\\cmake-4.1\\Modules\\CMakeCCompilerABI.c"
+          C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.44.35207\\bin\\HostX64\\x64\\CL.exe /c /I"C:\\Users\\woisr\\vcpkg\\installed\\x64-windows\\include" /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\\"Debug\\"" /RTC1 /MDd /GS /fp:precise /Fo"cmTC_1081f.dir\\Debug\\\\" /Fd"cmTC_1081f.dir\\Debug\\vc143.pdb" /external:W1 /Gd /TC /errorReport:queue "C:\\Program Files\\CMake\\share\\cmake-4.1\\Modules\\CMakeCCompilerABI.c"
           Microsoft (R) C/C++ Optimizing Compiler Version 19.44.35213 for x64
           Copyright (C) Microsoft Corporation.  All rights reserved.
-          cl /c /I"C:\\Users\\woisr\\vcpkg\\installed\\x64-windows\\include" /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\\"Debug\\"" /RTC1 /MDd /GS /fp:precise /Fo"cmTC_35c3f.dir\\Debug\\\\" /Fd"cmTC_35c3f.dir\\Debug\\vc143.pdb" /external:W1 /Gd /TC /errorReport:queue "C:\\Program Files\\CMake\\share\\cmake-4.1\\Modules\\CMakeCCompilerABI.c"
+          cl /c /I"C:\\Users\\woisr\\vcpkg\\installed\\x64-windows\\include" /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\\"Debug\\"" /RTC1 /MDd /GS /fp:precise /Fo"cmTC_1081f.dir\\Debug\\\\" /Fd"cmTC_1081f.dir\\Debug\\vc143.pdb" /external:W1 /Gd /TC /errorReport:queue "C:\\Program Files\\CMake\\share\\cmake-4.1\\Modules\\CMakeCCompilerABI.c"
           CMakeCCompilerABI.c
         Link:
-          C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.44.35207\\bin\\HostX64\\x64\\link.exe /OUT:"D:\\RaeenOS\\build\\CMakeFiles\\CMakeScratch\\TryCompile-40itpl\\Debug\\cmTC_35c3f.exe" /INCREMENTAL /ILK:"cmTC_35c3f.dir\\Debug\\cmTC_35c3f.ilk" /NOLOGO /LIBPATH:"C:\\Users\\woisr\\vcpkg\\installed\\x64-windows\\debug\\lib" /LIBPATH:"C:\\Users\\woisr\\vcpkg\\installed\\x64-windows\\debug\\lib\\manual-link" kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib "C:\\Users\\woisr\\vcpkg\\installed\\x64-windows\\debug\\lib\\*.lib" /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"D:/RaeenOS/build/CMakeFiles/CMakeScratch/TryCompile-40itpl/Debug/cmTC_35c3f.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /IMPLIB:"D:/RaeenOS/build/CMakeFiles/CMakeScratch/TryCompile-40itpl/Debug/cmTC_35c3f.lib" /MACHINE:X64  /machine:x64 cmTC_35c3f.dir\\Debug\\CMakeCCompilerABI.obj
-          cmTC_35c3f.vcxproj -> D:\\RaeenOS\\build\\CMakeFiles\\CMakeScratch\\TryCompile-40itpl\\Debug\\cmTC_35c3f.exe
+          C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.44.35207\\bin\\HostX64\\x64\\link.exe /OUT:"D:\\RaeenOS\\build\\CMakeFiles\\CMakeScratch\\TryCompile-5k3uue\\Debug\\cmTC_1081f.exe" /INCREMENTAL /ILK:"cmTC_1081f.dir\\Debug\\cmTC_1081f.ilk" /NOLOGO /LIBPATH:"C:\\Users\\woisr\\vcpkg\\installed\\x64-windows\\debug\\lib" /LIBPATH:"C:\\Users\\woisr\\vcpkg\\installed\\x64-windows\\debug\\lib\\manual-link" kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib "C:\\Users\\woisr\\vcpkg\\installed\\x64-windows\\debug\\lib\\*.lib" /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"D:/RaeenOS/build/CMakeFiles/CMakeScratch/TryCompile-5k3uue/Debug/cmTC_1081f.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /IMPLIB:"D:/RaeenOS/build/CMakeFiles/CMakeScratch/TryCompile-5k3uue/Debug/cmTC_1081f.lib" /MACHINE:X64  /machine:x64 cmTC_1081f.dir\\Debug\\CMakeCCompilerABI.obj
+          cmTC_1081f.vcxproj -> D:\\RaeenOS\\build\\CMakeFiles\\CMakeScratch\\TryCompile-5k3uue\\Debug\\cmTC_1081f.exe
         AppLocalFromInstalled:
-          pwsh.exe -ExecutionPolicy Bypass -noprofile -File "C:\\Users\\woisr\\vcpkg\\scripts\\buildsystems\\msbuild\\applocal.ps1" "D:\\RaeenOS\\build\\CMakeFiles\\CMakeScratch\\TryCompile-40itpl\\Debug\\cmTC_35c3f.exe" "C:\\Users\\woisr\\vcpkg\\installed\\x64-windows\\debug\\bin" "cmTC_35c3f.dir\\Debug\\cmTC_35c3f.tlog\\cmTC_35c3f.write.1u.tlog" "cmTC_35c3f.dir\\Debug\\vcpkg.applocal.log"
+          pwsh.exe -ExecutionPolicy Bypass -noprofile -File "C:\\Users\\woisr\\vcpkg\\scripts\\buildsystems\\msbuild\\applocal.ps1" "D:\\RaeenOS\\build\\CMakeFiles\\CMakeScratch\\TryCompile-5k3uue\\Debug\\cmTC_1081f.exe" "C:\\Users\\woisr\\vcpkg\\installed\\x64-windows\\debug\\bin" "cmTC_1081f.dir\\Debug\\cmTC_1081f.tlog\\cmTC_1081f.write.1u.tlog" "cmTC_1081f.dir\\Debug\\vcpkg.applocal.log"
           'pwsh.exe' is not recognized as an internal or external command,
           operable program or batch file.
-          The command "pwsh.exe -ExecutionPolicy Bypass -noprofile -File "C:\\Users\\woisr\\vcpkg\\scripts\\buildsystems\\msbuild\\applocal.ps1" "D:\\RaeenOS\\build\\CMakeFiles\\CMakeScratch\\TryCompile-40itpl\\Debug\\cmTC_35c3f.exe" "C:\\Users\\woisr\\vcpkg\\installed\\x64-windows\\debug\\bin" "cmTC_35c3f.dir\\Debug\\cmTC_35c3f.tlog\\cmTC_35c3f.write.1u.tlog" "cmTC_35c3f.dir\\Debug\\vcpkg.applocal.log"" exited with code 9009.
-          "C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\powershell.exe" -ExecutionPolicy Bypass -noprofile -File "C:\\Users\\woisr\\vcpkg\\scripts\\buildsystems\\msbuild\\applocal.ps1" "D:\\RaeenOS\\build\\CMakeFiles\\CMakeScratch\\TryCompile-40itpl\\Debug\\cmTC_35c3f.exe" "C:\\Users\\woisr\\vcpkg\\installed\\x64-windows\\debug\\bin" "cmTC_35c3f.dir\\Debug\\cmTC_35c3f.tlog\\cmTC_35c3f.write.1u.tlog" "cmTC_35c3f.dir\\Debug\\vcpkg.applocal.log"
+          The command "pwsh.exe -ExecutionPolicy Bypass -noprofile -File "C:\\Users\\woisr\\vcpkg\\scripts\\buildsystems\\msbuild\\applocal.ps1" "D:\\RaeenOS\\build\\CMakeFiles\\CMakeScratch\\TryCompile-5k3uue\\Debug\\cmTC_1081f.exe" "C:\\Users\\woisr\\vcpkg\\installed\\x64-windows\\debug\\bin" "cmTC_1081f.dir\\Debug\\cmTC_1081f.tlog\\cmTC_1081f.write.1u.tlog" "cmTC_1081f.dir\\Debug\\vcpkg.applocal.log"" exited with code 9009.
+          "C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\powershell.exe" -ExecutionPolicy Bypass -noprofile -File "C:\\Users\\woisr\\vcpkg\\scripts\\buildsystems\\msbuild\\applocal.ps1" "D:\\RaeenOS\\build\\CMakeFiles\\CMakeScratch\\TryCompile-5k3uue\\Debug\\cmTC_1081f.exe" "C:\\Users\\woisr\\vcpkg\\installed\\x64-windows\\debug\\bin" "cmTC_1081f.dir\\Debug\\cmTC_1081f.tlog\\cmTC_1081f.write.1u.tlog" "cmTC_1081f.dir\\Debug\\vcpkg.applocal.log"
         FinalizeBuildStatus:
-          Deleting file "cmTC_35c3f.dir\\Debug\\cmTC_35c3f.tlog\\unsuccessfulbuild".
-          Touching "cmTC_35c3f.dir\\Debug\\cmTC_35c3f.tlog\\cmTC_35c3f.lastbuildstate".
-        Done Building Project "D:\\RaeenOS\\build\\CMakeFiles\\CMakeScratch\\TryCompile-40itpl\\cmTC_35c3f.vcxproj" (default targets).
+          Deleting file "cmTC_1081f.dir\\Debug\\cmTC_1081f.tlog\\unsuccessfulbuild".
+          Touching "cmTC_1081f.dir\\Debug\\cmTC_1081f.tlog\\cmTC_1081f.lastbuildstate".
+        Done Building Project "D:\\RaeenOS\\build\\CMakeFiles\\CMakeScratch\\TryCompile-5k3uue\\cmTC_1081f.vcxproj" (default targets).
         
         Build succeeded.
             0 Warning(s)
             0 Error(s)
         
-        Time Elapsed 00:00:01.81
+        Time Elapsed 00:00:01.58
         
       exitCode: 0
   -
@@ -2159,8 +2715,8 @@ events:
     checks:
       - "Detecting CXX compiler ABI info"
     directories:
-      source: "D:/RaeenOS/build/CMakeFiles/CMakeScratch/TryCompile-cdx1iz"
-      binary: "D:/RaeenOS/build/CMakeFiles/CMakeScratch/TryCompile-cdx1iz"
+      source: "D:/RaeenOS/build/CMakeFiles/CMakeScratch/TryCompile-ne2b6l"
+      binary: "D:/RaeenOS/build/CMakeFiles/CMakeScratch/TryCompile-ne2b6l"
     cmakeVariables:
       CMAKE_CXX_FLAGS: "/DWIN32 /D_WINDOWS /GR /EHsc"
       CMAKE_CXX_FLAGS_DEBUG: "/Zi /Ob0 /Od /RTC1"
@@ -2170,49 +2726,49 @@ events:
       variable: "CMAKE_CXX_ABI_COMPILED"
       cached: true
       stdout: |
-        Change Dir: 'D:/RaeenOS/build/CMakeFiles/CMakeScratch/TryCompile-cdx1iz'
+        Change Dir: 'D:/RaeenOS/build/CMakeFiles/CMakeScratch/TryCompile-ne2b6l'
         
-        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/2022/Community/MSBuild/Current/Bin/amd64/MSBuild.exe" cmTC_21d60.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=17.0 /v:n
+        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/2022/Community/MSBuild/Current/Bin/amd64/MSBuild.exe" cmTC_ec79a.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=17.0 /v:n
         MSBuild version 17.14.14+a129329f1 for .NET Framework
-        Build started 7/16/2025 12:13:56 PM.
+        Build started 7/21/2025 6:51:50 PM.
         
-        Project "D:\\RaeenOS\\build\\CMakeFiles\\CMakeScratch\\TryCompile-cdx1iz\\cmTC_21d60.vcxproj" on node 1 (default targets).
+        Project "D:\\RaeenOS\\build\\CMakeFiles\\CMakeScratch\\TryCompile-ne2b6l\\cmTC_ec79a.vcxproj" on node 1 (default targets).
         PrepareForBuild:
-          Creating directory "cmTC_21d60.dir\\Debug\\".
+          Creating directory "cmTC_ec79a.dir\\Debug\\".
           Structured output is enabled. The formatting of compiler diagnostics will reflect the error hierarchy. See https://aka.ms/cpp/structured-output for more details.
-          Creating directory "D:\\RaeenOS\\build\\CMakeFiles\\CMakeScratch\\TryCompile-cdx1iz\\Debug\\".
-          Creating directory "cmTC_21d60.dir\\Debug\\cmTC_21d60.tlog\\".
+          Creating directory "D:\\RaeenOS\\build\\CMakeFiles\\CMakeScratch\\TryCompile-ne2b6l\\Debug\\".
+          Creating directory "cmTC_ec79a.dir\\Debug\\cmTC_ec79a.tlog\\".
         InitializeBuildStatus:
-          Creating "cmTC_21d60.dir\\Debug\\cmTC_21d60.tlog\\unsuccessfulbuild" because "AlwaysCreate" was specified.
-          Touching "cmTC_21d60.dir\\Debug\\cmTC_21d60.tlog\\unsuccessfulbuild".
+          Creating "cmTC_ec79a.dir\\Debug\\cmTC_ec79a.tlog\\unsuccessfulbuild" because "AlwaysCreate" was specified.
+          Touching "cmTC_ec79a.dir\\Debug\\cmTC_ec79a.tlog\\unsuccessfulbuild".
         VcpkgTripletSelection:
           Using triplet "x64-windows" from "C:\\Users\\woisr\\vcpkg\\installed\\x64-windows\\"
           Using normalized configuration "Debug"
         ClCompile:
-          C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.44.35207\\bin\\HostX64\\x64\\CL.exe /c /I"C:\\Users\\woisr\\vcpkg\\installed\\x64-windows\\include" /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\\"Debug\\"" /EHsc /RTC1 /MDd /GS /fp:precise /GR /Fo"cmTC_21d60.dir\\Debug\\\\" /Fd"cmTC_21d60.dir\\Debug\\vc143.pdb" /external:W1 /Gd /TP /errorReport:queue "C:\\Program Files\\CMake\\share\\cmake-4.1\\Modules\\CMakeCXXCompilerABI.cpp"
+          C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.44.35207\\bin\\HostX64\\x64\\CL.exe /c /I"C:\\Users\\woisr\\vcpkg\\installed\\x64-windows\\include" /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\\"Debug\\"" /EHsc /RTC1 /MDd /GS /fp:precise /GR /Fo"cmTC_ec79a.dir\\Debug\\\\" /Fd"cmTC_ec79a.dir\\Debug\\vc143.pdb" /external:W1 /Gd /TP /errorReport:queue "C:\\Program Files\\CMake\\share\\cmake-4.1\\Modules\\CMakeCXXCompilerABI.cpp"
           Microsoft (R) C/C++ Optimizing Compiler Version 19.44.35213 for x64
           Copyright (C) Microsoft Corporation.  All rights reserved.
-          cl /c /I"C:\\Users\\woisr\\vcpkg\\installed\\x64-windows\\include" /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\\"Debug\\"" /EHsc /RTC1 /MDd /GS /fp:precise /GR /Fo"cmTC_21d60.dir\\Debug\\\\" /Fd"cmTC_21d60.dir\\Debug\\vc143.pdb" /external:W1 /Gd /TP /errorReport:queue "C:\\Program Files\\CMake\\share\\cmake-4.1\\Modules\\CMakeCXXCompilerABI.cpp"
+          cl /c /I"C:\\Users\\woisr\\vcpkg\\installed\\x64-windows\\include" /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\\"Debug\\"" /EHsc /RTC1 /MDd /GS /fp:precise /GR /Fo"cmTC_ec79a.dir\\Debug\\\\" /Fd"cmTC_ec79a.dir\\Debug\\vc143.pdb" /external:W1 /Gd /TP /errorReport:queue "C:\\Program Files\\CMake\\share\\cmake-4.1\\Modules\\CMakeCXXCompilerABI.cpp"
           CMakeCXXCompilerABI.cpp
         Link:
-          C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.44.35207\\bin\\HostX64\\x64\\link.exe /OUT:"D:\\RaeenOS\\build\\CMakeFiles\\CMakeScratch\\TryCompile-cdx1iz\\Debug\\cmTC_21d60.exe" /INCREMENTAL /ILK:"cmTC_21d60.dir\\Debug\\cmTC_21d60.ilk" /NOLOGO /LIBPATH:"C:\\Users\\woisr\\vcpkg\\installed\\x64-windows\\debug\\lib" /LIBPATH:"C:\\Users\\woisr\\vcpkg\\installed\\x64-windows\\debug\\lib\\manual-link" kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib "C:\\Users\\woisr\\vcpkg\\installed\\x64-windows\\debug\\lib\\*.lib" /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"D:/RaeenOS/build/CMakeFiles/CMakeScratch/TryCompile-cdx1iz/Debug/cmTC_21d60.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /IMPLIB:"D:/RaeenOS/build/CMakeFiles/CMakeScratch/TryCompile-cdx1iz/Debug/cmTC_21d60.lib" /MACHINE:X64  /machine:x64 cmTC_21d60.dir\\Debug\\CMakeCXXCompilerABI.obj
-          cmTC_21d60.vcxproj -> D:\\RaeenOS\\build\\CMakeFiles\\CMakeScratch\\TryCompile-cdx1iz\\Debug\\cmTC_21d60.exe
+          C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.44.35207\\bin\\HostX64\\x64\\link.exe /OUT:"D:\\RaeenOS\\build\\CMakeFiles\\CMakeScratch\\TryCompile-ne2b6l\\Debug\\cmTC_ec79a.exe" /INCREMENTAL /ILK:"cmTC_ec79a.dir\\Debug\\cmTC_ec79a.ilk" /NOLOGO /LIBPATH:"C:\\Users\\woisr\\vcpkg\\installed\\x64-windows\\debug\\lib" /LIBPATH:"C:\\Users\\woisr\\vcpkg\\installed\\x64-windows\\debug\\lib\\manual-link" kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib "C:\\Users\\woisr\\vcpkg\\installed\\x64-windows\\debug\\lib\\*.lib" /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"D:/RaeenOS/build/CMakeFiles/CMakeScratch/TryCompile-ne2b6l/Debug/cmTC_ec79a.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /IMPLIB:"D:/RaeenOS/build/CMakeFiles/CMakeScratch/TryCompile-ne2b6l/Debug/cmTC_ec79a.lib" /MACHINE:X64  /machine:x64 cmTC_ec79a.dir\\Debug\\CMakeCXXCompilerABI.obj
+          cmTC_ec79a.vcxproj -> D:\\RaeenOS\\build\\CMakeFiles\\CMakeScratch\\TryCompile-ne2b6l\\Debug\\cmTC_ec79a.exe
         AppLocalFromInstalled:
-          pwsh.exe -ExecutionPolicy Bypass -noprofile -File "C:\\Users\\woisr\\vcpkg\\scripts\\buildsystems\\msbuild\\applocal.ps1" "D:\\RaeenOS\\build\\CMakeFiles\\CMakeScratch\\TryCompile-cdx1iz\\Debug\\cmTC_21d60.exe" "C:\\Users\\woisr\\vcpkg\\installed\\x64-windows\\debug\\bin" "cmTC_21d60.dir\\Debug\\cmTC_21d60.tlog\\cmTC_21d60.write.1u.tlog" "cmTC_21d60.dir\\Debug\\vcpkg.applocal.log"
+          pwsh.exe -ExecutionPolicy Bypass -noprofile -File "C:\\Users\\woisr\\vcpkg\\scripts\\buildsystems\\msbuild\\applocal.ps1" "D:\\RaeenOS\\build\\CMakeFiles\\CMakeScratch\\TryCompile-ne2b6l\\Debug\\cmTC_ec79a.exe" "C:\\Users\\woisr\\vcpkg\\installed\\x64-windows\\debug\\bin" "cmTC_ec79a.dir\\Debug\\cmTC_ec79a.tlog\\cmTC_ec79a.write.1u.tlog" "cmTC_ec79a.dir\\Debug\\vcpkg.applocal.log"
           'pwsh.exe' is not recognized as an internal or external command,
           operable program or batch file.
-          The command "pwsh.exe -ExecutionPolicy Bypass -noprofile -File "C:\\Users\\woisr\\vcpkg\\scripts\\buildsystems\\msbuild\\applocal.ps1" "D:\\RaeenOS\\build\\CMakeFiles\\CMakeScratch\\TryCompile-cdx1iz\\Debug\\cmTC_21d60.exe" "C:\\Users\\woisr\\vcpkg\\installed\\x64-windows\\debug\\bin" "cmTC_21d60.dir\\Debug\\cmTC_21d60.tlog\\cmTC_21d60.write.1u.tlog" "cmTC_21d60.dir\\Debug\\vcpkg.applocal.log"" exited with code 9009.
-          "C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\powershell.exe" -ExecutionPolicy Bypass -noprofile -File "C:\\Users\\woisr\\vcpkg\\scripts\\buildsystems\\msbuild\\applocal.ps1" "D:\\RaeenOS\\build\\CMakeFiles\\CMakeScratch\\TryCompile-cdx1iz\\Debug\\cmTC_21d60.exe" "C:\\Users\\woisr\\vcpkg\\installed\\x64-windows\\debug\\bin" "cmTC_21d60.dir\\Debug\\cmTC_21d60.tlog\\cmTC_21d60.write.1u.tlog" "cmTC_21d60.dir\\Debug\\vcpkg.applocal.log"
+          The command "pwsh.exe -ExecutionPolicy Bypass -noprofile -File "C:\\Users\\woisr\\vcpkg\\scripts\\buildsystems\\msbuild\\applocal.ps1" "D:\\RaeenOS\\build\\CMakeFiles\\CMakeScratch\\TryCompile-ne2b6l\\Debug\\cmTC_ec79a.exe" "C:\\Users\\woisr\\vcpkg\\installed\\x64-windows\\debug\\bin" "cmTC_ec79a.dir\\Debug\\cmTC_ec79a.tlog\\cmTC_ec79a.write.1u.tlog" "cmTC_ec79a.dir\\Debug\\vcpkg.applocal.log"" exited with code 9009.
+          "C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\powershell.exe" -ExecutionPolicy Bypass -noprofile -File "C:\\Users\\woisr\\vcpkg\\scripts\\buildsystems\\msbuild\\applocal.ps1" "D:\\RaeenOS\\build\\CMakeFiles\\CMakeScratch\\TryCompile-ne2b6l\\Debug\\cmTC_ec79a.exe" "C:\\Users\\woisr\\vcpkg\\installed\\x64-windows\\debug\\bin" "cmTC_ec79a.dir\\Debug\\cmTC_ec79a.tlog\\cmTC_ec79a.write.1u.tlog" "cmTC_ec79a.dir\\Debug\\vcpkg.applocal.log"
         FinalizeBuildStatus:
-          Deleting file "cmTC_21d60.dir\\Debug\\cmTC_21d60.tlog\\unsuccessfulbuild".
-          Touching "cmTC_21d60.dir\\Debug\\cmTC_21d60.tlog\\cmTC_21d60.lastbuildstate".
-        Done Building Project "D:\\RaeenOS\\build\\CMakeFiles\\CMakeScratch\\TryCompile-cdx1iz\\cmTC_21d60.vcxproj" (default targets).
+          Deleting file "cmTC_ec79a.dir\\Debug\\cmTC_ec79a.tlog\\unsuccessfulbuild".
+          Touching "cmTC_ec79a.dir\\Debug\\cmTC_ec79a.tlog\\cmTC_ec79a.lastbuildstate".
+        Done Building Project "D:\\RaeenOS\\build\\CMakeFiles\\CMakeScratch\\TryCompile-ne2b6l\\cmTC_ec79a.vcxproj" (default targets).
         
         Build succeeded.
             0 Warning(s)
             0 Error(s)
         
-        Time Elapsed 00:00:01.33
+        Time Elapsed 00:00:01.52
         
       exitCode: 0
   -
@@ -2243,4 +2799,568 @@ events:
       Running the CXX compiler's linker: "C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.44.35207/bin/HostX64/x64/link.exe" "-v"
       Microsoft (R) Incremental Linker Version 14.44.35213.0
       Copyright (C) Microsoft Corporation.  All rights reserved.
+  -
+    kind: "find-v1"
+    backtrace:
+      - "bootloader/CMakeLists.txt:5 (find_program)"
+    mode: "program"
+    variable: "NASM_EXECUTABLE"
+    description: "Path to a program."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: true
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "nasm"
+    candidate_directories:
+      - "C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.44.35207/bin/Hostx64/x64/"
+      - "C:/Program Files/Microsoft Visual Studio/2022/Community/Common7/IDE/VC/vcpackages/"
+      - "C:/Program Files/Microsoft Visual Studio/2022/Community/Common7/IDE/CommonExtensions/Microsoft/TestWindow/"
+      - "C:/Program Files/Microsoft Visual Studio/2022/Community/Common7/IDE/CommonExtensions/Microsoft/TeamFoundation/Team Explorer/"
+      - "C:/Program Files/Microsoft Visual Studio/2022/Community/MSBuild/Current/Bin/Roslyn/"
+      - "C:/Program Files (x86)/Microsoft SDKs/Windows/v10.0A/bin/NETFX 4.8 Tools/x64/"
+      - "C:/Program Files/Microsoft Visual Studio/2022/Community/Common7/IDE/CommonExtensions/Microsoft/FSharp/Tools/"
+      - "C:/Program Files/Microsoft Visual Studio/2022/Community/Team Tools/DiagnosticsHub/Collector/"
+      - "C:/Program Files (x86)/Windows Kits/10/bin/10.0.26100.0/x64/"
+      - "C:/Program Files (x86)/Windows Kits/10/bin/x64/"
+      - "C:/Program Files/Microsoft Visual Studio/2022/Community/MSBuild/Current/Bin/amd64/"
+      - "C:/Windows/Microsoft.NET/Framework64/v4.0.30319/"
+      - "C:/Program Files/Microsoft Visual Studio/2022/Community/Common7/IDE/"
+      - "C:/Program Files/Microsoft Visual Studio/2022/Community/Common7/Tools/"
+      - "C:/Program Files/Eclipse Adoptium/jdk-21.0.7.6-hotspot/bin/"
+      - "C:/Windows/System32/"
+      - "C:/Windows/"
+      - "C:/Windows/System32/wbem/"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/"
+      - "C:/Windows/System32/OpenSSH/"
+      - "C:/Program Files/NVIDIA Corporation/NVIDIA App/NvDLISR/"
+      - "C:/Program Files (x86)/NVIDIA Corporation/PhysX/Common/"
+      - "C:/Program Files/Git/cmd/"
+      - "C:/Program Files/GitHub CLI/"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/"
+      - "C:/Program Files/CMake/bin/"
+      - "C:/Program Files/nodejs/"
+      - "C:/Users/woisr/AppData/Local/Programs/cursor/resources/app/bin/"
+      - "C:/Program Files/dotnet/"
+      - "C:/Users/woisr/.local/bin/"
+      - "C:/Users/woisr/.cargo/bin/"
+      - "C:/Users/woisr/AppData/Local/Microsoft/WindowsApps/"
+      - "C:/Users/woisr/AppData/Local/Programs/Windsurf/bin/"
+      - "C:/Users/woisr/.dotnet/tools/"
+      - "C:/Users/woisr/AppData/Local/Programs/Microsoft VS Code/bin/"
+      - "C:/Users/woisr/AppData/Roaming/npm/"
+      - "C:/Users/woisr/AppData/Local/Programs/Ollama/"
+      - "C:/Program Files/Microsoft Visual Studio/2022/Community/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/bin/"
+      - "C:/Program Files/Microsoft Visual Studio/2022/Community/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/"
+      - "C:/Program Files/Microsoft Visual Studio/2022/Community/Common7/IDE/VC/Linux/bin/ConnectionManagerExe/"
+      - "C:/Program Files/Microsoft Visual Studio/2022/Community/VC/vcpkg/"
+      - "C:/Program Files/bin/"
+      - "C:/Program Files/sbin/"
+      - "C:/Program Files/"
+      - "C:/Program Files (x86)/bin/"
+      - "C:/Program Files (x86)/sbin/"
+      - "C:/Program Files (x86)/"
+      - "C:/Program Files/CMake/bin/"
+      - "C:/Program Files/CMake/sbin/"
+      - "C:/Program Files/CMake/"
+      - "C:/Program Files/RaeenOS/bin/"
+      - "C:/Program Files/RaeenOS/sbin/"
+      - "C:/Program Files/RaeenOS/"
+    searched_directories:
+      - "C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.44.35207/bin/Hostx64/x64/nasm.com"
+      - "C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.44.35207/bin/Hostx64/x64/nasm.exe"
+      - "C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.44.35207/bin/Hostx64/x64/nasm"
+      - "C:/Program Files/Microsoft Visual Studio/2022/Community/Common7/IDE/VC/vcpackages/nasm.com"
+      - "C:/Program Files/Microsoft Visual Studio/2022/Community/Common7/IDE/VC/vcpackages/nasm.exe"
+      - "C:/Program Files/Microsoft Visual Studio/2022/Community/Common7/IDE/VC/vcpackages/nasm"
+      - "C:/Program Files/Microsoft Visual Studio/2022/Community/Common7/IDE/CommonExtensions/Microsoft/TestWindow/nasm.com"
+      - "C:/Program Files/Microsoft Visual Studio/2022/Community/Common7/IDE/CommonExtensions/Microsoft/TestWindow/nasm.exe"
+      - "C:/Program Files/Microsoft Visual Studio/2022/Community/Common7/IDE/CommonExtensions/Microsoft/TestWindow/nasm"
+      - "C:/Program Files/Microsoft Visual Studio/2022/Community/Common7/IDE/CommonExtensions/Microsoft/TeamFoundation/Team Explorer/nasm.com"
+      - "C:/Program Files/Microsoft Visual Studio/2022/Community/Common7/IDE/CommonExtensions/Microsoft/TeamFoundation/Team Explorer/nasm.exe"
+      - "C:/Program Files/Microsoft Visual Studio/2022/Community/Common7/IDE/CommonExtensions/Microsoft/TeamFoundation/Team Explorer/nasm"
+      - "C:/Program Files/Microsoft Visual Studio/2022/Community/MSBuild/Current/Bin/Roslyn/nasm.com"
+      - "C:/Program Files/Microsoft Visual Studio/2022/Community/MSBuild/Current/Bin/Roslyn/nasm.exe"
+      - "C:/Program Files/Microsoft Visual Studio/2022/Community/MSBuild/Current/Bin/Roslyn/nasm"
+      - "C:/Program Files (x86)/Microsoft SDKs/Windows/v10.0A/bin/NETFX 4.8 Tools/x64/nasm.com"
+      - "C:/Program Files (x86)/Microsoft SDKs/Windows/v10.0A/bin/NETFX 4.8 Tools/x64/nasm.exe"
+      - "C:/Program Files (x86)/Microsoft SDKs/Windows/v10.0A/bin/NETFX 4.8 Tools/x64/nasm"
+      - "C:/Program Files/Microsoft Visual Studio/2022/Community/Common7/IDE/CommonExtensions/Microsoft/FSharp/Tools/nasm.com"
+      - "C:/Program Files/Microsoft Visual Studio/2022/Community/Common7/IDE/CommonExtensions/Microsoft/FSharp/Tools/nasm.exe"
+      - "C:/Program Files/Microsoft Visual Studio/2022/Community/Common7/IDE/CommonExtensions/Microsoft/FSharp/Tools/nasm"
+      - "C:/Program Files/Microsoft Visual Studio/2022/Community/Team Tools/DiagnosticsHub/Collector/nasm.com"
+      - "C:/Program Files/Microsoft Visual Studio/2022/Community/Team Tools/DiagnosticsHub/Collector/nasm.exe"
+      - "C:/Program Files/Microsoft Visual Studio/2022/Community/Team Tools/DiagnosticsHub/Collector/nasm"
+      - "C:/Program Files (x86)/Windows Kits/10/bin/10.0.26100.0/x64/nasm.com"
+      - "C:/Program Files (x86)/Windows Kits/10/bin/10.0.26100.0/x64/nasm.exe"
+      - "C:/Program Files (x86)/Windows Kits/10/bin/10.0.26100.0/x64/nasm"
+      - "C:/Program Files (x86)/Windows Kits/10/bin/x64/nasm.com"
+      - "C:/Program Files (x86)/Windows Kits/10/bin/x64/nasm.exe"
+      - "C:/Program Files (x86)/Windows Kits/10/bin/x64/nasm"
+      - "C:/Program Files/Microsoft Visual Studio/2022/Community/MSBuild/Current/Bin/amd64/nasm.com"
+      - "C:/Program Files/Microsoft Visual Studio/2022/Community/MSBuild/Current/Bin/amd64/nasm.exe"
+      - "C:/Program Files/Microsoft Visual Studio/2022/Community/MSBuild/Current/Bin/amd64/nasm"
+      - "C:/Windows/Microsoft.NET/Framework64/v4.0.30319/nasm.com"
+      - "C:/Windows/Microsoft.NET/Framework64/v4.0.30319/nasm.exe"
+      - "C:/Windows/Microsoft.NET/Framework64/v4.0.30319/nasm"
+      - "C:/Program Files/Microsoft Visual Studio/2022/Community/Common7/IDE/nasm.com"
+      - "C:/Program Files/Microsoft Visual Studio/2022/Community/Common7/IDE/nasm.exe"
+      - "C:/Program Files/Microsoft Visual Studio/2022/Community/Common7/IDE/nasm"
+      - "C:/Program Files/Microsoft Visual Studio/2022/Community/Common7/Tools/nasm.com"
+      - "C:/Program Files/Microsoft Visual Studio/2022/Community/Common7/Tools/nasm.exe"
+      - "C:/Program Files/Microsoft Visual Studio/2022/Community/Common7/Tools/nasm"
+      - "C:/Program Files/Eclipse Adoptium/jdk-21.0.7.6-hotspot/bin/nasm.com"
+      - "C:/Program Files/Eclipse Adoptium/jdk-21.0.7.6-hotspot/bin/nasm.exe"
+      - "C:/Program Files/Eclipse Adoptium/jdk-21.0.7.6-hotspot/bin/nasm"
+      - "C:/Windows/System32/nasm.com"
+      - "C:/Windows/System32/nasm.exe"
+      - "C:/Windows/System32/nasm"
+      - "C:/Windows/nasm.com"
+      - "C:/Windows/nasm.exe"
+      - "C:/Windows/nasm"
+      - "C:/Windows/System32/wbem/nasm.com"
+      - "C:/Windows/System32/wbem/nasm.exe"
+      - "C:/Windows/System32/wbem/nasm"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/nasm.com"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/nasm.exe"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/nasm"
+      - "C:/Windows/System32/OpenSSH/nasm.com"
+      - "C:/Windows/System32/OpenSSH/nasm.exe"
+      - "C:/Windows/System32/OpenSSH/nasm"
+      - "C:/Program Files/NVIDIA Corporation/NVIDIA App/NvDLISR/nasm.com"
+      - "C:/Program Files/NVIDIA Corporation/NVIDIA App/NvDLISR/nasm.exe"
+      - "C:/Program Files/NVIDIA Corporation/NVIDIA App/NvDLISR/nasm"
+      - "C:/Program Files (x86)/NVIDIA Corporation/PhysX/Common/nasm.com"
+      - "C:/Program Files (x86)/NVIDIA Corporation/PhysX/Common/nasm.exe"
+      - "C:/Program Files (x86)/NVIDIA Corporation/PhysX/Common/nasm"
+      - "C:/Program Files/Git/cmd/nasm.com"
+      - "C:/Program Files/Git/cmd/nasm.exe"
+      - "C:/Program Files/Git/cmd/nasm"
+      - "C:/Program Files/GitHub CLI/nasm.com"
+      - "C:/Program Files/GitHub CLI/nasm.exe"
+      - "C:/Program Files/GitHub CLI/nasm"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/nasm.com"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/nasm.exe"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/nasm"
+      - "C:/Program Files/CMake/bin/nasm.com"
+      - "C:/Program Files/CMake/bin/nasm.exe"
+      - "C:/Program Files/CMake/bin/nasm"
+      - "C:/Program Files/nodejs/nasm.com"
+      - "C:/Program Files/nodejs/nasm.exe"
+      - "C:/Program Files/nodejs/nasm"
+      - "C:/Users/woisr/AppData/Local/Programs/cursor/resources/app/bin/nasm.com"
+      - "C:/Users/woisr/AppData/Local/Programs/cursor/resources/app/bin/nasm.exe"
+      - "C:/Users/woisr/AppData/Local/Programs/cursor/resources/app/bin/nasm"
+      - "C:/Program Files/dotnet/nasm.com"
+      - "C:/Program Files/dotnet/nasm.exe"
+      - "C:/Program Files/dotnet/nasm"
+      - "C:/Users/woisr/.local/bin/nasm.com"
+      - "C:/Users/woisr/.local/bin/nasm.exe"
+      - "C:/Users/woisr/.local/bin/nasm"
+      - "C:/Users/woisr/.cargo/bin/nasm.com"
+      - "C:/Users/woisr/.cargo/bin/nasm.exe"
+      - "C:/Users/woisr/.cargo/bin/nasm"
+      - "C:/Users/woisr/AppData/Local/Microsoft/WindowsApps/nasm.com"
+      - "C:/Users/woisr/AppData/Local/Microsoft/WindowsApps/nasm.exe"
+      - "C:/Users/woisr/AppData/Local/Microsoft/WindowsApps/nasm"
+      - "C:/Users/woisr/AppData/Local/Programs/Windsurf/bin/nasm.com"
+      - "C:/Users/woisr/AppData/Local/Programs/Windsurf/bin/nasm.exe"
+      - "C:/Users/woisr/AppData/Local/Programs/Windsurf/bin/nasm"
+      - "C:/Users/woisr/.dotnet/tools/nasm.com"
+      - "C:/Users/woisr/.dotnet/tools/nasm.exe"
+      - "C:/Users/woisr/.dotnet/tools/nasm"
+      - "C:/Users/woisr/AppData/Local/Programs/Microsoft VS Code/bin/nasm.com"
+      - "C:/Users/woisr/AppData/Local/Programs/Microsoft VS Code/bin/nasm.exe"
+      - "C:/Users/woisr/AppData/Local/Programs/Microsoft VS Code/bin/nasm"
+      - "C:/Users/woisr/AppData/Roaming/npm/nasm.com"
+      - "C:/Users/woisr/AppData/Roaming/npm/nasm.exe"
+      - "C:/Users/woisr/AppData/Roaming/npm/nasm"
+      - "C:/Users/woisr/AppData/Local/Programs/Ollama/nasm.com"
+      - "C:/Users/woisr/AppData/Local/Programs/Ollama/nasm.exe"
+      - "C:/Users/woisr/AppData/Local/Programs/Ollama/nasm"
+      - "C:/Program Files/Microsoft Visual Studio/2022/Community/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/bin/nasm.com"
+      - "C:/Program Files/Microsoft Visual Studio/2022/Community/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/bin/nasm.exe"
+      - "C:/Program Files/Microsoft Visual Studio/2022/Community/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/bin/nasm"
+      - "C:/Program Files/Microsoft Visual Studio/2022/Community/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/nasm.com"
+      - "C:/Program Files/Microsoft Visual Studio/2022/Community/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/nasm.exe"
+      - "C:/Program Files/Microsoft Visual Studio/2022/Community/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/nasm"
+      - "C:/Program Files/Microsoft Visual Studio/2022/Community/Common7/IDE/VC/Linux/bin/ConnectionManagerExe/nasm.com"
+      - "C:/Program Files/Microsoft Visual Studio/2022/Community/Common7/IDE/VC/Linux/bin/ConnectionManagerExe/nasm.exe"
+      - "C:/Program Files/Microsoft Visual Studio/2022/Community/Common7/IDE/VC/Linux/bin/ConnectionManagerExe/nasm"
+      - "C:/Program Files/Microsoft Visual Studio/2022/Community/VC/vcpkg/nasm.com"
+      - "C:/Program Files/Microsoft Visual Studio/2022/Community/VC/vcpkg/nasm.exe"
+      - "C:/Program Files/Microsoft Visual Studio/2022/Community/VC/vcpkg/nasm"
+      - "C:/Program Files/bin/nasm.com"
+      - "C:/Program Files/bin/nasm.exe"
+      - "C:/Program Files/bin/nasm"
+      - "C:/Program Files/sbin/nasm.com"
+      - "C:/Program Files/sbin/nasm.exe"
+      - "C:/Program Files/sbin/nasm"
+      - "C:/Program Files/nasm.com"
+      - "C:/Program Files/nasm.exe"
+      - "C:/Program Files/nasm"
+      - "C:/Program Files (x86)/bin/nasm.com"
+      - "C:/Program Files (x86)/bin/nasm.exe"
+      - "C:/Program Files (x86)/bin/nasm"
+      - "C:/Program Files (x86)/sbin/nasm.com"
+      - "C:/Program Files (x86)/sbin/nasm.exe"
+      - "C:/Program Files (x86)/sbin/nasm"
+      - "C:/Program Files (x86)/nasm.com"
+      - "C:/Program Files (x86)/nasm.exe"
+      - "C:/Program Files (x86)/nasm"
+      - "C:/Program Files/CMake/bin/nasm.com"
+      - "C:/Program Files/CMake/bin/nasm.exe"
+      - "C:/Program Files/CMake/bin/nasm"
+      - "C:/Program Files/CMake/sbin/nasm.com"
+      - "C:/Program Files/CMake/sbin/nasm.exe"
+      - "C:/Program Files/CMake/sbin/nasm"
+      - "C:/Program Files/CMake/nasm.com"
+      - "C:/Program Files/CMake/nasm.exe"
+      - "C:/Program Files/CMake/nasm"
+      - "C:/Program Files/RaeenOS/bin/nasm.com"
+      - "C:/Program Files/RaeenOS/bin/nasm.exe"
+      - "C:/Program Files/RaeenOS/bin/nasm"
+      - "C:/Program Files/RaeenOS/sbin/nasm.com"
+      - "C:/Program Files/RaeenOS/sbin/nasm.exe"
+      - "C:/Program Files/RaeenOS/sbin/nasm"
+      - "C:/Program Files/RaeenOS/nasm.com"
+      - "C:/Program Files/RaeenOS/nasm.exe"
+      - "C:/Program Files/RaeenOS/nasm"
+    found: false
+    search_context:
+      ENV{PATH}:
+        - "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.44.35207\\bin\\HostX64\\x64"
+        - "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\Common7\\IDE\\VC\\VCPackages"
+        - "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\Common7\\IDE\\CommonExtensions\\Microsoft\\TestWindow"
+        - "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\Common7\\IDE\\CommonExtensions\\Microsoft\\TeamFoundation\\Team Explorer"
+        - "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Current\\bin\\Roslyn"
+        - "C:\\Program Files (x86)\\Microsoft SDKs\\Windows\\v10.0A\\bin\\NETFX 4.8 Tools\\x64\\"
+        - "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\Common7\\IDE\\CommonExtensions\\Microsoft\\FSharp\\Tools"
+        - "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\Team Tools\\DiagnosticsHub\\Collector"
+        - "C:\\Program Files (x86)\\Windows Kits\\10\\bin\\10.0.26100.0\\\\x64"
+        - "C:\\Program Files (x86)\\Windows Kits\\10\\bin\\\\x64"
+        - "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\\\MSBuild\\Current\\Bin\\amd64"
+        - "C:\\WINDOWS\\Microsoft.NET\\Framework64\\v4.0.30319"
+        - "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\Common7\\IDE\\"
+        - "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\Common7\\Tools\\"
+        - "C:\\Program Files\\Eclipse Adoptium\\jdk-21.0.7.6-hotspot\\bin"
+        - "C:\\WINDOWS\\system32"
+        - "C:\\WINDOWS"
+        - "C:\\WINDOWS\\System32\\Wbem"
+        - "C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\"
+        - "C:\\WINDOWS\\System32\\OpenSSH\\"
+        - "C:\\Program Files\\NVIDIA Corporation\\NVIDIA App\\NvDLISR"
+        - "C:\\Program Files (x86)\\NVIDIA Corporation\\PhysX\\Common"
+        - "C:\\Program Files\\Git\\cmd"
+        - "C:\\Program Files\\GitHub CLI\\"
+        - "C:\\Program Files (x86)\\Windows Kits\\10\\Windows Performance Toolkit\\"
+        - "C:\\Program Files\\CMake\\bin"
+        - "C:\\Program Files\\nodejs\\"
+        - "c:\\Users\\woisr\\AppData\\Local\\Programs\\cursor\\resources\\app\\bin"
+        - "C:\\Program Files\\dotnet\\"
+        - "C:\\Users\\woisr\\.local\\bin"
+        - "C:\\Users\\woisr\\.cargo\\bin"
+        - "C:\\Users\\woisr\\AppData\\Local\\Microsoft\\WindowsApps"
+        - "C:\\Users\\woisr\\AppData\\Local\\Programs\\Windsurf\\bin"
+        - "C:\\Users\\woisr\\AppData\\Local\\Programs\\cursor\\resources\\app\\bin"
+        - "C:\\Users\\woisr\\.dotnet\\tools"
+        - "C:\\Users\\woisr\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
+        - "C:\\Users\\woisr\\AppData\\Roaming\\npm"
+        - "C:\\Users\\woisr\\AppData\\Local\\Programs\\Ollama"
+        - "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin"
+        - "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\Ninja"
+        - "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\Common7\\IDE\\VC\\Linux\\bin\\ConnectionManagerExe"
+        - "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\vcpkg"
+      CMAKE_INSTALL_PREFIX: "C:/Program Files/RaeenOS"
+      CMAKE_SYSTEM_PREFIX_PATH:
+        - "C:/Program Files"
+        - "C:/Program Files (x86)"
+        - "C:/Program Files/CMake"
+        - "C:/Program Files/RaeenOS"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "CMakeLists.txt:74 (find_program)"
+    mode: "program"
+    variable: "GRUB_MKRESCUE_EXECUTABLE"
+    description: "Path to a program."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: true
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "grub-mkrescue"
+    candidate_directories:
+      - "C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.44.35207/bin/Hostx64/x64/"
+      - "C:/Program Files/Microsoft Visual Studio/2022/Community/Common7/IDE/VC/vcpackages/"
+      - "C:/Program Files/Microsoft Visual Studio/2022/Community/Common7/IDE/CommonExtensions/Microsoft/TestWindow/"
+      - "C:/Program Files/Microsoft Visual Studio/2022/Community/Common7/IDE/CommonExtensions/Microsoft/TeamFoundation/Team Explorer/"
+      - "C:/Program Files/Microsoft Visual Studio/2022/Community/MSBuild/Current/Bin/Roslyn/"
+      - "C:/Program Files (x86)/Microsoft SDKs/Windows/v10.0A/bin/NETFX 4.8 Tools/x64/"
+      - "C:/Program Files/Microsoft Visual Studio/2022/Community/Common7/IDE/CommonExtensions/Microsoft/FSharp/Tools/"
+      - "C:/Program Files/Microsoft Visual Studio/2022/Community/Team Tools/DiagnosticsHub/Collector/"
+      - "C:/Program Files (x86)/Windows Kits/10/bin/10.0.26100.0/x64/"
+      - "C:/Program Files (x86)/Windows Kits/10/bin/x64/"
+      - "C:/Program Files/Microsoft Visual Studio/2022/Community/MSBuild/Current/Bin/amd64/"
+      - "C:/Windows/Microsoft.NET/Framework64/v4.0.30319/"
+      - "C:/Program Files/Microsoft Visual Studio/2022/Community/Common7/IDE/"
+      - "C:/Program Files/Microsoft Visual Studio/2022/Community/Common7/Tools/"
+      - "C:/Program Files/Eclipse Adoptium/jdk-21.0.7.6-hotspot/bin/"
+      - "C:/Windows/System32/"
+      - "C:/Windows/"
+      - "C:/Windows/System32/wbem/"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/"
+      - "C:/Windows/System32/OpenSSH/"
+      - "C:/Program Files/NVIDIA Corporation/NVIDIA App/NvDLISR/"
+      - "C:/Program Files (x86)/NVIDIA Corporation/PhysX/Common/"
+      - "C:/Program Files/Git/cmd/"
+      - "C:/Program Files/GitHub CLI/"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/"
+      - "C:/Program Files/CMake/bin/"
+      - "C:/Program Files/nodejs/"
+      - "C:/Users/woisr/AppData/Local/Programs/cursor/resources/app/bin/"
+      - "C:/Program Files/dotnet/"
+      - "C:/Users/woisr/.local/bin/"
+      - "C:/Users/woisr/.cargo/bin/"
+      - "C:/Users/woisr/AppData/Local/Microsoft/WindowsApps/"
+      - "C:/Users/woisr/AppData/Local/Programs/Windsurf/bin/"
+      - "C:/Users/woisr/.dotnet/tools/"
+      - "C:/Users/woisr/AppData/Local/Programs/Microsoft VS Code/bin/"
+      - "C:/Users/woisr/AppData/Roaming/npm/"
+      - "C:/Users/woisr/AppData/Local/Programs/Ollama/"
+      - "C:/Program Files/Microsoft Visual Studio/2022/Community/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/bin/"
+      - "C:/Program Files/Microsoft Visual Studio/2022/Community/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/"
+      - "C:/Program Files/Microsoft Visual Studio/2022/Community/Common7/IDE/VC/Linux/bin/ConnectionManagerExe/"
+      - "C:/Program Files/Microsoft Visual Studio/2022/Community/VC/vcpkg/"
+      - "C:/Program Files/bin/"
+      - "C:/Program Files/sbin/"
+      - "C:/Program Files/"
+      - "C:/Program Files (x86)/bin/"
+      - "C:/Program Files (x86)/sbin/"
+      - "C:/Program Files (x86)/"
+      - "C:/Program Files/CMake/bin/"
+      - "C:/Program Files/CMake/sbin/"
+      - "C:/Program Files/CMake/"
+      - "C:/Program Files/RaeenOS/bin/"
+      - "C:/Program Files/RaeenOS/sbin/"
+      - "C:/Program Files/RaeenOS/"
+    searched_directories:
+      - "C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.44.35207/bin/Hostx64/x64/grub-mkrescue.com"
+      - "C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.44.35207/bin/Hostx64/x64/grub-mkrescue.exe"
+      - "C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.44.35207/bin/Hostx64/x64/grub-mkrescue"
+      - "C:/Program Files/Microsoft Visual Studio/2022/Community/Common7/IDE/VC/vcpackages/grub-mkrescue.com"
+      - "C:/Program Files/Microsoft Visual Studio/2022/Community/Common7/IDE/VC/vcpackages/grub-mkrescue.exe"
+      - "C:/Program Files/Microsoft Visual Studio/2022/Community/Common7/IDE/VC/vcpackages/grub-mkrescue"
+      - "C:/Program Files/Microsoft Visual Studio/2022/Community/Common7/IDE/CommonExtensions/Microsoft/TestWindow/grub-mkrescue.com"
+      - "C:/Program Files/Microsoft Visual Studio/2022/Community/Common7/IDE/CommonExtensions/Microsoft/TestWindow/grub-mkrescue.exe"
+      - "C:/Program Files/Microsoft Visual Studio/2022/Community/Common7/IDE/CommonExtensions/Microsoft/TestWindow/grub-mkrescue"
+      - "C:/Program Files/Microsoft Visual Studio/2022/Community/Common7/IDE/CommonExtensions/Microsoft/TeamFoundation/Team Explorer/grub-mkrescue.com"
+      - "C:/Program Files/Microsoft Visual Studio/2022/Community/Common7/IDE/CommonExtensions/Microsoft/TeamFoundation/Team Explorer/grub-mkrescue.exe"
+      - "C:/Program Files/Microsoft Visual Studio/2022/Community/Common7/IDE/CommonExtensions/Microsoft/TeamFoundation/Team Explorer/grub-mkrescue"
+      - "C:/Program Files/Microsoft Visual Studio/2022/Community/MSBuild/Current/Bin/Roslyn/grub-mkrescue.com"
+      - "C:/Program Files/Microsoft Visual Studio/2022/Community/MSBuild/Current/Bin/Roslyn/grub-mkrescue.exe"
+      - "C:/Program Files/Microsoft Visual Studio/2022/Community/MSBuild/Current/Bin/Roslyn/grub-mkrescue"
+      - "C:/Program Files (x86)/Microsoft SDKs/Windows/v10.0A/bin/NETFX 4.8 Tools/x64/grub-mkrescue.com"
+      - "C:/Program Files (x86)/Microsoft SDKs/Windows/v10.0A/bin/NETFX 4.8 Tools/x64/grub-mkrescue.exe"
+      - "C:/Program Files (x86)/Microsoft SDKs/Windows/v10.0A/bin/NETFX 4.8 Tools/x64/grub-mkrescue"
+      - "C:/Program Files/Microsoft Visual Studio/2022/Community/Common7/IDE/CommonExtensions/Microsoft/FSharp/Tools/grub-mkrescue.com"
+      - "C:/Program Files/Microsoft Visual Studio/2022/Community/Common7/IDE/CommonExtensions/Microsoft/FSharp/Tools/grub-mkrescue.exe"
+      - "C:/Program Files/Microsoft Visual Studio/2022/Community/Common7/IDE/CommonExtensions/Microsoft/FSharp/Tools/grub-mkrescue"
+      - "C:/Program Files/Microsoft Visual Studio/2022/Community/Team Tools/DiagnosticsHub/Collector/grub-mkrescue.com"
+      - "C:/Program Files/Microsoft Visual Studio/2022/Community/Team Tools/DiagnosticsHub/Collector/grub-mkrescue.exe"
+      - "C:/Program Files/Microsoft Visual Studio/2022/Community/Team Tools/DiagnosticsHub/Collector/grub-mkrescue"
+      - "C:/Program Files (x86)/Windows Kits/10/bin/10.0.26100.0/x64/grub-mkrescue.com"
+      - "C:/Program Files (x86)/Windows Kits/10/bin/10.0.26100.0/x64/grub-mkrescue.exe"
+      - "C:/Program Files (x86)/Windows Kits/10/bin/10.0.26100.0/x64/grub-mkrescue"
+      - "C:/Program Files (x86)/Windows Kits/10/bin/x64/grub-mkrescue.com"
+      - "C:/Program Files (x86)/Windows Kits/10/bin/x64/grub-mkrescue.exe"
+      - "C:/Program Files (x86)/Windows Kits/10/bin/x64/grub-mkrescue"
+      - "C:/Program Files/Microsoft Visual Studio/2022/Community/MSBuild/Current/Bin/amd64/grub-mkrescue.com"
+      - "C:/Program Files/Microsoft Visual Studio/2022/Community/MSBuild/Current/Bin/amd64/grub-mkrescue.exe"
+      - "C:/Program Files/Microsoft Visual Studio/2022/Community/MSBuild/Current/Bin/amd64/grub-mkrescue"
+      - "C:/Windows/Microsoft.NET/Framework64/v4.0.30319/grub-mkrescue.com"
+      - "C:/Windows/Microsoft.NET/Framework64/v4.0.30319/grub-mkrescue.exe"
+      - "C:/Windows/Microsoft.NET/Framework64/v4.0.30319/grub-mkrescue"
+      - "C:/Program Files/Microsoft Visual Studio/2022/Community/Common7/IDE/grub-mkrescue.com"
+      - "C:/Program Files/Microsoft Visual Studio/2022/Community/Common7/IDE/grub-mkrescue.exe"
+      - "C:/Program Files/Microsoft Visual Studio/2022/Community/Common7/IDE/grub-mkrescue"
+      - "C:/Program Files/Microsoft Visual Studio/2022/Community/Common7/Tools/grub-mkrescue.com"
+      - "C:/Program Files/Microsoft Visual Studio/2022/Community/Common7/Tools/grub-mkrescue.exe"
+      - "C:/Program Files/Microsoft Visual Studio/2022/Community/Common7/Tools/grub-mkrescue"
+      - "C:/Program Files/Eclipse Adoptium/jdk-21.0.7.6-hotspot/bin/grub-mkrescue.com"
+      - "C:/Program Files/Eclipse Adoptium/jdk-21.0.7.6-hotspot/bin/grub-mkrescue.exe"
+      - "C:/Program Files/Eclipse Adoptium/jdk-21.0.7.6-hotspot/bin/grub-mkrescue"
+      - "C:/Windows/System32/grub-mkrescue.com"
+      - "C:/Windows/System32/grub-mkrescue.exe"
+      - "C:/Windows/System32/grub-mkrescue"
+      - "C:/Windows/grub-mkrescue.com"
+      - "C:/Windows/grub-mkrescue.exe"
+      - "C:/Windows/grub-mkrescue"
+      - "C:/Windows/System32/wbem/grub-mkrescue.com"
+      - "C:/Windows/System32/wbem/grub-mkrescue.exe"
+      - "C:/Windows/System32/wbem/grub-mkrescue"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/grub-mkrescue.com"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/grub-mkrescue.exe"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/grub-mkrescue"
+      - "C:/Windows/System32/OpenSSH/grub-mkrescue.com"
+      - "C:/Windows/System32/OpenSSH/grub-mkrescue.exe"
+      - "C:/Windows/System32/OpenSSH/grub-mkrescue"
+      - "C:/Program Files/NVIDIA Corporation/NVIDIA App/NvDLISR/grub-mkrescue.com"
+      - "C:/Program Files/NVIDIA Corporation/NVIDIA App/NvDLISR/grub-mkrescue.exe"
+      - "C:/Program Files/NVIDIA Corporation/NVIDIA App/NvDLISR/grub-mkrescue"
+      - "C:/Program Files (x86)/NVIDIA Corporation/PhysX/Common/grub-mkrescue.com"
+      - "C:/Program Files (x86)/NVIDIA Corporation/PhysX/Common/grub-mkrescue.exe"
+      - "C:/Program Files (x86)/NVIDIA Corporation/PhysX/Common/grub-mkrescue"
+      - "C:/Program Files/Git/cmd/grub-mkrescue.com"
+      - "C:/Program Files/Git/cmd/grub-mkrescue.exe"
+      - "C:/Program Files/Git/cmd/grub-mkrescue"
+      - "C:/Program Files/GitHub CLI/grub-mkrescue.com"
+      - "C:/Program Files/GitHub CLI/grub-mkrescue.exe"
+      - "C:/Program Files/GitHub CLI/grub-mkrescue"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/grub-mkrescue.com"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/grub-mkrescue.exe"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/grub-mkrescue"
+      - "C:/Program Files/CMake/bin/grub-mkrescue.com"
+      - "C:/Program Files/CMake/bin/grub-mkrescue.exe"
+      - "C:/Program Files/CMake/bin/grub-mkrescue"
+      - "C:/Program Files/nodejs/grub-mkrescue.com"
+      - "C:/Program Files/nodejs/grub-mkrescue.exe"
+      - "C:/Program Files/nodejs/grub-mkrescue"
+      - "C:/Users/woisr/AppData/Local/Programs/cursor/resources/app/bin/grub-mkrescue.com"
+      - "C:/Users/woisr/AppData/Local/Programs/cursor/resources/app/bin/grub-mkrescue.exe"
+      - "C:/Users/woisr/AppData/Local/Programs/cursor/resources/app/bin/grub-mkrescue"
+      - "C:/Program Files/dotnet/grub-mkrescue.com"
+      - "C:/Program Files/dotnet/grub-mkrescue.exe"
+      - "C:/Program Files/dotnet/grub-mkrescue"
+      - "C:/Users/woisr/.local/bin/grub-mkrescue.com"
+      - "C:/Users/woisr/.local/bin/grub-mkrescue.exe"
+      - "C:/Users/woisr/.local/bin/grub-mkrescue"
+      - "C:/Users/woisr/.cargo/bin/grub-mkrescue.com"
+      - "C:/Users/woisr/.cargo/bin/grub-mkrescue.exe"
+      - "C:/Users/woisr/.cargo/bin/grub-mkrescue"
+      - "C:/Users/woisr/AppData/Local/Microsoft/WindowsApps/grub-mkrescue.com"
+      - "C:/Users/woisr/AppData/Local/Microsoft/WindowsApps/grub-mkrescue.exe"
+      - "C:/Users/woisr/AppData/Local/Microsoft/WindowsApps/grub-mkrescue"
+      - "C:/Users/woisr/AppData/Local/Programs/Windsurf/bin/grub-mkrescue.com"
+      - "C:/Users/woisr/AppData/Local/Programs/Windsurf/bin/grub-mkrescue.exe"
+      - "C:/Users/woisr/AppData/Local/Programs/Windsurf/bin/grub-mkrescue"
+      - "C:/Users/woisr/.dotnet/tools/grub-mkrescue.com"
+      - "C:/Users/woisr/.dotnet/tools/grub-mkrescue.exe"
+      - "C:/Users/woisr/.dotnet/tools/grub-mkrescue"
+      - "C:/Users/woisr/AppData/Local/Programs/Microsoft VS Code/bin/grub-mkrescue.com"
+      - "C:/Users/woisr/AppData/Local/Programs/Microsoft VS Code/bin/grub-mkrescue.exe"
+      - "C:/Users/woisr/AppData/Local/Programs/Microsoft VS Code/bin/grub-mkrescue"
+      - "C:/Users/woisr/AppData/Roaming/npm/grub-mkrescue.com"
+      - "C:/Users/woisr/AppData/Roaming/npm/grub-mkrescue.exe"
+      - "C:/Users/woisr/AppData/Roaming/npm/grub-mkrescue"
+      - "C:/Users/woisr/AppData/Local/Programs/Ollama/grub-mkrescue.com"
+      - "C:/Users/woisr/AppData/Local/Programs/Ollama/grub-mkrescue.exe"
+      - "C:/Users/woisr/AppData/Local/Programs/Ollama/grub-mkrescue"
+      - "C:/Program Files/Microsoft Visual Studio/2022/Community/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/bin/grub-mkrescue.com"
+      - "C:/Program Files/Microsoft Visual Studio/2022/Community/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/bin/grub-mkrescue.exe"
+      - "C:/Program Files/Microsoft Visual Studio/2022/Community/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/bin/grub-mkrescue"
+      - "C:/Program Files/Microsoft Visual Studio/2022/Community/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/grub-mkrescue.com"
+      - "C:/Program Files/Microsoft Visual Studio/2022/Community/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/grub-mkrescue.exe"
+      - "C:/Program Files/Microsoft Visual Studio/2022/Community/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/grub-mkrescue"
+      - "C:/Program Files/Microsoft Visual Studio/2022/Community/Common7/IDE/VC/Linux/bin/ConnectionManagerExe/grub-mkrescue.com"
+      - "C:/Program Files/Microsoft Visual Studio/2022/Community/Common7/IDE/VC/Linux/bin/ConnectionManagerExe/grub-mkrescue.exe"
+      - "C:/Program Files/Microsoft Visual Studio/2022/Community/Common7/IDE/VC/Linux/bin/ConnectionManagerExe/grub-mkrescue"
+      - "C:/Program Files/Microsoft Visual Studio/2022/Community/VC/vcpkg/grub-mkrescue.com"
+      - "C:/Program Files/Microsoft Visual Studio/2022/Community/VC/vcpkg/grub-mkrescue.exe"
+      - "C:/Program Files/Microsoft Visual Studio/2022/Community/VC/vcpkg/grub-mkrescue"
+      - "C:/Program Files/bin/grub-mkrescue.com"
+      - "C:/Program Files/bin/grub-mkrescue.exe"
+      - "C:/Program Files/bin/grub-mkrescue"
+      - "C:/Program Files/sbin/grub-mkrescue.com"
+      - "C:/Program Files/sbin/grub-mkrescue.exe"
+      - "C:/Program Files/sbin/grub-mkrescue"
+      - "C:/Program Files/grub-mkrescue.com"
+      - "C:/Program Files/grub-mkrescue.exe"
+      - "C:/Program Files/grub-mkrescue"
+      - "C:/Program Files (x86)/bin/grub-mkrescue.com"
+      - "C:/Program Files (x86)/bin/grub-mkrescue.exe"
+      - "C:/Program Files (x86)/bin/grub-mkrescue"
+      - "C:/Program Files (x86)/sbin/grub-mkrescue.com"
+      - "C:/Program Files (x86)/sbin/grub-mkrescue.exe"
+      - "C:/Program Files (x86)/sbin/grub-mkrescue"
+      - "C:/Program Files (x86)/grub-mkrescue.com"
+      - "C:/Program Files (x86)/grub-mkrescue.exe"
+      - "C:/Program Files (x86)/grub-mkrescue"
+      - "C:/Program Files/CMake/bin/grub-mkrescue.com"
+      - "C:/Program Files/CMake/bin/grub-mkrescue.exe"
+      - "C:/Program Files/CMake/bin/grub-mkrescue"
+      - "C:/Program Files/CMake/sbin/grub-mkrescue.com"
+      - "C:/Program Files/CMake/sbin/grub-mkrescue.exe"
+      - "C:/Program Files/CMake/sbin/grub-mkrescue"
+      - "C:/Program Files/CMake/grub-mkrescue.com"
+      - "C:/Program Files/CMake/grub-mkrescue.exe"
+      - "C:/Program Files/CMake/grub-mkrescue"
+      - "C:/Program Files/RaeenOS/bin/grub-mkrescue.com"
+      - "C:/Program Files/RaeenOS/bin/grub-mkrescue.exe"
+      - "C:/Program Files/RaeenOS/bin/grub-mkrescue"
+      - "C:/Program Files/RaeenOS/sbin/grub-mkrescue.com"
+      - "C:/Program Files/RaeenOS/sbin/grub-mkrescue.exe"
+      - "C:/Program Files/RaeenOS/sbin/grub-mkrescue"
+      - "C:/Program Files/RaeenOS/grub-mkrescue.com"
+      - "C:/Program Files/RaeenOS/grub-mkrescue.exe"
+      - "C:/Program Files/RaeenOS/grub-mkrescue"
+    found: false
+    search_context:
+      ENV{PATH}:
+        - "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.44.35207\\bin\\HostX64\\x64"
+        - "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\Common7\\IDE\\VC\\VCPackages"
+        - "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\Common7\\IDE\\CommonExtensions\\Microsoft\\TestWindow"
+        - "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\Common7\\IDE\\CommonExtensions\\Microsoft\\TeamFoundation\\Team Explorer"
+        - "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Current\\bin\\Roslyn"
+        - "C:\\Program Files (x86)\\Microsoft SDKs\\Windows\\v10.0A\\bin\\NETFX 4.8 Tools\\x64\\"
+        - "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\Common7\\IDE\\CommonExtensions\\Microsoft\\FSharp\\Tools"
+        - "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\Team Tools\\DiagnosticsHub\\Collector"
+        - "C:\\Program Files (x86)\\Windows Kits\\10\\bin\\10.0.26100.0\\\\x64"
+        - "C:\\Program Files (x86)\\Windows Kits\\10\\bin\\\\x64"
+        - "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\\\MSBuild\\Current\\Bin\\amd64"
+        - "C:\\WINDOWS\\Microsoft.NET\\Framework64\\v4.0.30319"
+        - "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\Common7\\IDE\\"
+        - "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\Common7\\Tools\\"
+        - "C:\\Program Files\\Eclipse Adoptium\\jdk-21.0.7.6-hotspot\\bin"
+        - "C:\\WINDOWS\\system32"
+        - "C:\\WINDOWS"
+        - "C:\\WINDOWS\\System32\\Wbem"
+        - "C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\"
+        - "C:\\WINDOWS\\System32\\OpenSSH\\"
+        - "C:\\Program Files\\NVIDIA Corporation\\NVIDIA App\\NvDLISR"
+        - "C:\\Program Files (x86)\\NVIDIA Corporation\\PhysX\\Common"
+        - "C:\\Program Files\\Git\\cmd"
+        - "C:\\Program Files\\GitHub CLI\\"
+        - "C:\\Program Files (x86)\\Windows Kits\\10\\Windows Performance Toolkit\\"
+        - "C:\\Program Files\\CMake\\bin"
+        - "C:\\Program Files\\nodejs\\"
+        - "c:\\Users\\woisr\\AppData\\Local\\Programs\\cursor\\resources\\app\\bin"
+        - "C:\\Program Files\\dotnet\\"
+        - "C:\\Users\\woisr\\.local\\bin"
+        - "C:\\Users\\woisr\\.cargo\\bin"
+        - "C:\\Users\\woisr\\AppData\\Local\\Microsoft\\WindowsApps"
+        - "C:\\Users\\woisr\\AppData\\Local\\Programs\\Windsurf\\bin"
+        - "C:\\Users\\woisr\\AppData\\Local\\Programs\\cursor\\resources\\app\\bin"
+        - "C:\\Users\\woisr\\.dotnet\\tools"
+        - "C:\\Users\\woisr\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
+        - "C:\\Users\\woisr\\AppData\\Roaming\\npm"
+        - "C:\\Users\\woisr\\AppData\\Local\\Programs\\Ollama"
+        - "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin"
+        - "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\Ninja"
+        - "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\Common7\\IDE\\VC\\Linux\\bin\\ConnectionManagerExe"
+        - "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\vcpkg"
+      CMAKE_INSTALL_PREFIX: "C:/Program Files/RaeenOS"
+      CMAKE_SYSTEM_PREFIX_PATH:
+        - "C:/Program Files"
+        - "C:/Program Files (x86)"
+        - "C:/Program Files/CMake"
+        - "C:/Program Files/RaeenOS"
 ...

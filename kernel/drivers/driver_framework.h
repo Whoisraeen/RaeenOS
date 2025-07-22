@@ -5,6 +5,9 @@
 #include <stdbool.h>
 #include "types.h"
 
+// Missing types for drivers
+typedef int64_t ssize_t;
+
 // Device types
 typedef enum {
     DEVICE_TYPE_UNKNOWN = 0,

@@ -1,0 +1,1 @@
+/usr/bin/cc  -Wall -Wno-error -nostdlib -fno-builtin -fno-stack-protector -g -O0 -g CMakeFiles/raeenos_mkfs.dir/mkfs/mkfs_raeenos.c.o -o raeenos_mkfs 

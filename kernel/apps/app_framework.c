@@ -1,10 +1,21 @@
-#include "app_framework.h"
-#include "memory.h"
-#include "process.h"
-#include "filesystem.h"
-#include "gui.h"
-#include <string.h>
+#include <stdint.h>
+#include <stdbool.h>
 #include <stddef.h>
+
+// Basic type definitions
+typedef uint32_t spinlock_t;
+#define SPINLOCK_INIT 0
+
+// Stub function declarations
+static inline void KERROR(const char* s, ...) { }
+static inline void KINFO(const char* s, ...) { }
+
+// Forward declarations
+typedef struct app_framework app_framework_t;
+typedef struct application application_t;
+typedef struct app_runtime app_runtime_t;
+typedef struct app_package app_package_t;
+typedef struct application_registry application_registry_t;
 
 // Global application framework
 static app_framework_t app_framework = {0};

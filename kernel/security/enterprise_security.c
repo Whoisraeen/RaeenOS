@@ -1,9 +1,4 @@
 #include "enterprise_security.h"
-#include "../core/kernel.h"
-#include "../memory/memory.h"
-#include "../process/process.h"
-#include <string.h>
-#include <stdio.h>
 
 // Global enterprise security system instance
 static enterprise_security_system_t enterprise_security_system;

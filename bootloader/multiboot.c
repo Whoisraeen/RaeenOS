@@ -1,91 +1,10 @@
-#include "multiboot.h"
-#include "kernel.h"
-#include "memory/memory.h"
-#include "hal/hal.h"
-#include <string.h>
+#include "../kernel/core/include/multiboot.h"
+#include "../kernel/core/include/kernel.h"
+#include "../kernel/hal/include/hal/hal.h"
 
-// Multiboot header magic number
-#define MULTIBOOT_HEADER_MAGIC 0x1BADB002
-#define MULTIBOOT_BOOTLOADER_MAGIC 0x2BADB002
+// Use multiboot definitions from kernel headers
 
-// Multiboot header flags
-#define MULTIBOOT_HEADER_FLAG_MEMORY 0x00000001
-#define MULTIBOOT_HEADER_FLAG_BOOT_DEVICE 0x00000002
-#define MULTIBOOT_HEADER_FLAG_CMDLINE 0x00000004
-#define MULTIBOOT_HEADER_FLAG_MODS 0x00000008
-#define MULTIBOOT_HEADER_FLAG_AOUT 0x00000010
-#define MULTIBOOT_HEADER_FLAG_ELF 0x00000020
-#define MULTIBOOT_HEADER_FLAG_MMAP 0x00000040
-#define MULTIBOOT_HEADER_FLAG_DRIVES 0x00000080
-#define MULTIBOOT_HEADER_FLAG_CONFIG_TABLE 0x00000100
-#define MULTIBOOT_HEADER_FLAG_BOOT_LOADER_NAME 0x00000200
-#define MULTIBOOT_HEADER_FLAG_APM_TABLE 0x00000400
-#define MULTIBOOT_HEADER_FLAG_VBE 0x00000800
 
-// Multiboot information structure
-typedef struct {
-    u32 flags;
-    u32 mem_lower;
-    u32 mem_upper;
-    u32 boot_device;
-    u32 cmdline;
-    u32 mods_count;
-    u32 mods_addr;
-    u32 syms[4];
-    u32 mmap_length;
-    u32 mmap_addr;
-    u32 drives_length;
-    u32 drives_addr;
-    u32 config_table;
-    u32 boot_loader_name;
-    u32 apm_table;
-    u32 vbe_control_info;
-    u32 vbe_mode_info;
-    u16 vbe_mode;
-    u16 vbe_interface_seg;
-    u16 vbe_interface_off;
-    u16 vbe_interface_len;
-} __attribute__((packed)) multiboot_info_t;
-
-// Memory map entry structure
-typedef struct {
-    u32 size;
-    u64 addr;
-    u64 len;
-    u32 type;
-} __attribute__((packed)) multiboot_mmap_entry_t;
-
-// Module structure
-typedef struct {
-    u32 mod_start;
-    u32 mod_end;
-    u32 string;
-    u32 reserved;
-} __attribute__((packed)) multiboot_module_t;
-
-// VBE information structure
-typedef struct {
-    u16 attributes;
-    u8 win_a, win_b;
-    u16 granularity;
-    u16 winsize;
-    u16 segment_a, segment_b;
-    u32 real_far_ptr;
-    u16 pitch;
-    u16 width, height;
-    u8 w_char, y_char, planes, bpp, banks;
-    u8 memory_model, bank_size, image_pages;
-    u8 reserved0;
-    u8 red_mask, red_position;
-    u8 green_mask, green_position;
-    u8 blue_mask, blue_position;
-    u8 rsv_mask, rsv_position;
-    u8 directcolor_attributes;
-    u32 framebuffer;
-    u32 off_screen_mem_off;
-    u16 off_screen_mem_size;
-    u8 reserved1[206];
-} __attribute__((packed)) vbe_mode_info_t;
 
 // Global multiboot information
 static multiboot_info_t* multiboot_info = NULL;
@@ -93,7 +12,7 @@ static bool multiboot_valid = false;
 static u32 multiboot_magic = 0;
 
 // Memory map information
-static multiboot_mmap_entry_t* memory_map = NULL;
+static multiboot_mmap_entry_t* multiboot_memory_map = NULL;
 static u32 memory_map_count = 0;
 static u32 total_memory = 0;
 static u32 available_memory = 0;
@@ -217,7 +136,7 @@ static error_t multiboot_parse_memory_map(void) {
         return E_INVAL;
     }
     
-    memory_map = (multiboot_mmap_entry_t*)multiboot_info->mmap_addr;
+    multiboot_memory_map = (multiboot_mmap_entry_t*)multiboot_info->mmap_addr;
     memory_map_count = multiboot_info->mmap_length / sizeof(multiboot_mmap_entry_t);
     
     KINFO("Memory map: %u entries", memory_map_count);
@@ -227,7 +146,7 @@ static error_t multiboot_parse_memory_map(void) {
     available_memory = 0;
     
     for (u32 i = 0; i < memory_map_count; i++) {
-        multiboot_mmap_entry_t* entry = &memory_map[i];
+        multiboot_mmap_entry_t* entry = &multiboot_memory_map[i];
         
         u64 start_addr = entry->addr;
         u64 end_addr = entry->addr + entry->len;
@@ -321,12 +240,12 @@ error_t multiboot_get_memory_info(u32* total, u32* available) {
 
 // Get memory map
 error_t multiboot_get_memory_map(multiboot_mmap_entry_t** map, u32* count) {
-    if (!multiboot_valid || !memory_map) {
+    if (!multiboot_valid || !multiboot_memory_map) {
         return E_INVAL;
     }
     
     if (map) {
-        *map = memory_map;
+        *map = multiboot_memory_map;
     }
     
     if (count) {
